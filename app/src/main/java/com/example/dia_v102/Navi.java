@@ -12,13 +12,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Navi extends AppCompatActivity {
 
-    Toolbar toolbar;
+    /*Toolbar toolbar;
 
     DietLog dietLog;
     Fragment1 Chatbot;
     Fragment2 BloodsugarLog;
     Fragment3 Calendar;
-    Fragment54 Settings;
+    Fragment54 Settings;*/
 
 
     @Override
@@ -27,14 +27,14 @@ public class Navi extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_navi);
 
-        toolbar=findViewById(R.id.toolbar);
+      /*  toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
 
         DietLog = new Fragment1()
-
+*/
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

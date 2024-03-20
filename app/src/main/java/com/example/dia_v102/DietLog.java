@@ -19,7 +19,8 @@ public class DietLog extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState){
-        return inflater.inflate(R.layout.DietLog, container,false);
+        return inflater.inflate(R.layout.activity_diet_log, container,false);
 
     }
 }
+

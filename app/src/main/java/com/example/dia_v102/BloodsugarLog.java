@@ -1,5 +1,5 @@
 package com.example.dia_v102;
-
+/*
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 public class BloodsugarLog extends Fragment {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,4 +23,4 @@ public class BloodsugarLog extends Fragment {
             return insets;
         });
     }
-}
+}*/
