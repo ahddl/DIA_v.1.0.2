@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Signup">
+
+
+    <Button
+        android:id="@+id/back1"
+        android:layout_width="79dp"
+        android:layout_height="33dp"
+        android:text="Back"
+        android:textSize="10sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="17dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="64dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-25dp">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="> 아이디 ID"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="123dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/textID"
+                android:layout_width="215dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="144dp" />
+
+            <Button
+                android:id="@+id/idCheck"
+                android:layout_width="85dp"
+                android:layout_height="35dp"
+                android:text="중복확인"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="> 별명 NickName"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="189dp" />
+
+        <EditText
+            android:id="@+id/nickName"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="별명을 입력하세요"
+            android:inputType="text"
+            android:textSize="10sp"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="210dp" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="> 비밀번호 PW"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="246dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="소문자, 특수문자 1개 총 7문자 이상 포함해야합니다."
+            android:inputType="textPassword"
+            android:textSize="10sp"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="267dp" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="> 비밀번호 확인"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="312dp" />
+
+        <EditText
+            android:id="@+id/Password2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="소문자, 특수문자 1개 총 7문자 이상 포함해야합니다."
+            android:inputType="textPassword"
+            android:textSize="10sp"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="333dp" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="> 이메일 E-Mail"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="378dp" />
+
+        <EditText
+            android:id="@+id/textEmail"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="399dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="이메일 수신에 동의합니다."
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:text="완료"
+            android:textSize="10sp" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
