@@ -1,24 +1,27 @@
 package com.example.dia_v102;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.ActionBar;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class Navi extends AppCompatActivity {
 
-    /*Toolbar toolbar;
+    /*navigation 하단 탭 생성(5개)*/
 
-    DietLog dietLog;
-    Fragment1 Chatbot;
-    Fragment2 BloodsugarLog;
-    Fragment3 Calendar;
-    Fragment54 Settings;*/
+    BottomNavigationView bottomNavigation;
+
+    Fragment diet;
+    Fragment chatbot;
+    Fragment bloodsugar;
+    Fragment calendar;
+    Fragment settings;
 
 
     @Override
@@ -27,19 +30,59 @@ public class Navi extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_navi);
 
-      /*  toolbar=findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("이건뭐야");
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(false);
+        bottomNavigation = findViewById(R.id.bottom_navigation);
 
-        DietLog = new Fragment1()
-*/
+        diet = new Diet();
+        chatbot = new Chatbot();
+        bloodsugar = new Bloodsugar();
+        calendar = new Calendar();
+        settings = new Settings();
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem Item) {
+
+                        int itemId = Item.getItemId();
+                       Fragment fragment = null;
+
+                       if(itemId==R.id.diet){
+                           fragment = diet;
+                           getSupportActionBar().setTitle("식단");
+                       }
+                       else if(itemId==R.id.chatbot){
+                           fragment=chatbot;
+                           getSupportActionBar().setTitle("챗봇");
+                       }
+                       else if(itemId==R.id.bloodsugar){
+                           fragment=bloodsugar;
+                           getSupportActionBar().setTitle("혈당");
+                       }
+                       else if(itemId==R.id.calendar){
+                           fragment=calendar;
+                           getSupportActionBar().setTitle("달력");
+                       }
+                       else if(itemId==R.id.settings){
+                           fragment=settings;
+                           getSupportActionBar().setTitle("설정");
+                       }
+
+                        return loadFragment(fragment);
+                    }
+                }
+        );
+
+    }
+
+    private boolean loadFragment(Fragment fragment) {
+        if(fragment != null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.dietLog, fragment)
+                    .commit();
+            return true;
+        } else {
+            return false;
+        }
     }
 }

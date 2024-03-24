@@ -13,6 +13,12 @@
         android:theme="@style/Theme.DIA_v102"
         tools:targetApi="31">
         <activity
+            android:name=".DietGraph"
+            android:exported="false" />
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@menu/menu_bottom" />
+        <activity
             android:name=".InputActivity"
             android:exported="false" />
         <activity
@@ -28,13 +34,13 @@
             android:name=".Calendar"
             android:exported="false" />
         <activity
-            android:name=".BloodsugarLog"
+            android:name=".Bloodsugar"
             android:exported="false" />
         <activity
             android:name=".Chatbot"
             android:exported="false" />
         <activity
-            android:name=".DietLog"
+            android:name=".Diet"
             android:exported="false" />
         <activity
             android:name=".Signup"

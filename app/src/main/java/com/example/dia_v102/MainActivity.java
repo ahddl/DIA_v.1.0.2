@@ -51,14 +51,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button googlelogin = findViewById(R.id.googlelogin);
-        login.setOnClickListener(new View.OnClickListener() {
+        //구글 로그인 및 회원가입 만들기
+        /*Button googlelogin = findViewById(R.id.googlelogin);
+        googlelogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Signup.class);
-                startActivity(intent);
+                Intent naviintent = new Intent(MainActivity.this, Navi.class);
+                startActivity(naviintent);
             }
-        });
+        });*/
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
