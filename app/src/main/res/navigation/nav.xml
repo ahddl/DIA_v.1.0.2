@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/dietLog">
+    app:startDestination="@id/diet">
 
     <fragment
         android:id="@+id/chatbot"
@@ -26,8 +26,9 @@
         android:label="activity_settings"
         tools:layout="@layout/activity_settings" />
     <fragment
-        android:id="@+id/dietLog"
+        android:id="@+id/diet"
         android:name="com.example.dia_v102.Diet"
-        android:label="activity_diet_log"
+        android:label="activity_diet"
         tools:layout="@layout/activity_diet" />
+
 </navigation>

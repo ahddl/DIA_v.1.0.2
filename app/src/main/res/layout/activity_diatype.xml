@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InputBasicData">
+    tools:context=".Diatype">
 
     <Button
-        android:id="@+id/back_basic"
+        android:id="@+id/back_diatype"
         android:layout_width="79dp"
         android:layout_height="33dp"
         android:text="Back"
@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기본 정보 입력"
+            android:text="당뇨병 타입"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="161dp"
             tools:layout_editor_absoluteY="64dp" />
@@ -40,7 +40,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기본 정보를 입력 해주세요"
+            android:text="당신의 당뇨병 유형이 무엇인가요?"
             android:textSize="18sp"
             android:layout_marginBottom="20dp"
             tools:layout_editor_absoluteX="161dp"
@@ -57,43 +57,43 @@
         app:layout_constraintVertical_bias="0.118">
 
         <Button
-            android:id="@+id/basic_act1"
+            android:id="@+id/diatype_act1"
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/confirm_btn_white"
-            android:text="키"
+            android:text="Type 1"
             android:textSize="15dp" />
 
         <Button
-            android:id="@+id/basic_act2"
+            android:id="@+id/diatype_act2"
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/confirm_btn_white"
-            android:text="몸무게"
+            android:text="Type 2"
             android:textSize="15dp" />
 
         <Button
-            android:id="@+id/basic_act3"
+            android:id="@+id/diatype_act3"
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/confirm_btn_white"
-            android:text="만나이"
+            android:text="임신성 당뇨병"
             android:textSize="15dp" />
 
         <Button
-            android:id="@+id/basic_act4"
+            android:id="@+id/diatype_act4"
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/confirm_btn_white"
-            android:text="성별 남, 여"
+            android:text="그 외"
             android:textSize="15dp" />
 
         <Button
-            android:id="@+id/next_basic"
+            android:id="@+id/next_diatype"
             android:layout_width="80dp"
             android:layout_height="35dp"
             android:layout_marginTop="25dp"
@@ -102,6 +102,5 @@
 
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

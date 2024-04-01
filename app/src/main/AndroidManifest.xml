@@ -13,13 +13,21 @@
         android:theme="@style/Theme.DIA_v102"
         tools:targetApi="31">
         <activity
+            android:name=".Diatype"
+            android:exported="false" />
+        <activity
+            android:name=".InputWeek"
+            android:exported="false" />
+        <activity
             android:name=".DietGraph"
             android:exported="false" />
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@menu/menu_bottom" />
+
         <activity
-            android:name=".InputActivity"
+            android:name=".InputTime"
             android:exported="false" />
         <activity
             android:name=".InputBasicData"

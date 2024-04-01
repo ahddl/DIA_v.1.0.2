@@ -17,6 +17,18 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="17dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.118">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,6 +36,8 @@
         android:textSize="24sp"
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="64dp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -142,7 +156,7 @@
             android:textSize="10sp" />
 
         <Button
-            android:id="@+id/next"
+            android:id="@+id/nextSignup"
             android:layout_width="80dp"
             android:layout_height="35dp"
             android:text="완료"

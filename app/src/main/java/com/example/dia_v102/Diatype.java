@@ -11,23 +11,23 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class Signup extends AppCompatActivity {
+public class Diatype extends AppCompatActivity {
 
-    /*아이디 중복확인 기능, 아이디별명비밀번호이메일 DB에 저장, 비밀번호 소문자특수문자1개씩 총7문자이상인지 확인기능,
-    비밀번호랑 비밀번호확인란 일치하는지 확인기능, 이메일 수신동의 및 알림사항 이메일 전송 가능하게 연결, 별명 mainpage에 뜰 수있게 하기*/
+    /*당뇨병 타입이 무엇인지 선택하는 클래스*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_diatype);
 
-        /*뒤로 가기 버튼 -- main 화면으로 이동*/
-        Button back1 = findViewById(R.id.back1);
-        back1.setOnClickListener(new View.OnClickListener() {
+
+        /*뒤로 가기 버튼 -- 활동량입력-주단위 화면으로 이동*/
+        Button back_diatype = findViewById(R.id.back_diatype);
+        back_diatype.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signupintent = new Intent(Signup.this, MainActivity.class);
+                Intent signupintent = new Intent(Diatype.this, InputWeek.class);
                 //intent.putExtra("name","mike"); //인텐트 객체 생성하고 name의 값을 부가데이터로 넣기
                 setResult(RESULT_OK, signupintent);
                 finish();
@@ -35,12 +35,14 @@ public class Signup extends AppCompatActivity {
 
         });
 
-        /*완료버튼 -- 누르면 기본정보입력으로 넘어감 (Signup->InputBasicData->InputTime->InputWeek->Diatype)*/
-        Button nextSignup = findViewById(R.id.nextSignup);
-        nextSignup.setOnClickListener(new View.OnClickListener() {
+        /*완료버튼 -- 누르면 "회원가입이 완료되었습니다. 다시 로그인을 시도해주십시오."의 안내멘트 후 main 화면으로 돌아감
+        아직 안내멘트 설정 안함, 임시로 main으로 돌아가게만 설정해둠
+        (Signup->InputBasicData->InputTime->InputWeek->Diatype)*/
+        Button next_diatype = findViewById(R.id.next_diatype);
+        next_diatype.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Signup.this, InputBasicData.class);
+                Intent intent = new Intent(Diatype.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -51,8 +53,6 @@ public class Signup extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-
-
         });
     }
 }

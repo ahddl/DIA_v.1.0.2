@@ -25,7 +25,33 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.412" />
 
-    <Button
+        <EditText
+            android:id="@+id/loginID"
+            android:layout_width="301dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="  ID"
+            android:background="@drawable/edittext_rounded_corner_rectangle"
+            app:layout_constraintBaseline_toBottomOf="parent"
+            app:layout_constraintBaseline_toTopOf="parent"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="404dp"/>
+
+        <EditText
+            android:id="@+id/loginPW"
+            android:layout_width="301dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="  PW"
+            android:background="@drawable/edittext_rounded_corner_rectangle"
+            app:layout_constraintBaseline_toBottomOf="parent"
+            app:layout_constraintBaseline_toTopOf="parent"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="404dp"/>
+
+        <Button
         android:id="@+id/login"
         android:layout_width="301dp"
         android:layout_height="50dp"
@@ -35,25 +61,48 @@
         tools:layout_editor_absoluteX="55dp"
         tools:layout_editor_absoluteY="404dp" />
 
-        <Button
-            android:id="@+id/joinbottom"
-            android:layout_width="301dp"
-            android:layout_height="50dp"
-            android:text="회원가입"
-            app:layout_constraintBaseline_toBottomOf="parent"
-            app:layout_constraintBaseline_toTopOf="parent"
-            tools:layout_editor_absoluteX="55dp"
-            tools:layout_editor_absoluteY="404dp" />
+    <Button
+        android:id="@+id/joinbotton"
+        android:layout_width="301dp"
+        android:layout_height="50dp"
+        android:text="회원가입"
+        app:layout_constraintBaseline_toBottomOf="parent"
+        app:layout_constraintBaseline_toTopOf="parent"
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="404dp" />
 
     <Button
         android:id="@+id/googlelogin"
         android:layout_width="301dp"
         android:layout_height="50dp"
-        android:text="Google Login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="471dp" />
+        android:text="일단 메인화면 가는 버튼(나중카카오버튼임)"
+        app:layout_constraintBaseline_toBottomOf="parent"
+        app:layout_constraintBaseline_toTopOf="parent"
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="404dp" />
+
+        <Button
+            android:id="@+id/findID"
+            android:layout_width="301dp"
+            android:layout_height="50dp"
+            android:text="아이디찾기"
+            app:layout_constraintBaseline_toBottomOf="parent"
+            app:layout_constraintBaseline_toTopOf="parent"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="404dp" />
+
+        <Button
+            android:id="@+id/findPW"
+            android:layout_width="301dp"
+            android:layout_height="50dp"
+            android:text="비밀번호재설정"
+            app:layout_constraintBaseline_toBottomOf="parent"
+            app:layout_constraintBaseline_toTopOf="parent"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="404dp" />
+
+
+
 
     </LinearLayout>
 
