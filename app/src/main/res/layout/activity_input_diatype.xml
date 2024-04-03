@@ -10,23 +10,28 @@
     <Button
         android:id="@+id/back_diatype"
         android:layout_width="79dp"
-        android:layout_height="33dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="27dp"
         android:text="Back"
         android:textSize="10sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="17dp" />
+        app:layout_constraintBottom_toTopOf="@+id/Linear1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/Linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="572dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back_diatype"
         app:layout_constraintVertical_bias="0.118">
 
         <TextView
@@ -40,21 +45,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:text="당신의 당뇨병 유형이 무엇인가요?"
             android:textSize="18sp"
-            android:layout_marginBottom="20dp"
             tools:layout_editor_absoluteX="161dp"
             tools:layout_editor_absoluteY="64dp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/Linear1"
-        app:layout_constraintVertical_bias="0.118">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Linear1">
 
         <Button
             android:id="@+id/diatype_act1"

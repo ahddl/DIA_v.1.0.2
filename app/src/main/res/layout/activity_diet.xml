@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".Diet">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Diet">
 
     <!-- 키와 몸무게, 닉네임 초기 설정 값 불러오게 하기, 현재시간 설정하기-->
 
     <LinearLayout
         android:id="@+id/profile"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#D6D6D6"
         android:gravity="center"
-        android:background="#D6D6D6">
+        app:layout_constraintBottom_toTopOf="@+id/store_fragment_tablayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/profileImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher_round"
-            android:layout_marginStart="30dp"/>
+            android:layout_marginStart="30dp"
+            android:src="@mipmap/ic_launcher_round" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="30dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/timeNow"
@@ -44,7 +48,7 @@ tools:context=".Diet">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="닉네임"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -75,8 +79,10 @@ tools:context=".Diet">
         android:id="@+id/store_fragment_tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/profile"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_marginBottom="573dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
