@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Bloodsugar">\
+    tools:context=".DiabetesLog">
 
     <TextView
         android:id="@+id/textChat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="혈당"
+        android:text="혈당 기록 화면"
         android:textSize="50dp"
         android:textStyle="bold"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

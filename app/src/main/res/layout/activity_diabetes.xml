@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Diabetes">\
+
+    <LinearLayout
+        android:id="@+id/profile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#D6D6D6"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/store_fragment_tablayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/timeNow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="현재 시간"
+                android:textSize="10dp"/>
+
+            <TextView
+                android:id="@+id/nickName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="닉네임"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/averblood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="평균 혈당량 -- mg/dL"
+                android:textSize="10dp"/>
+
+            <TextView
+                android:id="@+id/glycatedhemoglobin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="당화혈색소 -- %"
+                android:textSize="10dp"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/store_fragment_tablayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="573dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="혈당기록"
+            tools:layout_editor_absoluteX="-10dp"
+            tools:layout_editor_absoluteY="143dp" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="혈당변화량"
+            tools:layout_editor_absoluteX="194dp"
+            tools:layout_editor_absoluteY="125dp" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <FrameLayout
+        android:id="@+id/tab_layout_container2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/store_fragment_tablayout2">
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

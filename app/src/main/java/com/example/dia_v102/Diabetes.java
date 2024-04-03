@@ -5,34 +5,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.tabs.TabLayout;
 
-public class Diet extends Fragment {
+public class Diabetes extends Fragment {
 
-    /*fragment 안에 fragment 로 측, getChildFragmentManager() 사용하여,
-    식단 입력 프래그먼트(DietLog)과 식단 데이터 프래그먼트(DietGraph) 고정바아래에 버튼 형식으로 넘어가게
-     고정바에 들어가야 할것: 날짜 및 시간, 닉네임, 키, 몸무게(+몸무게변화추가버튼),프로필이미지 */
-
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState){
-        View rootView = inflater.inflate(R.layout.activity_diet, container,false);
+        View rootView = inflater.inflate(R.layout.activity_diabetes, container,false);
 
-        TabLayout tabLayout = rootView.findViewById(R.id.store_fragment_tablayout);
+        TabLayout tabLayout = rootView.findViewById(R.id.store_fragment_tablayout2);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
                 switch (tab.getPosition()) {
                     case 0:
-                        transaction.replace(R.id.tab_layout_container, new DietLog());
+                        transaction.replace(R.id.tab_layout_container2, new DiabetesLog());
                         break;
                     case 1:
-                        transaction.replace(R.id.tab_layout_container, new DietGraph());
+                        transaction.replace(R.id.tab_layout_container2, new DiabetesGraph());
                         break;
                 }
                 transaction.commit();

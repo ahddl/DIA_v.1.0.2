@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -25,7 +24,7 @@ public class Navi extends AppCompatActivity {
 
     Diet diet;
     Chatbot chatbot;
-    Bloodsugar bloodsugar;
+    Diabetes bloodsugar;
     Calendar calendar;
     Settings settings;
 
@@ -42,7 +41,7 @@ public class Navi extends AppCompatActivity {
 
         diet = new Diet();
         chatbot = new Chatbot();
-        bloodsugar = new Bloodsugar();
+        bloodsugar = new Diabetes();
         calendar = new Calendar();
         settings = new Settings();
 

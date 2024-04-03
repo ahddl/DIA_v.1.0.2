@@ -12,9 +12,9 @@
         tools:layout="@layout/activity_chatbot" />
     <fragment
         android:id="@+id/bloodsugarLog"
-        android:name="com.example.dia_v102.Bloodsugar"
+        android:name="com.example.dia_v102.Diabetes"
         android:label="activity_bloodsugar_log"
-        tools:layout="@layout/activity_bloodsugar" />
+        tools:layout="@layout/activity_diabetes" />
     <fragment
         android:id="@+id/calendar"
         android:name="com.example.dia_v102.Calendar"
