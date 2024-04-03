@@ -5,13 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DietGraph">
+    tools:context=".DietLog">
 
     <TextView
         android:id="@+id/textChat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="식단변화량 화면"
+        android:text="식단기록 화면"
         android:textSize="50dp"
         android:textStyle="bold"/>
 

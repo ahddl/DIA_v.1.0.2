@@ -11,7 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class Diatype extends AppCompatActivity {
+public class InputDiatype extends AppCompatActivity {
 
     /*당뇨병 타입이 무엇인지 선택하는 클래스*/
 
@@ -19,7 +19,7 @@ public class Diatype extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_diatype);
+        setContentView(R.layout.activity_input_diatype);
 
 
         /*뒤로 가기 버튼 -- 활동량입력-주단위 화면으로 이동*/
@@ -27,7 +27,7 @@ public class Diatype extends AppCompatActivity {
         back_diatype.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signupintent = new Intent(Diatype.this, InputWeek.class);
+                Intent signupintent = new Intent(InputDiatype.this, InputWeek.class);
                 //intent.putExtra("name","mike"); //인텐트 객체 생성하고 name의 값을 부가데이터로 넣기
                 setResult(RESULT_OK, signupintent);
                 finish();
@@ -42,7 +42,7 @@ public class Diatype extends AppCompatActivity {
         next_diatype.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Diatype.this, MainActivity.class);
+                Intent intent = new Intent(InputDiatype.this, MainActivity.class);
                 startActivity(intent);
             }
         });

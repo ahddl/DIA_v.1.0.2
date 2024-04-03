@@ -40,7 +40,7 @@ public class InputWeek extends AppCompatActivity {
         next_week.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InputWeek.this, Diatype.class);
+                Intent intent = new Intent(InputWeek.this, InputDiatype.class);
                 startActivity(intent);
             }
         });
