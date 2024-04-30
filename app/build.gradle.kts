@@ -28,6 +28,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -38,4 +39,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    // Normal
+    implementation("io.github.ParkSangGwon:tedpermission-normal:3.3.0")
+    // Coroutine
+    implementation("io.github.ParkSangGwon:tedpermission-coroutine:3.3.0")
+    // RxJava2
+    implementation("io.github.ParkSangGwon:tedpermission-rx2:3.3.0")
+    // RxJava3
+    implementation("io.github.ParkSangGwon:tedpermission-rx3:3.3.0")
 }

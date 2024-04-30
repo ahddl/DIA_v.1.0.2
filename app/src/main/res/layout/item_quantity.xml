@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/itemQuantity"
+    android:padding="8dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:layout_marginBottom="8dp"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/textMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textSize="24dp"
+        android:text="메뉴이름"
+        android:padding="5dp"
+        android:layout_weight="1"/>
+
+    <EditText
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:hint="숫자를 입력하시오."
+        android:padding="5dp"
+        android:layout_weight="1"/>
+
+    <Spinner
+        android:id="@+id/unit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

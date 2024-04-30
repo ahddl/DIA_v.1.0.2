@@ -21,14 +21,14 @@
         android:label="activity_calendar"
         tools:layout="@layout/activity_calendar" />
     <fragment
-        android:id="@+id/settings"
-        android:name="com.example.dia_v102.Settings"
-        android:label="activity_settings"
-        tools:layout="@layout/activity_settings" />
-    <fragment
         android:id="@+id/diet"
         android:name="com.example.dia_v102.Diet"
         android:label="activity_diet"
         tools:layout="@layout/activity_diet" />
+    <fragment
+        android:id="@+id/graph"
+        android:name="com.example.dia_v102.Graph"
+        android:label="activity_settings"
+        tools:layout="@layout/activity_graph" />
 
 </navigation>

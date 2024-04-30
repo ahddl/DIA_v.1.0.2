@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="my_array">
+        <item>공기</item>
+        <item>g</item>
+        <item>mL</item>
+        <item>인분</item>
+    </string-array>
+</resources>

@@ -26,7 +26,7 @@ public class Navi extends AppCompatActivity {
     Chatbot chatbot;
     Diabetes bloodsugar;
     Calendar calendar;
-    Settings settings;
+    Graph settings;
 
 
     @Override
@@ -43,7 +43,7 @@ public class Navi extends AppCompatActivity {
         chatbot = new Chatbot();
         bloodsugar = new Diabetes();
         calendar = new Calendar();
-        settings = new Settings();
+        settings = new Graph();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame, diet).commit();
 
