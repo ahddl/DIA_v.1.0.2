@@ -11,11 +11,15 @@
     <Button
         android:id="@+id/back_diatype"
         android:layout_width="79dp"
-        android:layout_height="33dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="27dp"
         android:text="Back"
         android:textSize="10sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="17dp" />
+        app:layout_constraintBottom_toTopOf="@+id/Linear1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
         android:id="@+id/Linear1"
