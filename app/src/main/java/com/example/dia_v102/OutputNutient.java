@@ -45,7 +45,6 @@ public class OutputNutient extends AppCompatActivity {
         caloriesTextView = findViewById(R.id.caloriesTextView);
         caloriesProgressBar = findViewById(R.id.caloriesProgressBar);
 
-
         //앞에서 받아온 메뉴 이름 값 출력
         String outputMenu = getIntent().getStringExtra("outputMenu");
         if (outputMenu != null) {

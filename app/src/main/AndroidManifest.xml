@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,9 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DIA_v102"
         tools:targetApi="31">
-        <activity
-            android:name=".CheckMenu"
-            android:exported="false" />
+
         <activity
             android:name=".Graph"
             android:exported="false" />
@@ -66,6 +66,12 @@
             android:name=".Diet"
             android:exported="false" />
         <activity
+            android:name=".CheckMenu"
+            android:exported="false" />
+        <activity
+            android:name=".OutputNutient"
+            android:exported="false" />
+        <activity
             android:name=".Signup"
             android:exported="false" />
         <activity
@@ -73,10 +79,20 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.dia_v102.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
     </application>
 
 </manifest>

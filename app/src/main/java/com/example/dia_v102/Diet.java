@@ -1,8 +1,8 @@
 package com.example.dia_v102;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;

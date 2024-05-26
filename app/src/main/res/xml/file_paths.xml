@@ -4,5 +4,6 @@
     <external-path
     name="my_image"
     path="Android/data/com.example.dia_v102/files/Pictures"/>
+    <files-path name="my_images" path="." />
 
 </paths>
