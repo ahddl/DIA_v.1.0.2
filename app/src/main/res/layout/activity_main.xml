@@ -25,82 +25,71 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.412" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
         <EditText
             android:id="@+id/loginID"
-            android:layout_width="301dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:ems="10"
             android:inputType="text"
             android:hint="  ID"
-            android:background="@drawable/edittext_rounded_corner_rectangle"
-            app:layout_constraintBaseline_toBottomOf="parent"
-            app:layout_constraintBaseline_toTopOf="parent"
-            tools:layout_editor_absoluteX="55dp"
-            tools:layout_editor_absoluteY="404dp"/>
+            android:background="@drawable/edittext_rounded_corner_rectangle" />
 
         <EditText
             android:id="@+id/loginPW"
-            android:layout_width="301dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:ems="10"
             android:inputType="text"
             android:hint="  PW"
-            android:background="@drawable/edittext_rounded_corner_rectangle"
-            app:layout_constraintBaseline_toBottomOf="parent"
-            app:layout_constraintBaseline_toTopOf="parent"
-            tools:layout_editor_absoluteX="55dp"
-            tools:layout_editor_absoluteY="404dp"/>
+            android:background="@drawable/edittext_rounded_corner_rectangle" />
 
         <Button
-        android:id="@+id/login"
-        android:layout_width="301dp"
-        android:layout_height="50dp"
-        android:text="로그인"
-        app:layout_constraintBaseline_toBottomOf="parent"
-        app:layout_constraintBaseline_toTopOf="parent"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="404dp" />
+        android:id="@+id/btnlogin"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:text="로그인" />
 
-    <Button
-        android:id="@+id/joinbotton"
-        android:layout_width="301dp"
-        android:layout_height="50dp"
-        android:text="회원가입"
-        app:layout_constraintBaseline_toBottomOf="parent"
-        app:layout_constraintBaseline_toTopOf="parent"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="404dp" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/googlelogin"
-        android:layout_width="301dp"
-        android:layout_height="50dp"
-        android:text="일단 메인화면 가는 버튼(나중카카오버튼임)"
-        app:layout_constraintBaseline_toBottomOf="parent"
-        app:layout_constraintBaseline_toTopOf="parent"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="404dp" />
+        <Button
+            android:id="@+id/joinbotton"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_below="@id/btnlogin"
+            android:text="회원가입"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/googlelogin"
+            android:layout_width="301dp"
+            android:layout_height="50dp"
+            android:text="임시 메인화면 버튼" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
 
         <Button
             android:id="@+id/findID"
-            android:layout_width="301dp"
-            android:layout_height="50dp"
-            android:text="아이디찾기"
-            app:layout_constraintBaseline_toBottomOf="parent"
-            app:layout_constraintBaseline_toTopOf="parent"
-            tools:layout_editor_absoluteX="55dp"
-            tools:layout_editor_absoluteY="404dp" />
+            android:layout_width="140dp"
+            android:layout_height="45dp"
+            android:text="아이디찾기" />
 
         <Button
             android:id="@+id/findPW"
-            android:layout_width="301dp"
-            android:layout_height="50dp"
+            android:layout_width="140dp"
+            android:layout_height="45dp"
             android:text="비밀번호재설정"
-            app:layout_constraintBaseline_toBottomOf="parent"
-            app:layout_constraintBaseline_toTopOf="parent"
-            tools:layout_editor_absoluteX="55dp"
-            tools:layout_editor_absoluteY="404dp" />
+            android:layout_marginLeft="15dp"/>
 
+        </LinearLayout>
 
 
 
