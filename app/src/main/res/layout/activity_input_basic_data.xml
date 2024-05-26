@@ -54,43 +54,141 @@
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/Linear1"
-        app:layout_constraintVertical_bias="0.118">
+        tools:layout_editor_absoluteX="0dp">
 
-        <Button
+
+        <LinearLayout
             android:id="@+id/basic_act1"
             android:layout_width="350dp"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="@drawable/confirm_btn_white"
-            android:text="키"
-            android:textSize="15dp" />
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-        <Button
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="> 키"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="246dp" />
+
+            <EditText
+                android:id="@+id/height"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:ems="10"
+                android:hint="단위 cm 입니다."
+                android:inputType="textPassword"
+                android:textSize="10sp"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="267dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/basic_act2"
             android:layout_width="350dp"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="@drawable/confirm_btn_white"
-            android:text="몸무게"
-            android:textSize="15dp" />
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-        <Button
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="> 몸무게"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="246dp" />
+
+            <EditText
+                android:id="@+id/weight"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:ems="10"
+                android:hint="단위 kg 입니다."
+                android:inputType="textPassword"
+                android:textSize="10sp"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="267dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/basic_act3"
             android:layout_width="350dp"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="@drawable/confirm_btn_white"
-            android:text="만나이"
-            android:textSize="15dp" />
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-        <Button
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="> 만나이"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="246dp" />
+
+            <EditText
+                android:id="@+id/age"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:ems="10"
+                android:hint="만 나이 입니다."
+                android:inputType="textPassword"
+                android:textSize="10sp"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="267dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/basic_act4"
             android:layout_width="350dp"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="@drawable/confirm_btn_white"
-            android:text="성별 남, 여"
-            android:textSize="15dp" />
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:text="> 성별"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="246dp" />
+
+            <TextView
+                android:id="@+id/gender_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/unselected_background"
+                android:padding="16dp"
+                android:text="여"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/gender_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/unselected_background"
+                android:padding="16dp"
+                android:text="남"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/next_basic"

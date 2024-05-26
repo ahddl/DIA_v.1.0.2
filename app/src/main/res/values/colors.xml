@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_blue_grey">#FFE9E9E9</color>
+    <color name="light_blue_grey">#EAEAEA</color>
     <color name="pale_grey">#FFBDBEBD</color>
     <color name="pastel_rainbow1">#ffadad</color>
     <color name="pastel_rainbow2">#ffd6a5</color>
@@ -12,4 +12,5 @@
     <color name="pastel_rainbow6">#a0c4ff</color>
     <color name="pastel_rainbow7">#bdb2ff</color>
     <color name="pastel_rainbow8">#ffc6ff</color>
+
 </resources>

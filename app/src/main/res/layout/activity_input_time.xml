@@ -63,7 +63,7 @@
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/confirm_btn_white"
+            android:background="@drawable/unselected_background"
             android:text="1 시간 미만"
             android:textSize="15dp" />
 
@@ -72,7 +72,7 @@
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/confirm_btn_white"
+            android:background="@drawable/unselected_background"
             android:text="1 ~ 2 시간 이상"
             android:textSize="15dp" />
 
@@ -81,7 +81,7 @@
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/confirm_btn_white"
+            android:background="@drawable/unselected_background"
             android:text="2 ~ 3 시간 이상"
             android:textSize="15dp" />
 
@@ -90,7 +90,7 @@
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/confirm_btn_white"
+            android:background="@drawable/unselected_background"
             android:text="4 시간 이상"
             android:textSize="15dp" />
 

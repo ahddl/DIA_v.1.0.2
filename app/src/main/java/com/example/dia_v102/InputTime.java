@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,8 @@ public class InputTime extends AppCompatActivity {
     //private Button selectedButton;
 
     /*평소활동량 하루에 몇시간 운동 중 인지 선택하는 클래스*/
+
+    private Button selectedButton = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +37,48 @@ public class InputTime extends AppCompatActivity {
                 setResult(RESULT_OK, signupintent);
                 finish();
             }
-
         });
 
-        /*완료버튼 -- 누르면 활동량입력-주단위으로 넘어감 (Signup->InputBasicData->InputTime->InputWeek->Diatype)*/
+
         Button next_time = findViewById(R.id.next_time);
+
+        // 당뇨병 타입 선택 버튼들
+        Button timeAct1 = findViewById(R.id.time_act1);
+        Button timeAct2 = findViewById(R.id.time_act2);
+        Button timeAct3 = findViewById(R.id.time_act3);
+        Button timeAct4 = findViewById(R.id.time_act4);
+
+        // 당뇨병 타입 버튼 클릭 리스너
+        View.OnClickListener timeClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 선택된 버튼 색상 변경
+                if (selectedButton != null) {
+                    selectedButton.setBackgroundResource(R.drawable.unselected_background);
+                }
+                selectedButton = (Button) v;
+                selectedButton.setBackgroundResource(R.drawable.selected_background);
+                next_time.setEnabled(true);
+            }
+        };
+
+        timeAct1.setOnClickListener(timeClickListener);
+        timeAct2.setOnClickListener(timeClickListener);
+        timeAct3.setOnClickListener(timeClickListener);
+        timeAct4.setOnClickListener(timeClickListener);
+
+        /*완료버튼 -- 누르면 활동량입력-주단위으로 넘어감 (Signup->InputBasicData->InputTime->InputWeek->Diatype)*/
+
         next_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InputTime.this, InputWeek.class);
-                startActivity(intent);
+                if (selectedButton == null) {
+                    Toast.makeText(InputTime.this, "평소활동량을 선택해주세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // 선택된 타입 처리 후 다음 화면으로 이동
+                    Intent intent = new Intent(InputTime.this, InputWeek.class);
+                    startActivity(intent);
+                }
             }
         });
 
