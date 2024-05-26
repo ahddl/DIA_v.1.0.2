@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         /*로그인버튼 -- ID와 PW 입력 후 로그인 버튼 누르면 로그인 완료 안내와 함께 메인 페이지(nav)로 넘어가게 만들어야함
         임시로 회원가입 Signup class로 넘어가게 해둠*/
-        Button login = findViewById(R.id.login);
+        Button login = findViewById(R.id.btnlogin);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
