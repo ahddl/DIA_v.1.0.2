@@ -4,4 +4,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_blue_grey">#FFE9E9E9</color>
     <color name="pale_grey">#FFBDBEBD</color>
+    <color name="pastel_rainbow1">#ffadad</color>
+    <color name="pastel_rainbow2">#ffd6a5</color>
+    <color name="pastel_rainbow3">#fdffb6</color>
+    <color name="pastel_rainbow4">#caffbf</color>
+    <color name="pastel_rainbow5">#9bf6ff</color>
+    <color name="pastel_rainbow6">#a0c4ff</color>
+    <color name="pastel_rainbow7">#bdb2ff</color>
+    <color name="pastel_rainbow8">#ffc6ff</color>
 </resources>

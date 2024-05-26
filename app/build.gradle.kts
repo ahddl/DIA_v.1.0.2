@@ -39,12 +39,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    // Normal
-    implementation("io.github.ParkSangGwon:tedpermission-normal:3.3.0")
-    // Coroutine
-    implementation("io.github.ParkSangGwon:tedpermission-coroutine:3.3.0")
-    // RxJava2
-    implementation("io.github.ParkSangGwon:tedpermission-rx2:3.3.0")
-    // RxJava3
-    implementation("io.github.ParkSangGwon:tedpermission-rx3:3.3.0")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("com.google.code.gson:gson:2.8.6")
+    implementation("com.github.AnyChart:AnyChart-Android:1.1.5")
 }

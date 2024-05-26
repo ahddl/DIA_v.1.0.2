@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/diet"
+    android:orientation="vertical"
+    android:id="@+id/main"
     tools:context=".Diet">
 
     <!-- 키와 몸무게, 닉네임 초기 설정 값 불러오게 하기, 현재시간 설정하기-->
 
     <LinearLayout
         android:id="@+id/profile"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="#D6D6D6"
         android:gravity="center"
@@ -75,118 +76,28 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/dietlog"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/profile" >
 
-        <!--<androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_diet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />-->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:orientation="vertical"
-            android:padding="15dp"
-            android:background="@drawable/view_border">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="식단 이미지를 촬영해주세요." />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"/>
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
+        <Button
+            android:id="@+id/enterDiet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:gravity="center">
+            android:text="식단 입력하기"/>
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="임시 화면 전환"
-                android:textSize="18dp"/>
-
-            <ImageButton
-                android:id="@+id/camerabutton"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/btncorner"
-                android:src="@drawable/baseline_photo_camera_24"
-                android:gravity="center"
-                android:layout_gravity="center"
-                tools:layout_editor_absoluteX="160dp"
-                tools:layout_editor_absoluteY="667dp"
-                android:layout_marginStart="30dp"/>
-
-            <ImageButton
-                android:id="@+id/gallerybutton"
-                android:layout_marginStart="30dp"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/btncorner"
-                android:src="@drawable/baseline_add_photo_alternate_24"
-                android:gravity="center"
-                android:layout_gravity="center"
-                tools:layout_editor_absoluteX="160dp"
-                tools:layout_editor_absoluteY="667dp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-  <!--  상단탭을 이용하여 식단기록/식단변화량 구성
-  <com.google.android.material.tabs.TabLayout
-        android:id="@+id/store_fragment_tablayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="573dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile">
-
-        <com.google.android.material.tabs.TabItem
+        <Button
+            android:id="@+id/btnload"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="식단기록"
-            tools:layout_editor_absoluteX="-10dp"
-            tools:layout_editor_absoluteY="143dp" />
+            android:layout_height="wrap_content"
+            android:text="로딩화면(오류발생으로 임시로 앞에 빼둠)"/>
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="식단변화량"
-            tools:layout_editor_absoluteX="194dp"
-            tools:layout_editor_absoluteY="125dp" />
+   <!-- 입력한 거 다시 나타나게 하기-->
 
-    </com.google.android.material.tabs.TabLayout>
 
-    <FrameLayout
-        android:id="@+id/tab_layout_container"
+    <!--임의로 이미지뷰 넣어둠-->
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/store_fragment_tablayout">
+        android:layout_height="match_parent"
+        app:srcCompat="@mipmap/ic_launcher" />
 
-    </FrameLayout>-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
