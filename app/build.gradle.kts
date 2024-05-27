@@ -52,6 +52,9 @@ dependencies {
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("com.google.code.gson:gson:2.8.6")
     implementation("com.github.AnyChart:AnyChart-Android:1.1.5")
+    implementation("org.tensorflow:tensorflow-lite:2.8.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.3.1")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.3.0")
 
     //아래는 roomdb를 위한 의존성입니다.
     implementation("androidx.room:room-runtime:2.4.1")
