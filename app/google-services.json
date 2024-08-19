@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1060271814517",
+    "project_id": "diaplate",
+    "storage_bucket": "diaplate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060271814517:android:83915b3307066fb87bc53c",
+        "android_client_info": {
+          "package_name": "com.example.dia_v102"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCwDMdYrwCbcRfdDnYgJdtZttMfIONz8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

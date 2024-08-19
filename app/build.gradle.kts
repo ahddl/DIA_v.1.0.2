@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
+    //id("com.android.application")
+    id("com.google.gms.google-services")//Google services Gradle plugin
 }
 
 android {
@@ -14,6 +16,14 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments(
+                        mapOf("room.schemaLocation" to "$projectDir/schemas")
+                )
+            }
+        }
     }
 
     buildTypes {
@@ -42,4 +52,22 @@ dependencies {
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("com.google.code.gson:gson:2.8.6")
     implementation("com.github.AnyChart:AnyChart-Android:1.1.5")
+
+    //아래는 roomdb를 위한 의존성입니다.
+    implementation("androidx.room:room-runtime:2.4.1")
+    annotationProcessor("androidx.room:room-compiler:2.4.1")
+
+    //하단은 Firebase연결을 위한 코드입니다.
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-database")
+
+
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation("com.google.firebase:firebase-analytics")
+
+
+    // Add the dependencies for any other desired Firebase products
+    // https://firebase.google.com/docs/android/setup#available-libraries
 }
