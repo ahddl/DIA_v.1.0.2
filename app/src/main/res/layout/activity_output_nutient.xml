@@ -22,32 +22,34 @@
         android:id="@+id/caloriesTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="Calories"
-        android:textSize="16sp"
+        android:textSize="24sp"
         android:textColor="@android:color/black"/>
 
     <ProgressBar
         android:id="@+id/caloriesProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:max="2000"
         android:progress="762"
-        android:progressTint="@color/pastel_rainbow1"
+        android:progressTint="@color/pastel_rainbow7"
+        android:progressDrawable="@drawable/progressbar"
         android:layout_below="@id/caloriesTextView"
         android:layout_gravity="center"/>
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pieChart"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
 
     <TextView
@@ -58,7 +60,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="Nutritional Information"
-        android:textSize="16sp"
+        android:textSize="24sp"
         android:textColor="@android:color/black"/>
 
     <TextView
@@ -70,9 +72,10 @@
         android:layout_marginEnd="16dp"
         android:layout_below="@id/pieChart"
         android:padding="16dp"
-        android:textSize="16sp"
+        android:textSize="20dp"
         android:textColor="@android:color/black"
-        android:text="Nutritional Information"/>
+        android:text="Nutritional Information"
+        android:background="@drawable/custom_backgraoud"/>
 
 
 </LinearLayout>

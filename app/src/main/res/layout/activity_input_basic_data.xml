@@ -3,12 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:onClick="onButtonClick"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".InputBasicData">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/back_basic"
+        style="@style/Widget.AppCompat.Button"
+        android:background="@drawable/botton_background"
         android:layout_width="79dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -16,6 +20,7 @@
         android:layout_marginBottom="27dp"
         android:text="Back"
         android:textSize="10sp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/Linear1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,6 +43,7 @@
             android:layout_height="wrap_content"
             android:text="기본 정보 입력"
             android:textSize="24sp"
+            android:textColor="@color/black"
             tools:layout_editor_absoluteX="161dp"
             tools:layout_editor_absoluteY="64dp" />
 
@@ -46,6 +52,7 @@
             android:layout_height="wrap_content"
             android:text="기본 정보를 입력 해주세요"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:layout_marginBottom="20dp"
             tools:layout_editor_absoluteX="161dp"
             tools:layout_editor_absoluteY="64dp" />
@@ -75,6 +82,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:text="> 키"
+                android:textColor="@color/black"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="246dp" />
 
@@ -84,8 +92,9 @@
                 android:layout_height="45dp"
                 android:ems="10"
                 android:hint="단위 cm 입니다."
-                android:inputType="textPassword"
+                android:inputType="number"
                 android:textSize="10sp"
+                android:textColor="@color/black"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="267dp" />
 
@@ -105,6 +114,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:text="> 몸무게"
+                android:textColor="@color/black"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="246dp" />
 
@@ -114,7 +124,8 @@
                 android:layout_height="45dp"
                 android:ems="10"
                 android:hint="단위 kg 입니다."
-                android:inputType="textPassword"
+                android:inputType="number"
+                android:textColor="@color/black"
                 android:textSize="10sp"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="267dp" />
@@ -135,6 +146,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:text="> 만나이"
+                android:textColor="@color/black"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="246dp" />
 
@@ -144,8 +156,9 @@
                 android:layout_height="45dp"
                 android:ems="10"
                 android:hint="만 나이 입니다."
-                android:inputType="textPassword"
+                android:inputType="number"
                 android:textSize="10sp"
+                android:textColor="@color/black"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="267dp" />
 
@@ -166,41 +179,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="50dp"
                 android:text="> 성별"
+                android:textColor="@color/black"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="246dp" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/gender_female"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/unselected_background"
-                android:padding="16dp"
+                android:background="@drawable/button_background_selector"
                 android:text="여"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textColor="@color/white" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/gender_male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/unselected_background"
-                android:padding="16dp"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_background_selector"
                 android:text="남"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:textColor="@color/white" />
 
 
         </LinearLayout>
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/next_basic"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="80dp"
             android:layout_height="35dp"
             android:layout_marginTop="25dp"
             android:text="완료"
-            android:textSize="10sp" />
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:background="@drawable/botton_background"/>
 
 
     </LinearLayout>

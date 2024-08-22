@@ -6,11 +6,13 @@
     android:onClick="onButtonClick"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".InputDiatype">
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/back_diatype"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="79dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -18,9 +20,12 @@
         android:layout_marginBottom="27dp"
         android:text="Back"
         android:textSize="10sp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/Linear1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/botton_background"/>
+
 
     <LinearLayout
         android:id="@+id/Linear1"
@@ -40,6 +45,7 @@
             android:layout_height="wrap_content"
             android:text="당뇨병 타입"
             android:textSize="24sp"
+            android:textColor="@color/black"
             tools:layout_editor_absoluteX="161dp"
             tools:layout_editor_absoluteY="64dp" />
 
@@ -49,6 +55,7 @@
             android:layout_marginBottom="20dp"
             android:text="당신의 당뇨병 유형이 무엇인가요?"
             android:textSize="18sp"
+            android:textColor="@color/black"
             tools:layout_editor_absoluteX="161dp"
             tools:layout_editor_absoluteY="64dp" />
 
@@ -56,58 +63,67 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Linear1">
+        app:layout_constraintTop_toBottomOf="@+id/Linear1"
+        app:layout_constraintVertical_bias="0.118">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Widget.AppCompat.Button"
+            android:textColor="@color/white"
             android:id="@+id/diatype_act1"
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/unselected_background"
+            android:background="@drawable/button_background_selector"
             android:text="Type 1"
             android:textSize="15dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Widget.AppCompat.Button"
+            android:textColor="@color/white"
             android:id="@+id/diatype_act2"
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/unselected_background"
+            android:background="@drawable/button_background_selector"
             android:text="Type 2"
             android:textSize="15dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Widget.AppCompat.Button"
+            android:textColor="@color/white"
             android:id="@+id/diatype_act3"
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/unselected_background"
+            android:background="@drawable/button_background_selector"
             android:text="임신성 당뇨병"
             android:textSize="15dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Widget.AppCompat.Button"
+            android:textColor="@color/white"
             android:id="@+id/diatype_act4"
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/unselected_background"
+            android:background="@drawable/button_background_selector"
             android:text="그 외"
             android:textSize="15dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Widget.AppCompat.Button"
+            android:textColor="@color/white"
             android:id="@+id/next_diatype"
             android:layout_width="80dp"
             android:layout_height="35dp"
             android:layout_marginTop="25dp"
             android:text="완료"
-            android:textSize="10sp"
-            android:enabled="false" />
+            android:textSize="12sp"
+            android:background="@drawable/botton_background"/>
 
     </LinearLayout>
 

@@ -14,8 +14,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class InputTime extends AppCompatActivity {
 
-    //private Button selectedButton;
-
     /*평소활동량 하루에 몇시간 운동 중 인지 선택하는 클래스*/
 
     private Button selectedButton = null;
@@ -52,13 +50,14 @@ public class InputTime extends AppCompatActivity {
         View.OnClickListener timeClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 선택된 버튼 색상 변경
+                // 이전에 선택된 버튼 배경 리셋
                 if (selectedButton != null) {
-                    selectedButton.setBackgroundResource(R.drawable.unselected_background);
+                    selectedButton.setSelected(false); // 이전 버튼의 선택 해제
                 }
+                // 새로운 버튼 선택상태로 설정
                 selectedButton = (Button) v;
-                selectedButton.setBackgroundResource(R.drawable.selected_background);
-                next_time.setEnabled(true);
+                selectedButton.setSelected(true); // 새로운 버튼 선택
+                next_time.setEnabled(true); // 완료버튼 활성화
             }
         };
 
@@ -73,6 +72,7 @@ public class InputTime extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (selectedButton == null) {
+                    // 미선택 후 완료 클릭시, 넘어가지 않고
                     Toast.makeText(InputTime.this, "평소활동량을 선택해주세요.", Toast.LENGTH_SHORT).show();
                 } else {
                     // 선택된 타입 처리 후 다음 화면으로 이동
@@ -81,32 +81,6 @@ public class InputTime extends AppCompatActivity {
                 }
             }
         });
-
-
-        //버튼 선택시 색상 바뀌면서 라디오 버튼처럼 선택되는 거 하다가 실패함 다시 해야함.
-/*
-        public void onButtonClick(View view) {
-            // Reset color of previously selected button
-            if (selectedButton != null) {
-                selectedButton.setBackgroundColor(ContextCompat.getColor(this, android.R.color.white)); // Use ContextCompat
-            }
-
-            // Set color of clicked button
-            selectedButton = (Button) view;
-            selectedButton.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_blue_light)); // Use ContextCompat
-        }
-
-        public void onNextButtonClick(View view) {
-            if (selectedButton != null) {
-                // Save selected button information or perform other actions
-                // For example, you can get the text of the selected button like this:
-                String buttonText = selectedButton.getText().toString();
-                // Now you can do whatever you want with the selected button information
-            }
-*/
-
-
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

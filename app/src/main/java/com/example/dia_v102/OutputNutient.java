@@ -2,6 +2,7 @@ package com.example.dia_v102;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -68,11 +70,11 @@ public class OutputNutient extends AppCompatActivity {
                 addEntry(entries, 120f, "콜레스테롤(mg)");
                 addEntry(entries, 822f, "나트륨(mg)");
 
-                nutritionalInfo = "탄수화물: 0.7g\n"
-                        + "단백질: 35.18g\n"
-                        + "지방: 25.19g\n"
-                        + "콜레스테롤: 120mg\n"
-                        + "나트륨: 822mg";
+                nutritionalInfo = "<b>탄수화물:</b> 0.7g<br>"
+                        + "<b>단백질:</b> 35.18g<br>"
+                        + "<b>지방:</b> 25.19g<br>"
+                        + "<b>콜레스테롤:</b> 120mg<br>"
+                        + "<b>나트륨:</b> 822mg";
 
                 totalCalories = 379.0f;
                 break;
@@ -84,11 +86,11 @@ public class OutputNutient extends AppCompatActivity {
                 addEntry(entries, 127.0f, "콜레스테롤(mg)");
                 addEntry(entries, 381.0f, "나트륨(mg)");
 
-                nutritionalInfo = "탄수화물: 0.0g\n"
-                        + "단백질: 29.68g\n"
-                        + "지방: 37.19g\n"
-                        + "콜레스테롤: 127.0mg\n"
-                        + "나트륨: 381.0mg";
+                nutritionalInfo = "<b>탄수화물:</b> 0.0g<br>"
+                        + "<b>단백질:</b> 29.68g<br>"
+                        + "<b>지방:</b> 37.19g<br>"
+                        + "<b>콜레스테롤:</b> 127.0mg<br>"
+                        + "<b>나트륨:</b> 381.0mg";
 
                 totalCalories = 462.0f;
                 break;
@@ -100,11 +102,11 @@ public class OutputNutient extends AppCompatActivity {
                 addEntry(entries, 162.0f, "콜레스테롤(mg)");
                 addEntry(entries, 919.0f, "나트륨(mg)");
 
-                nutritionalInfo = "탄수화물: 4.24g\n"
-                        + "단백질: 45.08g\n"
-                        + "지방: 52.3g\n"
-                        + "콜레스테롤: 162.0mg\n"
-                        + "나트륨: 919.0mg";
+                nutritionalInfo = "<b>탄수화물:</b> 4.24g<br>"
+                        + "<b>단백질:</b> 45.08g<br>"
+                        + "<b>지방:</b> 52.3g<br>"
+                        + "<b>콜레스테롤:</b> 162.0mg<br>"
+                        + "<b>나트륨:</b> 919.0mg";
 
                 totalCalories = 646.0f;
                 break;
@@ -117,6 +119,8 @@ public class OutputNutient extends AppCompatActivity {
         }
 
         nutList.setText(nutritionalInfo);
+        nutList.setBackgroundResource(R.drawable.custom_backgraoud);
+        nutList.setTextColor(ContextCompat.getColor(this, R.color.black));
 
         // 프로그래스 바 업데이트
         float averageDailyCalories = 2000f;
@@ -124,7 +128,7 @@ public class OutputNutient extends AppCompatActivity {
         caloriesProgressBar.setProgress((int) totalCalories);
 
         // 파이 차트 데이터 설정
-        PieDataSet dataSet = new PieDataSet(entries, "  {영양소 정보}");
+        PieDataSet dataSet = new PieDataSet(entries, " {영양소 정보}");
 
         // 각 섹션 색상 설정
         ArrayList<Integer> colors = new ArrayList<>();
@@ -136,7 +140,7 @@ public class OutputNutient extends AppCompatActivity {
         dataSet.setColors(colors);
 
         // 파이차트 텍스트 크기 설정
-        dataSet.setValueTextSize(16f);
+        dataSet.setValueTextSize(20f);
 
         // 데이터 설정값 입력
         PieData data = new PieData(dataSet);

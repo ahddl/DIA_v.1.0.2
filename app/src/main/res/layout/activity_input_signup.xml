@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:onClick="onButtonClick"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".Signup">
 
-
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/back1"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="79dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -17,9 +19,11 @@
         android:layout_marginBottom="27dp"
         android:text="Back"
         android:textSize="10sp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/Linear1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/botton_background"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,20 +71,22 @@
 
             <EditText
                 android:id="@+id/textID"
-                android:layout_width="215dp"
+                android:layout_width="230dp"
                 android:layout_height="45dp"
                 android:ems="10"
                 android:inputType="text"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="144dp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/Widget.AppCompat.Button"
                 android:id="@+id/idCheck"
-                android:layout_width="85dp"
-                android:layout_height="45dp"
-                android:padding="5dp"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
                 android:text="중복확인"
-                android:textSize="10sp" />
+                android:textSize="11sp"
+                android:textColor="@color/white"
+                android:background="@drawable/botton_background"/>
 
         </LinearLayout>
 
@@ -167,13 +173,16 @@
             android:textSize="10sp"
             />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Widget.AppCompat.Button"
             android:id="@+id/nextSignup"
             android:layout_width="80dp"
             android:layout_height="35dp"
             android:text="완료"
             android:textSize="10sp"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
+            android:background="@drawable/botton_background"/>
 
 
     </LinearLayout>
