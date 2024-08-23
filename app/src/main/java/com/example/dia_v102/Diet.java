@@ -27,12 +27,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.File;
 import java.io.IOException;
 
 public class Diet extends Fragment {
 
-    ImageView imageView;
+    //ImageView imageView;
     File file;
     Uri uri;
     private ActivityResultLauncher<Intent> takePictureLauncher;
@@ -43,7 +45,7 @@ public class Diet extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_diet, container, false);
 
-        imageView = view.findViewById(R.id.imageView);
+        //imageView = view.findViewById(R.id.imageView);
 
         takePictureLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -70,19 +72,19 @@ public class Diet extends Fragment {
                 }
         );
 
-        Button enterDietButton = view.findViewById(R.id.enterDiet);
+        FloatingActionButton enterDietButton = view.findViewById(R.id.enterDiet);
         enterDietButton.setOnClickListener(v -> showImageSourceDialog());
 
-        // 로딩화면: 사진 입력 후 모델 분석 때 시간 걸릴 때 사용하면 됨
+        /*// 로딩화면: 사진 입력 후 모델 분석 때 시간 걸릴 때 사용하면 됨
         Button btnLoad = view.findViewById(R.id.btnload);
         customProgressDialog = new ProgressDialog(getContext());
         if (customProgressDialog.getWindow() != null) {
             customProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         }
 
-        btnLoad.setOnClickListener(v -> customProgressDialog.show());
+        btnLoad.setOnClickListener(v -> customProgressDialog.show());*/
 
-        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.dietnFrame), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;

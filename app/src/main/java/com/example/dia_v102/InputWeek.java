@@ -52,10 +52,10 @@ public class InputWeek extends AppCompatActivity {
             public void onClick(View v) {
                 // 선택된 버튼 색상 변경
                 if (selectedButton != null) {
-                    selectedButton.setBackgroundResource(R.drawable.unselected_background);
+                    selectedButton.setSelected(false); // 이전 버튼의 선택 해제
                 }
                 selectedButton = (Button) v;
-                selectedButton.setBackgroundResource(R.drawable.selected_background);
+                selectedButton.setSelected(true); // 새로운 버튼 선택
                 next_week.setEnabled(true);
             }
         };
