@@ -5,94 +5,175 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_blue"
     tools:context=".MainActivity">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:text="LOGO"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.412" />
+        android:layout_height="match_parent"
+        android:background="@color/dark_blue"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/arc_1"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="219dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <EditText
-            android:id="@+id/loginID"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="  ID"
-            android:background="@drawable/edittext_rounded_corner_rectangle" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/light_blue"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="1.0">
 
-        <EditText
-            android:id="@+id/loginPW"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:hint="  PW"
-            android:background="@drawable/edittext_rounded_corner_rectangle" />
+            <EditText
+                android:id="@+id/loginID"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:background="@drawable/edittext_rounded_corner_rectangle"
+                android:ems="10"
+                android:hint="  ID"
+                android:inputType="text"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.191" />
 
-        <Button
-        android:id="@+id/btnlogin"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:text="로그인" />
+            <EditText
+                android:id="@+id/loginPW"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/edittext_rounded_corner_rectangle"
+                android:ems="10"
+                android:hint="  PW"
+                android:inputType="textPassword"
+                android:textSize="14sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loginID"
+                app:layout_constraintVertical_bias="0.0" />
 
-        </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnlogin"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="56dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="56dp"
+                android:background="@drawable/botton_background"
+                android:text="로그인"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loginPW"
+                app:layout_constraintVertical_bias="0.007" />
 
-        <Button
-            android:id="@+id/joinbotton"
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:layout_below="@id/btnlogin"
-            android:text="회원가입"
-            android:layout_marginTop="20dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/joinbotton"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_below="@id/btnlogin"
+                android:layout_marginStart="56dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="56dp"
+                android:background="@drawable/botton_background"
+                android:text="회원가입"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnlogin"
+                app:layout_constraintVertical_bias="0.005" />
 
-        <Button
-            android:id="@+id/googlelogin"
-            android:layout_width="301dp"
-            android:layout_height="50dp"
-            android:text="임시 메인화면 버튼" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/googlelogin"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="56dp"
+                android:layout_marginEnd="56dp"
+                android:background="@drawable/botton_background"
+                android:text="임시 메인화면 버튼"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/joinbotton"
+                app:layout_constraintVertical_bias="0.044" />
 
-        <LinearLayout
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/findID"
+                android:layout_width="145dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="154dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="56dp"
+                android:background="@drawable/botton_background"
+                android:text="아이디찾기"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.992"
+                app:layout_constraintStart_toEndOf="@+id/findPW"
+                app:layout_constraintStart_toStartOf="@+id/findPW"
+                app:layout_constraintTop_toBottomOf="@+id/googlelogin"
+                app:layout_constraintVertical_bias="0.02" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/findPW"
+                android:layout_width="145dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="56dp"
+                android:layout_marginTop="19dp"
+                android:background="@drawable/botton_background"
+                android:text="비밀번호재설정"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/googlelogin"
+                app:layout_constraintVertical_bias="0.02" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
+            android:layout_height="100dp"
+            android:text="LOGO"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.109" />
 
-        <Button
-            android:id="@+id/findID"
-            android:layout_width="140dp"
-            android:layout_height="45dp"
-            android:text="아이디찾기" />
-
-        <Button
-            android:id="@+id/findPW"
-            android:layout_width="140dp"
-            android:layout_height="45dp"
-            android:text="비밀번호재설정"
-            android:layout_marginLeft="15dp"/>
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

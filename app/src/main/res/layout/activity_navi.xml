@@ -22,28 +22,7 @@
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-        <!--   <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav" />-->
 
     </RelativeLayout>
-
-    <!-- <FrameLayout
-         android:id="@+id/mainFrame"
-         android:layout_width="match_parent"
-         android:layout_height="0dp"
-         android:layout_weight="1" />
-
-     <com.google.android.material.bottomnavigation.BottomNavigationView
-         android:id="@+id/bottom_navigation"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         app:itemBackground="@color/cardview_light_background"
-         app:menu="@menu/menu_bottom"
-         app:labelVisibilityMode="labeled"/> -->
 
 </FrameLayout>

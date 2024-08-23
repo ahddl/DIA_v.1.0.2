@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gom="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/tabdiet"
         android:title="식단"
+        gom:showAsAction="withText"
         android:icon="@drawable/baseline_ramen_dining_24" />
 
-    <item
-        android:id="@+id/tabchatbot"
-        android:title="챗봇"
-        android:icon="@drawable/baseline_chat_24"/>
+    <!-- gom:showAsAction="withText" = 텍스트와 아이콘이 함께 표시됨-->
 
     <item
         android:id="@+id/tabbloodsugar"
@@ -18,12 +17,18 @@
         android:icon="@drawable/baseline_bloodtype_24"/>
 
     <item
-        android:id="@+id/tabcalendar"
-        android:title="달력"
-        android:icon="@drawable/baseline_calendar_month_24"/>
+        android:id="@+id/zero"
+        android:title=""
+        gom:showAsAction="never"/>
+
+    <item
+        android:id="@+id/tabchatbot"
+        android:title="챗봇"
+        android:icon="@drawable/baseline_chat_24"/>
 
     <item
         android:id="@+id/tabsettings"
         android:title="설정"
         android:icon="@drawable/baseline_build_24"/>
+
 </menu>
