@@ -45,7 +45,7 @@ public class Signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_input_signup);
         mAuth = FirebaseAuth.getInstance();
 
         /*뒤로 가기 버튼 -- main 화면으로 이동*/
