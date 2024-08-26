@@ -2,19 +2,27 @@ package com.example.dia_v102;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dia_v102.databaseF.Func_UserInfo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Navi extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private String userNick;
 
     /*navigation 하단 탭 생성(5개)*/
 
     BottomNavigationView bottom_navigation;
+    TextView nickView;
 
     Diet diet;
     Chatbot chatbot;
@@ -30,6 +38,16 @@ public class Navi extends AppCompatActivity {
         setContentView(R.layout.activity_diet);
 
         bottom_navigation = findViewById(R.id.bottom_navigation);
+
+        nickView = findViewById(R.id.textView);
+        FindNick(new NicknameCallback() {
+            @Override
+            public void onCallback(String nickname) {
+                userNick = nickname;
+                UserSet.setNickname(userNick);
+                nickView.setText(userNick);
+            }
+        });
 
         diet = new Diet();
         chatbot = new Chatbot();
@@ -63,6 +81,25 @@ public class Navi extends AppCompatActivity {
                                                         }
                                                     }
         );
-
     }
+    private void FindNick(NicknameCallback callback) {
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            callback.onCallback(null);
+            return;
+        }
+
+        String userUID = user.getUid();
+        UserSet.setUserId(userUID);
+        Func_UserInfo userInfo = new Func_UserInfo();
+
+        userInfo.getNick(userUID, new NicknameCallback() {
+            @Override
+            public void onCallback(String nickname) {
+                callback.onCallback(nickname);
+            }
+        });
+    }
+
 }
