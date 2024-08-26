@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.util.Log;
 import android.widget.Button;
@@ -163,13 +164,13 @@ public class Signup extends AppCompatActivity {
             isEmailAvailable = false;
             return;
         }
-        /* 유효한 이메일인지 확인
+        //유효한 이메일인지 확인
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             textID.setError("Please enter a valid email");
             isEmailAvailable = false;
             return;
         }
-
+        /*
         // Firebase Authentication으로 이메일 중복 여부 확인
         mAuth.fetchSignInMethodsForEmail(email)
             .addOnCompleteListener(this, new OnCompleteListener<SignInMethodQueryResult>() {
@@ -199,12 +200,18 @@ public class Signup extends AppCompatActivity {
     }
     private void check_PW(String PW, String check){
         if(!PW.equals(check)){
-            checkPW.setError("비밀번호가 일치하지 않습니다.-"+ PW + " "+check);
+            checkPW.setError("비밀번호가 일치하지 않습니다.");
             isPWAvailable = false;
             return;
         }
         if(PW.length()<7){
             checkPW.setError("비밀번호는 7자 이상이어야 합니다.");
+            isPWAvailable = false;
+            return;
+        }
+        // 비밀번호에 특수문자가 1개 이상 포함되었는지 확인
+        if (!PW.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
+            checkPW.setError("하나 이상의 특수문자가 포함되어야 합니다.");
             isPWAvailable = false;
             return;
         }
