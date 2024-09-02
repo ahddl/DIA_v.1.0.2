@@ -1,8 +1,6 @@
 package com.example.dia_v102;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,7 +8,6 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -22,7 +19,7 @@ import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
 
-public class OutputNutient extends AppCompatActivity {
+public class DietOutputNutient extends AppCompatActivity {
 
     TextView outputmenu1;
     PieChart pieChart;
@@ -34,7 +31,7 @@ public class OutputNutient extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_output_nutient);
+        setContentView(R.layout.diet_output_nutient);
 
         outputmenu1 = findViewById(R.id.outputmenu1);
         pieChart = findViewById(R.id.pieChart);

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    tools:context=".Signup">
+    tools:context=".InputSignup">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/back1"

@@ -7,7 +7,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -24,12 +23,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.SignInMethodQueryResult;
 
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Signup extends AppCompatActivity {
+public class InputSignup extends AppCompatActivity {
 
     /*아이디 중복 확인 기능, 아이디/별명/pw/이메일 DB에 저장, pw 소문자/특수 문자1개씩 총7문자 이상인지 확인 기능,
     pw랑 pw 확인란 일치 여부 확인 기능, 이메일 수신 동의 및 알림 사항 이메일 전송 가능하게 연결, 별명 mainpage에 뜰 수있게 하기*/
@@ -46,7 +43,7 @@ public class Signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_input_signup);
+        setContentView(R.layout.input_signup);
         mAuth = FirebaseAuth.getInstance();
 
         /*뒤로 가기 버튼 -- main 화면으로 이동*/
@@ -54,7 +51,7 @@ public class Signup extends AppCompatActivity {
         back1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signupintent = new Intent(Signup.this, MainActivity.class);
+                Intent signupintent = new Intent(InputSignup.this, MainActivity.class);
                 //intent.putExtra("name","mike"); //인텐트 객체 생성하고 name의 값을 부가데이터로 넣기
                 setResult(RESULT_OK, signupintent);
                 finish();
@@ -102,10 +99,10 @@ public class Signup extends AppCompatActivity {
                     registerUser();
                 }
                 if(!isEmailAvailable){
-                    Toast.makeText(Signup.this, "이메일이 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InputSignup.this, "이메일이 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
                 if(!isPWAvailable) {
-                    Toast.makeText(Signup.this, "비밀번호 입력이 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InputSignup.this, "비밀번호 입력이 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -146,13 +143,13 @@ public class Signup extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // 회원가입 성공
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(Signup.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(Signup.this, InputBasicData.class);
+                            Toast.makeText(InputSignup.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(InputSignup.this, InputBasicData.class);
                             startActivity(intent);
                             finish();
                         } else {
                             // 회원가입 실패
-                            Toast.makeText(Signup.this, "Registration failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(InputSignup.this, "Registration failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

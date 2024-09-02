@@ -32,7 +32,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class CheckMenu extends AppCompatActivity {
+public class DietCheckMenu extends AppCompatActivity {
 
     private static final String TAG = "CheckMenu";
 
@@ -49,7 +49,7 @@ public class CheckMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_check_menu);
+        setContentView(R.layout.diet_check_menu);
 
         // UI 요소 초기화
         imageView1 = findViewById(R.id.imageView1);
@@ -97,14 +97,14 @@ public class CheckMenu extends AppCompatActivity {
         // '확인' 버튼 클릭 리스너 설정
         outputOk.setOnClickListener(v -> {
             String outputMenu = outputmenu.getText().toString();
-            Intent intent = new Intent(CheckMenu.this, OutputNutient.class);
+            Intent intent = new Intent(DietCheckMenu.this, DietOutputNutient.class);
             intent.putExtra("outputMenu", outputMenu);
             startActivity(intent);
         });
 
         // '다시 시도' 버튼 클릭 리스너 설정
         outputNo.setOnClickListener(v -> {
-            Intent intent2 = new Intent(CheckMenu.this, Diet.class);
+            Intent intent2 = new Intent(DietCheckMenu.this, FragmentDiet.class);
             intent2.putExtra("showImageSourceDialog", true);
             startActivity(intent2);
         });

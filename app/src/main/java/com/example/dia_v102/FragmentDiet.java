@@ -1,10 +1,8 @@
 package com.example.dia_v102;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -32,22 +28,31 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.File;
 import java.io.IOException;
 
-public class Diet extends Fragment {
+public class FragmentDiet extends Fragment {
 
-    //ImageView imageView;
+
+  /*  //카메라 및 갤러리 열기 (음식인식 위한)
     File file;
     Uri uri;
     private ActivityResultLauncher<Intent> takePictureLauncher;
-    private ActivityResultLauncher<Intent> pickGalleryLauncher;
-    ProgressDialog customProgressDialog;
+    private ActivityResultLauncher<Intent> pickGalleryLauncher;*/
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_diet, container, false);
+        View view = inflater.inflate(R.layout.fragment_diet, container, false);
 
-        //imageView = view.findViewById(R.id.imageView);
+         /*// 로딩화면: 사진 입력 후 모델 분석 때 시간 걸릴 때 사용하면 됨
+        Button btnLoad = view.findViewById(R.id.btnload);
+        customProgressDialog = new ProgressDialog(getContext());
+        if (customProgressDialog.getWindow() != null) {
+            customProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        }
 
-        takePictureLauncher = registerForActivityResult(
+        btnLoad.setOnClickListener(v -> customProgressDialog.show());*/
+
+
+      /*  takePictureLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == getActivity().RESULT_OK) {
@@ -74,15 +79,6 @@ public class Diet extends Fragment {
 
         FloatingActionButton enterDietButton = view.findViewById(R.id.enterDiet);
         enterDietButton.setOnClickListener(v -> showImageSourceDialog());
-
-        /*// 로딩화면: 사진 입력 후 모델 분석 때 시간 걸릴 때 사용하면 됨
-        Button btnLoad = view.findViewById(R.id.btnload);
-        customProgressDialog = new ProgressDialog(getContext());
-        if (customProgressDialog.getWindow() != null) {
-            customProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        }
-
-        btnLoad.setOnClickListener(v -> customProgressDialog.show());*/
 
         ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.dietnFrame), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -150,16 +146,10 @@ public class Diet extends Fragment {
     }
 
     private void startMainActivity2(Uri imageUri) {
-        Intent intent2 = new Intent(getContext(), CheckMenu.class);
+        Intent intent2 = new Intent(getContext(), DietCheckMenu.class);
         intent2.putExtra("imageUri", imageUri.toString());
         startActivity(intent2);
-    }
-
-    public static class ProgressDialog extends Dialog {
-        public ProgressDialog(Context context) {
-            super(context);
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
-            setContentView(R.layout.dialog_progress);
-        }
+    }*/
+        return view;
     }
 }
