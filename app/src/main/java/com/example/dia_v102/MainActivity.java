@@ -1,7 +1,5 @@
 package com.example.dia_v102;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import android.content.Intent;
@@ -22,10 +20,19 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+//food db 관련
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import com.example.dia_v102.database.AppDatabase;
+import com.example.dia_v102.database.DatabaseProvider;
+import com.example.dia_v102.entities.Food_menu;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private EditText loginID, loginPW;
     private FirebaseAuth mAuth;
+    // 클래스 멤버 변수로 선언
+    private List<Food_menu> foodMenus;
     //엄 이거 뭐지
     /*private ActivityResultLauncher<Intent> mPreContractStartActivityResult =
             registerForActivityResult(
@@ -47,6 +54,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+
+        // 데이터베이스 작업을 백그라운드 스레드에서 수행
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            // DB 작업 수행
+            AppDatabase db = DatabaseProvider.getDatabase(this);
+            foodMenus = db.food_menuDao().getAll();
+            // 작업이 끝난 후에도 UI 업데이트를 하지 않음
+            if (foodMenus.isEmpty()) {
+                // 데이터베이스가 비어있다면, XML 데이터를 삽입
+                DatabaseProvider.parseCsvAndInsertToDB(this, R.raw.fooddata);
+                Log.d("DBROOM", "Complete!");
+            } else {
+                // 데이터베이스가 이미 채워져 있음을 알리는 메시지
+                Log.d("DBROOM", "Full DB");
+            }
+        });
+
+
+
 
         mAuth = FirebaseAuth.getInstance();
 
