@@ -9,7 +9,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.example.dia_v102.NicknameCallback;
+import com.example.dia_v102.utils.NicknameCallback;
 
 // Firebase Realtime Database 상호 작용 클래스
 public class Func_UserInfo {
