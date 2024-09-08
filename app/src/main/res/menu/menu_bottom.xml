@@ -27,7 +27,7 @@
 
     <item
         android:id="@+id/tabgraph"
-        android:title="설정"
+        android:title="그래프"
         android:icon="@drawable/baseline_build_24"/>
 
 </menu>
