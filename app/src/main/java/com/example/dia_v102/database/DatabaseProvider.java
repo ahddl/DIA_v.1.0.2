@@ -3,9 +3,9 @@ package com.example.dia_v102.database;
 import android.content.Context;
 import androidx.room.Room;
 
-//import com.example.dia_v102.dao.DietImageDao;
+import com.example.dia_v102.dao.DietImageDao;
 import com.example.dia_v102.dao.Food_menuDao; // 추가된 부분
-//import com.example.dia_v102.entities.DietImage;
+import com.example.dia_v102.entities.DietImage;
 import com.example.dia_v102.entities.Food_menu; // 추가된 부분
 
 import java.io.BufferedReader;

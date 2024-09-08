@@ -35,7 +35,7 @@ public class InputSignup extends AppCompatActivity {
     private boolean isPWAvailable = false;
     private boolean isEmailSubscribed = false;  //// 이메일 수신 동의 상태를 추적하는 변수
     RadioButton radioButton;
-    private EditText textID,textPW,checkPW;
+    private EditText textID,textPW,checkPW, nickName;
     private FirebaseAuth mAuth;
 
 
@@ -85,6 +85,7 @@ public class InputSignup extends AppCompatActivity {
         });
         */
 
+        nickName = findViewById(R.id.nickName);
 
 
 
@@ -96,6 +97,7 @@ public class InputSignup extends AppCompatActivity {
             public void onClick(View v) {
                 check_PW(textPW.getText().toString(), checkPW.getText().toString());
                 if(isEmailAvailable && isPWAvailable) {
+                    UserSet.setNickname(nickName.getText().toString());
                     registerUser();
                 }
                 if(!isEmailAvailable){
