@@ -73,7 +73,9 @@
                 android:text="카메라로!\n음식을 인식해보세요"
                 android:textColor="@color/white"
                 android:textSize="24dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </LinearLayout>
 
