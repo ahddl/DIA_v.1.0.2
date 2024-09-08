@@ -25,7 +25,7 @@ public class InputBasicData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_input_basic_data);
+        setContentView(R.layout.input_basic_data);
 
 
         /*뒤로 가기 버튼 -- 회원가입 화면으로 이동*/
@@ -33,7 +33,7 @@ public class InputBasicData extends AppCompatActivity {
         back_basic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signupintent = new Intent(InputBasicData.this, Signup.class);
+                Intent signupintent = new Intent(InputBasicData.this, InputSignup.class);
                 //intent.putExtra("name","mike"); //인텐트 객체 생성하고 name의 값을 부가데이터로 넣기
                 setResult(RESULT_OK, signupintent);
                 finish();

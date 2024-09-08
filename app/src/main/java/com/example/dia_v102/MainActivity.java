@@ -33,18 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     // 클래스 멤버 변수로 선언
     private List<Food_menu> foodMenus;
-    //엄 이거 뭐지
-    /*private ActivityResultLauncher<Intent> mPreContractStartActivityResult =
-            registerForActivityResult(
-                    new ActivityResultContracts.StartActivityForResult(),
-                    new ActivityResultCallback<ActivityResult>() {
-                        @Override
-                        public void onActivityResult(ActivityResult a_result) {
-                            if (a_result.getResultCode() == Activity.RESULT_OK) {
 
-                            }
-                        }
-                    });*/
 
       /*로고 이모티콘 넣기, 앱 이름 넣기, Google or 카카오 로그인 연동, 아이디 및 pw 찾기 버튼 만들기,
       이 화면 전에 로고랑 앱 이름 간단히 뜨는 화면 넣기(앱 버튼 누르자마자 뜨는 화면), 로그인 이후 바로 메인화면 나오게 하기*/
@@ -118,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
 
                                     // Navigate to HomeActivity
-                                    Intent intent = new Intent(MainActivity.this, Navi.class);
+                                    Intent intent = new Intent(MainActivity.this, MainActivity2.class);
                                     startActivity(intent);
                                     finish();  // Finish LoginActivity so that the user cannot go back to it
                                 } else {
@@ -158,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         join_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Signup.class);
+                Intent intent = new Intent(MainActivity.this, InputSignup.class);
                 startActivity(intent);
             }
         });
@@ -169,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         googlelogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Navi.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
                 startActivity(intent);
             }
         });

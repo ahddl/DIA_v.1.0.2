@@ -17,19 +17,13 @@
         android:name=".UserSet">
 
         <activity
-            android:name=".Graph"
+            android:name=".FragmentGraph"
             android:exported="false" />
         <activity
             android:name=".Data"
             android:exported="false" />
         <activity
-            android:name=".CustomAdapter"
-            android:exported="false" />
-        <activity
-            android:name=".RecyclerDietItem"
-            android:exported="false" />
-        <activity
-            android:name=".DiabetesGraph"
+            android:name=".GraphDiabetes"
             android:exported="false" />
         <activity
             android:name=".InputDiatype"
@@ -38,7 +32,7 @@
             android:name=".InputWeek"
             android:exported="false" />
         <activity
-            android:name=".DietGraph"
+            android:name=".GraphDiet"
             android:exported="false" />
 
         <meta-data
@@ -52,28 +46,25 @@
             android:name=".InputBasicData"
             android:exported="false" />
         <activity
-            android:name=".Navi"
+            android:name=".MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".Calendar"
+            android:name=".FragmentDiabetes"
             android:exported="false" />
         <activity
-            android:name=".Diabetes"
+            android:name=".FragmentChatbot"
             android:exported="false" />
         <activity
-            android:name=".Chatbot"
+            android:name=".FragmentDiet"
             android:exported="false" />
         <activity
-            android:name=".Diet"
+            android:name=".DietCheckMenu"
             android:exported="false" />
         <activity
-            android:name=".CheckMenu"
+            android:name=".DietOutputNutient"
             android:exported="false" />
         <activity
-            android:name=".OutputNutient"
-            android:exported="false" />
-        <activity
-            android:name=".Signup"
+            android:name=".InputSignup"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

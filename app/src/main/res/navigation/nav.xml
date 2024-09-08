@@ -7,28 +7,23 @@
 
     <fragment
         android:id="@+id/chatbot"
-        android:name="com.example.dia_v102.Chatbot"
+        android:name="com.example.dia_v102.FragmentChatbot"
         android:label="activity_chatbot"
-        tools:layout="@layout/activity_chatbot" />
+        tools:layout="@layout/fragment_chatbot" />
     <fragment
         android:id="@+id/bloodsugarLog"
-        android:name="com.example.dia_v102.Diabetes"
+        android:name="com.example.dia_v102.FragmentDiabetes"
         android:label="activity_bloodsugar_log"
-        tools:layout="@layout/activity_diabetes" />
-    <fragment
-        android:id="@+id/calendar"
-        android:name="com.example.dia_v102.Calendar"
-        android:label="activity_calendar"
-        tools:layout="@layout/activity_calendar" />
+        tools:layout="@layout/fragment_diabetes" />
     <fragment
         android:id="@+id/diet"
-        android:name="com.example.dia_v102.Diet"
+        android:name="com.example.dia_v102.FragmentDiet"
         android:label="activity_diet"
-        tools:layout="@layout/activity_diet" />
+        tools:layout="@layout/fragment_diet" />
     <fragment
         android:id="@+id/graph"
-        android:name="com.example.dia_v102.Graph"
+        android:name="com.example.dia_v102.FragmentGraph"
         android:label="activity_settings"
-        tools:layout="@layout/activity_graph" />
+        tools:layout="@layout/fragment_graph" />
 
 </navigation>

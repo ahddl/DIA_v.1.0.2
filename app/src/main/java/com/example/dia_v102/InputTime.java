@@ -22,7 +22,7 @@ public class InputTime extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_input_time);
+        setContentView(R.layout.input_time);
 
 
         /*뒤로 가기 버튼 -- 기본정보입력 화면으로 이동*/

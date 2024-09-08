@@ -82,7 +82,7 @@ public class MainActivity2 extends AppCompatActivity {
         chatbot = new FragmentChatbot();
         graph = new FragmentGraph();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.dietnFrame, diet).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame, diet).commit();
 
         bottom_navigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -90,15 +90,16 @@ public class MainActivity2 extends AppCompatActivity {
 
                 int itemId = item.getItemId();
                 if (itemId == R.id.tabdiet) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.dietnFrame, diet).commit();return true;
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame, diet).commit();
+                    return true;
                 } else if (itemId == R.id.tabdiabetes) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.dietnFrame, diabetes).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame, diabetes).commit();
                     return true;
                 } else if (itemId == R.id.tabchatbot) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.dietnFrame, chatbot).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame, chatbot).commit();
                     return true;
                 } else if (itemId == R.id.tabgraph) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.dietnFrame, graph).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainFrame, graph).commit();
                     return true;
                 } else {
                     return false;

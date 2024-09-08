@@ -22,7 +22,7 @@ public class InputWeek extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_input_week);
+        setContentView(R.layout.input_week);
 
 
         /*뒤로 가기 버튼 -- 활동량입력-하루시간단위 화면으로 이동*/
