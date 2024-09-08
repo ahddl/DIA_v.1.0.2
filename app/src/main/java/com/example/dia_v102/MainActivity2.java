@@ -108,7 +108,6 @@ public class MainActivity2 extends AppCompatActivity {
 
             }
         });
-    }
 
     /*//FragmentDiet.java로 이동 필요
     private void FindNick(NicknameCallback callback) {
@@ -132,21 +131,19 @@ public class MainActivity2 extends AppCompatActivity {
     }*/
 
     // ActivityResultLauncher 초기화
-
-
-   /* takePictureLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
+    takePictureLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
     result -> {
-                    if (result.getResultCode() == RESULT_OK) {
-                        startMainActivity2(uri);
-                    } else {
+        if (result.getResultCode() == RESULT_OK) {
+            startMainActivity2(uri);
+        } else {
             Toast.makeText(this, "사진을 찍지 않았습니다.", Toast.LENGTH_SHORT).show();
         }
     }
         );
 
     pickGalleryLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultContracts.StartActivityForResult(),
     result -> {
         if (result.getResultCode() == RESULT_OK && result.getData() != null) {
             Uri selectedImageUri = result.getData().getData();
@@ -166,7 +163,8 @@ public class MainActivity2 extends AppCompatActivity {
         if (getIntent().getBooleanExtra("showImageSourceDialog", false)) {
         showImageSourceDialog();
     }
-}*/
+}
+
 
     private void showImageSourceDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
