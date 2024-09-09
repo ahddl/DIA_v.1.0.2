@@ -8,16 +8,16 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dia_v102.entities.DietItem;
+import com.example.dia_v102.databaseF.FoodCal;
 
 import java.util.List;
 
 public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietItemViewHolder> {
 
-    private List<DietItem> dietItems;
+    private List<FoodCal> foodCals;
 
-    public DietItemAdapter(List<DietItem> dietItems) {
-        this.dietItems = dietItems;
+    public DietItemAdapter(List<FoodCal> foodCals) {
+        this.foodCals = foodCals;
     }
 
     @Override
@@ -29,15 +29,16 @@ public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietIt
 
     @Override
     public void onBindViewHolder(DietItemViewHolder holder, int position) {
-        DietItem dietItem = dietItems.get(position);
-        holder.menuName.setText(dietItem.menuName);
-        holder.nutritionInfo.setText(dietItem.nutritionInfo);
+        FoodCal foodCal = foodCals.get(position);
+        holder.menuName.setText(foodCal.getFood());
+        // 아래 부분은 영양성분 전체를 클래스 하나에 저장하게 만들어야 구현 가능.
+        // holder.nutritionInfo.setText(dietItem.nutritionInfo);
         // 사진 URI를 ImageView에 로드하는 코드 추가
     }
 
     @Override
     public int getItemCount() {
-        return dietItems.size();
+        return foodCals.size();
     }
 
     public static class DietItemViewHolder extends RecyclerView.ViewHolder {
