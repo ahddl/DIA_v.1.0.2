@@ -71,14 +71,14 @@
 
             <EditText
                 android:id="@+id/textID"
-                android:layout_width="230dp"
+                android:layout_width="300dp"
                 android:layout_height="45dp"
                 android:ems="10"
                 android:inputType="text"
                 tools:layout_editor_absoluteX="55dp"
                 tools:layout_editor_absoluteY="144dp" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <!--<androidx.appcompat.widget.AppCompatButton
                 style="@style/Widget.AppCompat.Button"
                 android:id="@+id/idCheck"
                 android:layout_width="70dp"
@@ -87,7 +87,7 @@
                 android:textSize="11sp"
                 android:textColor="@color/white"
                 android:background="@drawable/botton_background"/>
-
+-->
         </LinearLayout>
 
 
