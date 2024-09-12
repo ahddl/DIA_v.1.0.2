@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             // 작업이 끝난 후에도 UI 업데이트를 하지 않음
             if (foodMenus.isEmpty()) {
                 // 데이터베이스가 비어있다면, XML 데이터를 삽입
-                DatabaseProvider.parseCsvAndInsertToDB(this, R.raw.fooddata);
+                DatabaseProvider.parseCsvAndInsertToDB(this, R.raw.food_data37);
                 Log.d("DBROOM", "Complete!");
             } else {
                 // 데이터베이스가 이미 채워져 있음을 알리는 메시지
