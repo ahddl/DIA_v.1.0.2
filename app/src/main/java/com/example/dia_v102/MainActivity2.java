@@ -27,8 +27,6 @@ import com.example.dia_v102.databaseF.Func_UserInfo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,18 +63,6 @@ public class MainActivity2 extends AppCompatActivity {
 
         bottom_navigation = findViewById(R.id.bottom_navigation);
 
-
-        /*//FragmentDiet.java로 이동 필요
-        nickView = findViewById(R.id.textView);
-        FindNick(new NicknameCallback() {
-            @Override
-            public void onCallback(String nickname) {
-                userNick = nickname;
-                UserSet.setNickname(userNick);
-                nickView.setText(userNick);
-            }
-        });*/
-
         diet = new FragmentDiet();
         diabetes = new FragmentDiabetes();
         chatbot = new FragmentChatbot();
@@ -108,27 +94,6 @@ public class MainActivity2 extends AppCompatActivity {
 
             }
         });
-
-    /*//FragmentDiet.java로 이동 필요
-    private void FindNick(NicknameCallback callback) {
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) {
-            callback.onCallback(null);
-            return;
-        }
-
-        String userUID = user.getUid();
-        UserSet.setUserId(userUID);
-        Func_UserInfo userInfo = new Func_UserInfo();
-
-        userInfo.getNick(userUID, new NicknameCallback() {
-            @Override
-            public void onCallback(String nickname) {
-                callback.onCallback(nickname);
-            }
-        });
-    }*/
 
     // ActivityResultLauncher 초기화
     takePictureLauncher = registerForActivityResult(
