@@ -77,5 +77,16 @@
         android:text="Nutritional Information"
         android:background="@drawable/custom_backgraoud"/>
 
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/Widget.AppCompat.Button"
+        android:textColor="@color/white"
+        android:id="@+id/save_diet"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="25dp"
+        android:text="저장"
+        android:textSize="12sp"
+        android:background="@drawable/botton_background"/>
+
 
 </LinearLayout>
