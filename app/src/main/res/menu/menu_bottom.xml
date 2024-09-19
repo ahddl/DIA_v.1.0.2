@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:gom="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/tabdiet"
         android:title="식단"
         android:icon="@drawable/baseline_ramen_dining_24" />
-
-    <!-- gom:showAsAction="withText" = 텍스트와 아이콘이 함께 표시됨-->
 
     <item
         android:id="@+id/tabdiabetes"
@@ -16,9 +13,7 @@
         android:icon="@drawable/baseline_bloodtype_24"/>
 
     <item
-        android:id="@+id/zero"
-        android:title="\n\n\n\n\n\n\n\n\n\n\n\n"
-        gom:showAsAction="never"/>
+        android:title=""/>
 
     <item
         android:id="@+id/tabchatbot"
