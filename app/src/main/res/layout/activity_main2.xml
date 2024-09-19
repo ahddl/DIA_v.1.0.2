@@ -10,16 +10,7 @@
     tools:openDrawer="start"
     tools:context=".MainActivity">
 
-    <!-- Navigation Drawer -->
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/nav_view"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"
-        app:itemIconTint="@color/dark_blue"
-        app:itemTextColor="@color/dark_blue"/>
+
 
     <!-- Main Content Layout -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -104,5 +95,17 @@
         app:tint="@color/dark_blue" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:id="@+id/nav_view"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        app:itemIconTint="@color/dark_blue"
+        app:itemTextColor="@color/dark_blue"
+        android:focusable="true" />
 
     </androidx.drawerlayout.widget.DrawerLayout>

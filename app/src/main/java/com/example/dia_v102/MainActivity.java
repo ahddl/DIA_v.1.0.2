@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 
       /*로고 이모티콘 넣기, 앱 이름 넣기, Google or 카카오 로그인 연동, 아이디 및 pw 찾기 버튼 만들기,
-      이 화면 전에 로고랑 앱 이름 간단히 뜨는 화면 넣기(앱 버튼 누르자마자 뜨는 화면), 로그인 이후 바로 메인화면 나오게 하기*/
+      이 화면 전에 로고랑 앱 이름 간단히 뜨는 화면 넣기(앱 진입 시 뜨는 화면), 로그인 이후 바로 메인 화면 나오게 하기*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        // 데이터베이스 작업을 백그라운드 스레드에서 수행
+        // DB 작업을 background thread 수행
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
             // DB 작업 수행
@@ -53,13 +53,20 @@ public class MainActivity extends AppCompatActivity {
             foodMenus = db.food_menuDao().getAll();
             // 작업이 끝난 후에도 UI 업데이트를 하지 않음
             if (foodMenus.isEmpty()) {
-                // 데이터베이스가 비어있다면, XML 데이터를 삽입
+                // DB가 empty 하면 XML 데이터를 삽입
                 DatabaseProvider.parseCsvAndInsertToDB(this, R.raw.food_data37);
-                Log.d("DBROOM", "Complete!");
-            } else {
-                // 데이터베이스가 이미 채워져 있음을 알리는 메시지
-                Log.d("DBROOM", "Full DB");
+                //Log.d("ROOMDB", "Complete!");
             }
+            /*
+            else {
+                // DB가 이미 채워져 있음을 알리는 메시지
+                //Log.d("DBROOM", "Full DB");
+                // DB 내용 확인
+                for (Food_menu menu : foodMenus) {
+                    Log.d("DBROOM", "ID: " + menu.getId() + ", Name: " + menu.getFood() + ", Calories: " + menu.getCalories());
+                }
+            }
+            */
         });
 
 
@@ -70,13 +77,13 @@ public class MainActivity extends AppCompatActivity {
         //User check
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        /*
+
         if(currentUser != null){
-            Intent intent = new Intent(MainActivity.this, Navi.class);
+            Intent intent = new Intent(MainActivity.this, MainActivity2.class);
             startActivity(intent);
         }
 
-         */
+
 
 
         //로그인 버튼 -- ID와 PW 입력 후 로그인 버튼 누르면 로그인 완료 안내와 함께 메인 페이지(nav)로 넘어감
@@ -87,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // EditText에서 입력된 텍스트를 가져오기
+                // EditText-입력된 text 가져오기
                 String id = loginID.getText().toString().trim();
                 String pw = loginPW.getText().toString().trim();
 
@@ -103,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign in success
-                                    FirebaseUser user = mAuth.getCurrentUser();
                                     Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
 
                                     // Navigate to HomeActivity

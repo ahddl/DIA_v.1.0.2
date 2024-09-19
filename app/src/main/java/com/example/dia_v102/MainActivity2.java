@@ -29,6 +29,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.File;
 import java.io.IOException;
@@ -127,6 +128,8 @@ public class MainActivity2 extends AppCompatActivity {
                     bottomNavigationView.setSelectedItemId(R.id.tabchatbot); // bottomNavigationView에서 tabchatbot 선택
                 } else if (id == R.id.bargraph) {
                     bottomNavigationView.setSelectedItemId(R.id.tabgraph); // bottomNavigationView에서 tabgraph 선택
+                } else if (id == R.id.setting_logout) {
+                    logout();
                 }
 
                 // 드로어 닫기
@@ -257,5 +260,17 @@ public class MainActivity2 extends AppCompatActivity {
         Intent intent2 = new Intent(this, DietCheckMenu.class);
         intent2.putExtra("imageUri", imageUri.toString());
         startActivity(intent2);
+    }
+
+    // 로그아웃 메소드
+    private void logout() {
+        Log.d("logout", "is it clicked?");
+        // FirebaseAuth 인스턴스 가져오기
+        FirebaseAuth.getInstance().signOut();
+
+        // 로그인 화면으로 이동
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish(); // 현재 액티비티 종료
     }
 }
