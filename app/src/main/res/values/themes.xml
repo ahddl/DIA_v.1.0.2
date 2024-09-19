@@ -1,10 +1,34 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.DIA_v102" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Base.Theme.DIA_v102" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/light_blue</item>
+        <item name="colorSecondaryVariant">@color/pale_grey</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <!-- Disable the default ActionBar -->
+        <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
     <style name="Theme.DIA_v102" parent="Base.Theme.DIA_v102" />
+
+    <!-- CollapsingToolbar의 제목이 펼쳐졌을 때의 스타일 -->
+    <style name="TextAppearance.App.CollapsingToolbar.Expanded" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textSize">24sp</item> <!-- 글씨 크기 -->
+        <item name="android:textColor">@color/white</item> <!-- 글씨 색상 -->
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <!-- 접혔을 때 적용되는 스타일이 필요하다면 추가 -->
+    <style name="TextAppearance.App.CollapsingToolbar.Collapsed" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">18sp</item> <!-- 글씨 크기 -->
+        <item name="android:textColor">@color/white</item> <!-- 글씨 색상 -->
+        <item name="android:maxLines">2</item>
+    </style>
 </resources>
