@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentDiabetes">\
+    tools:context=".FragmentDiabetes">
 
     <LinearLayout
         android:id="@+id/profile"
@@ -38,28 +38,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="현재 시간"
-                android:textSize="10dp"/>
+                android:textSize="15dp"/>
 
             <TextView
                 android:id="@+id/nickName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="닉네임"
-                android:textSize="15dp" />
+                android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/averblood"
+                android:id="@+id/AVGblood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="평균 혈당량 -- mg/dL"
-                android:textSize="10dp"/>
+                android:textSize="12dp"/>
 
             <TextView
                 android:id="@+id/glycatedhemoglobin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="당화혈색소 -- %"
-                android:textSize="10dp"/>
+                android:textSize="12dp"/>
 
 
         </LinearLayout>
@@ -101,5 +101,27 @@
         app:layout_constraintTop_toBottomOf="@+id/store_fragment_tablayout2">
 
     </FrameLayout>-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/profile"
+        tools:layout_editor_absoluteX="16dp">
+
+        <!-- 데이터 출력해 줄 View 필요-->
+        <!-- 둥근 모양의 + 버튼 -->
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="15sp"
+            android:contentDescription="Add"
+            android:src="@android:drawable/ic_input_add"
+            app:elevation="0dp" />
+
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

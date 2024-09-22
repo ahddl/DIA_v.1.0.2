@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300sp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/light_blue_grey"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <!-- 드롭다운 메뉴 (식전/식후/기타) -->
+    <Spinner
+        android:id="@+id/dropdown_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/dropdown_items"
+        android:spinnerMode="dropdown" />
+
+    <!-- 숫자 입력 필드 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <EditText
+            android:id="@+id/blood_sugar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="혈당을 입력하세요" />
+
+        <TextView
+            android:id="@+id/unit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mg/dL"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical" />
+    </LinearLayout>
+
+    <!-- 저장 버튼 -->
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="저장"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

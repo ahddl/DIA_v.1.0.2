@@ -1,25 +1,50 @@
 package com.example.dia_v102;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.dia_v102.databaseF.Func_InfoBox;
 import com.example.dia_v102.databaseF.Func_UserInfo;
+import com.example.dia_v102.databaseF.InfoBox;
+import com.example.dia_v102.utils.DateUtil;
 import com.example.dia_v102.utils.NicknameCallback;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
 
 public class FragmentDiabetes extends Fragment {
     TextView nickView;
     private String userNick;
+    private Func_InfoBox infoBox;
+    private Dialog dialog;
+    private final FirebaseUser CurrUser = FirebaseAuth.getInstance().getCurrentUser();
+    private String userID;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState){
         View view = inflater.inflate(R.layout.fragment_diabetes, container,false);
+        Func_InfoBox FinfoBox = new Func_InfoBox();
+
         nickView = view.findViewById(R.id.nickName);
         FindNick(new NicknameCallback() {
             @Override
@@ -29,47 +54,86 @@ public class FragmentDiabetes extends Fragment {
                 nickView.setText(userNick);
             }
         });
-        /*
-        TabLayout tabLayout = rootView.findViewById(R.id.store_fragment_tablayout);
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-                switch (tab.getPosition()) {
-                    case 0:
-                        transaction.replace(R.id.tab_layout_container2, new DiabetesLog());
-                        break;
-                    case 1:
-                        transaction.replace(R.id.tab_layout_container2, new DiabetesGraph());
-                        break;
-                }
-                transaction.commit();
+
+        FloatingActionButton fab = view.findViewById(R.id.fab);
+        dialog = new Dialog(requireContext());
+        dialog.setContentView(R.layout.dialog_layout);
+        // Dialog 중앙에 위치시키기
+        dialog.setOnShowListener(dialogInterface -> {
+            Window window = dialog.getWindow();
+            if (window != null) {
+                window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                window.setGravity(Gravity.CENTER);
             }
-
+        });
+        fab.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {}
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {}
+            public void onClick(View v) {
+                dialog.show();
+            }
         });
 
-        return rootView;
-        */
-        return view;
+        Spinner dropdownSelect = dialog.findViewById(R.id.dropdown_menu);
+        Button dButton_save = dialog.findViewById(R.id.save_button);
+        EditText sugarBlood = dialog.findViewById(R.id.blood_sugar);
+        dButton_save.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                // 버튼 클릭 시 실행할 동작 정의
+                String tag2 = dropdownSelect.getSelectedItem().toString();
+                double sugar = Double.parseDouble(sugarBlood.getText().toString());
+                FinfoBox.saveInfoBox(CurrUser.getUid(), null, HourNMin(), "혈당", tag2, sugar);
+                Toast.makeText(requireContext(), "혈당 데이터가 저장되었습니다.", Toast.LENGTH_SHORT).show();
 
+                dialog.dismiss();  // Dialog 닫기
+
+            }
+        });
+
+
+        loadDiabeteData(DateUtil.dateToString(new Date()));  // 데이터 로드
+
+        return view;
     }
+
     private void FindNick(NicknameCallback callback) {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) {
+        if (CurrUser == null) {
             callback.onCallback(null);
             return;
         }
 
-        String userUID = user.getUid();
-        UserSet.setUserId(userUID);
+        userID = CurrUser.getUid();
+        UserSet.setUserId(userID);
         Func_UserInfo userInfo = new Func_UserInfo();
 
-        userInfo.getNick(userUID, callback);
+        userInfo.getNick(userID, callback);
+    }
+
+    private String HourNMin(){
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int min = calendar.get(Calendar.MINUTE);
+
+        return String.format(Locale.getDefault(), "%02d-%02d", hour, min);
+    }
+
+    private void loadDiabeteData(String date) {
+        infoBox = new Func_InfoBox();
+        userID = CurrUser.getUid();
+        infoBox.loadInfoBox(userID, date, new Func_InfoBox.OnDataReceivedListener(){
+            @Override
+            public void onDataReceived(List<InfoBox> infoBoxList){
+                Log.d("BoxOut", "Success");
+
+                for (InfoBox infoBox : infoBoxList) {
+                    Log.d("BoxOut", "InfoBox Data: " + infoBox.getTime()); // infoBox의 toString() 메서드를 사용하여 데이터를 출력
+                }
+            }
+
+            @Override
+            public void onDataFailed(Exception exception) {
+                Log.d("BoxOut", exception.getMessage());
+            }
+        });
     }
 }
