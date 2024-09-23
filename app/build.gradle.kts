@@ -73,6 +73,16 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
 
+    //chatbot쪽 라이브러리
+    // OkHttp 라이브러리
+    implementation("com.squareup.okhttp3:okhttp:4.9.1")
+
+    // JSON 처리 라이브러리 (필요 시)
+    implementation("org.json:json:20210307") // JSON 객체를 쉽게 처리하기 위한 라이브러리
+
+    // AndroidX Fragment
+    implementation("androidx.fragment:fragment:1.8.3") // Fragment 라이브러리 (최신 버전으로 업데이트하세요)
+
 
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries

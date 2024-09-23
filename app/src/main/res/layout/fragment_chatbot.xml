@@ -6,14 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FragmentChatbot"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chatbot response"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/GPTRes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Chatbot"
-        android:textSize="50dp"
-        android:textStyle="bold"/>
+        android:layout_height="300sp"
+        android:text="response"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="160sp"
+        android:layout_height="80sp"
+        android:text="식단 추천"/>
 
 </LinearLayout>
