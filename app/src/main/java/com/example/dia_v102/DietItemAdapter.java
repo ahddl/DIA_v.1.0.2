@@ -42,7 +42,8 @@ public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietIt
                 "\n 단백질: " + foodCal.getProtein() +
                 "\n 지방: " + foodCal.getFat() +
                 "\n 콜레스테롤: " + foodCal.getCholesterol() +
-                "\n 나트륨: " + foodCal.getSodium();
+                "\n 나트륨: " + foodCal.getSodium() +
+                "\n 설탕 당: " + foodCal.getSugar();
         holder.nutritionInfo.setText(nutriateText);
     }
 

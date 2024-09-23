@@ -26,11 +26,11 @@ public class Func_FoodCal {
     }
 
     // 데이터를 저장하는 메서드
-    public void saveFoodCal(String userID, String date, String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium) {
+    public void saveFoodCal(String userID, String date, String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar) {
         if(date == null){
             date = DateUtil.dateToString(new Date());
         }
-        FoodCal foodcal = new FoodCal(userID, date, food, calories, carbohydrate, protein, fat, cholesterol, sodium);
+        FoodCal foodcal = new FoodCal(userID, date, food, calories, carbohydrate, protein, fat, cholesterol, sodium, sugar);
         myRef.child(userID).push().setValue(foodcal)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

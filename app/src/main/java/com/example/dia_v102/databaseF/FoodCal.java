@@ -12,10 +12,11 @@ public class FoodCal {
     private double fat;
     private double cholesterol;
     private double sodium;
+    private double sugar;
 
     public FoodCal(){}
 
-    public FoodCal(String userID, String date, String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium){
+    public FoodCal(String userID, String date, String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar){
         this.userID = userID;
         this.date = date;
         this.food = food;
@@ -25,6 +26,7 @@ public class FoodCal {
         this.fat = fat;
         this.cholesterol = cholesterol;
         this.sodium = sodium;
+        this.sugar = sugar;
     }
     // Getter와 Setter 메서드
 
@@ -99,4 +101,7 @@ public class FoodCal {
     public void setSodium(double sodium) {
         this.sodium = sodium;
     }
+
+    public double getSugar(){return sugar;}
+    public void setSugar(double sugar){this.sugar = sugar;}
 }

@@ -14,7 +14,7 @@ public class Food_menu {
     public double fat;
     public double cholesterol;
     public double sodium;
-    private int quantity; // 명수 추가
+    private double sugar; // 당류 추가
 
     // Getters and Setters
 
@@ -82,11 +82,11 @@ public class Food_menu {
         this.sodium = sodium;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public double getSugar() {
+        return sugar;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setSugar(double sugar) {
+        this.sugar = sugar;
     }
 }

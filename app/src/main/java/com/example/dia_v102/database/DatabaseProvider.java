@@ -56,7 +56,7 @@ public class DatabaseProvider {
                 foodMenu.setFat(Double.parseDouble(tokens[4]));
                 foodMenu.setCholesterol(Double.parseDouble(tokens[5]));
                 foodMenu.setSodium(Double.parseDouble(tokens[6]));
-                foodMenu.setQuantity(Integer.parseInt(tokens[7]));
+                foodMenu.setSugar(Double.parseDouble(tokens[7]));
 
                 foodMenuList.add(foodMenu);
             }

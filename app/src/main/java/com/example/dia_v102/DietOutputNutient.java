@@ -84,7 +84,8 @@ public class DietOutputNutient extends AppCompatActivity {
                         "\n 단백질: " + foodMenu.getProtein() +
                         "\n 지방: " + foodMenu.getFat() +
                         "\n 콜레스테롤: " + foodMenu.getCholesterol() +
-                        "\n 나트륨: " + foodMenu.getSodium();
+                        "\n 나트륨: " + foodMenu.getSodium() +
+                        "\n 설탕 당: " + foodMenu.getSugar();
                 nutList.setText(nutriateText);
 
                 // 프로그래스 바 및 칼로리 텍스트 업데이트
@@ -99,7 +100,7 @@ public class DietOutputNutient extends AppCompatActivity {
                 Button saveButton = findViewById(R.id.save_diet);
                 saveButton.setOnClickListener(v -> {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    foodcal.saveFoodCal(user.getUid(), null, foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium());
+                    foodcal.saveFoodCal(user.getUid(), null, foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar());
                     Toast.makeText(DietOutputNutient.this, "식단이 저장되었습니다.", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(DietOutputNutient.this, MainActivity2.class);
                     startActivity(intent);
