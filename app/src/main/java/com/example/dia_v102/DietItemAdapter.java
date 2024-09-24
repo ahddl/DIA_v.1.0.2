@@ -1,5 +1,7 @@
 package com.example.dia_v102;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dia_v102.databaseF.FoodCal;
 
 import java.util.List;
+
+import com.example.dia_v102.utils.imgUtil;
 
 public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietItemViewHolder> {
 
@@ -45,6 +49,11 @@ public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietIt
                 "\n 나트륨: " + foodCal.getSodium() +
                 "\n 설탕 당: " + foodCal.getSugar();
         holder.nutritionInfo.setText(nutriateText);
+
+        Context context = holder.itemView.getContext();
+        String imgName = foodCal.getImgName();
+        Bitmap imgBit = imgUtil.loadImage(context, imgName);
+        holder.photo.setImageBitmap(imgBit);
     }
 
     @Override

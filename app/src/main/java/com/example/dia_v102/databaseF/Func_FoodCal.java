@@ -1,7 +1,5 @@
 package com.example.dia_v102.databaseF;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.example.dia_v102.utils.DateUtil;
@@ -26,11 +24,11 @@ public class Func_FoodCal {
     }
 
     // 데이터를 저장하는 메서드
-    public void saveFoodCal(String userID, String date, String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar) {
+    public void saveFoodCal(String userID, String date, String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName) {
         if(date == null){
             date = DateUtil.dateToString(new Date());
         }
-        FoodCal foodcal = new FoodCal(userID, date, food, calories, carbohydrate, protein, fat, cholesterol, sodium, sugar);
+        FoodCal foodcal = new FoodCal(date, food, calories, carbohydrate, protein, fat, cholesterol, sodium, sugar, imgName);
         myRef.child(userID).push().setValue(foodcal)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -51,7 +49,7 @@ public class Func_FoodCal {
         myRef.child(userID).orderByChild("date").equalTo(date)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         List<FoodCal> foodCalList = new ArrayList<>();
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -68,7 +66,7 @@ public class Func_FoodCal {
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
                         // 데이터 불러오기 실패 시 처리
                         if (listener != null) {
                             listener.onDataFailed(databaseError.toException());

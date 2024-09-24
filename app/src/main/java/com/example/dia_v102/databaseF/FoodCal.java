@@ -1,7 +1,6 @@
 package com.example.dia_v102.databaseF;
 
 public class FoodCal {
-    private String userID;
     private String date;
 
     //형태에 따라 빠질 수도 있을듯.
@@ -13,11 +12,11 @@ public class FoodCal {
     private double cholesterol;
     private double sodium;
     private double sugar;
+    private String imgName;
 
     public FoodCal(){}
 
-    public FoodCal(String userID, String date, String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar){
-        this.userID = userID;
+    public FoodCal(String date, String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName){
         this.date = date;
         this.food = food;
         this.calories = calories;
@@ -27,17 +26,9 @@ public class FoodCal {
         this.cholesterol = cholesterol;
         this.sodium = sodium;
         this.sugar = sugar;
+        this.imgName =imgName;
     }
     // Getter와 Setter 메서드
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
     public String getDate() {
         return date;
     }
@@ -104,4 +95,7 @@ public class FoodCal {
 
     public double getSugar(){return sugar;}
     public void setSugar(double sugar){this.sugar = sugar;}
+
+    public String getImgName(){return imgName;}
+    void setImgName(String imgName){this.imgName = imgName;}
 }
