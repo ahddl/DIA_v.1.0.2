@@ -1,8 +1,9 @@
 package com.example.dia_v102;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import com.example.dia_v102.utils.imgUtil;
 
 
 public class DietCheckMenu extends AppCompatActivity {
@@ -84,6 +87,7 @@ public class DietCheckMenu extends AppCompatActivity {
             String outputMenu = outputmenu.getText().toString();
             Intent intent = new Intent(DietCheckMenu.this, DietOutputNutient.class);
             intent.putExtra("outputMenu", outputMenu);
+            intent.putExtra("ImgUriStr", imageUriString);
             startActivity(intent);
         });
 
@@ -108,7 +112,7 @@ public class DietCheckMenu extends AppCompatActivity {
                 tflite = new Interpreter(tfliteModel, options);
                 Log.d(TAG, "Model loaded successfully");
 
-                Bitmap bitmap = uriToBitmap(imageUri);
+                Bitmap bitmap = imgUtil.uriToBitmap(this, imageUri);
                 if (bitmap != null) {
                     String recognizedFood = recognizeFood(bitmap);
                     runOnUiThread(() -> outputmenu.setText(recognizedFood));
@@ -124,24 +128,6 @@ public class DietCheckMenu extends AppCompatActivity {
 
     private MappedByteBuffer loadModelFile() throws IOException {
         return FileUtil.loadMappedFile(this, "model.tflite");
-    }
-
-    private Bitmap uriToBitmap(Uri uri) {
-        try {
-            InputStream inputStream = getContentResolver().openInputStream(uri);
-            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-            if (bitmap != null) {
-                Log.d(TAG, "Bitmap loaded successfully");
-                return Bitmap.createScaledBitmap(bitmap, 224, 224, true);
-            } else {
-                Log.d(TAG, "Bitmap is null");
-                return null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e(TAG, "Error converting URI to Bitmap", e);
-            return null;
-        }
     }
 
     private String recognizeFood(Bitmap bitmap) {

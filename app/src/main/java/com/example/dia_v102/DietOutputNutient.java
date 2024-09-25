@@ -1,6 +1,8 @@
 package com.example.dia_v102;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +22,7 @@ import com.example.dia_v102.database.AppDatabase;
 import com.example.dia_v102.database.DatabaseProvider;
 import com.example.dia_v102.entities.Food_menu;
 import com.example.dia_v102.utils.OnFoodMenuRetrievedListener;
+import com.example.dia_v102.utils.imgUtil;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -28,11 +31,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.example.dia_v102.databaseF.Func_FoodCal;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
 
 public class DietOutputNutient extends AppCompatActivity {
 
@@ -44,6 +43,9 @@ public class DietOutputNutient extends AppCompatActivity {
 
     Func_FoodCal foodcal = new Func_FoodCal();
 
+    String imgUriStr;
+    String imgName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,10 +53,16 @@ public class DietOutputNutient extends AppCompatActivity {
         setContentView(R.layout.diet_output_nutient);
 
         outputmenu1 = findViewById(R.id.outputmenu1);
-        pieChart = findViewById(R.id.pieChart);
+        //pieChart = findViewById(R.id.pieChart);
         nutList = findViewById(R.id.nutList);
         caloriesTextView = findViewById(R.id.caloriesTextView);
         caloriesProgressBar = findViewById(R.id.caloriesProgressBar);
+
+        imgUriStr = getIntent().getStringExtra("ImgUriStr");
+        Uri imageUri = Uri.parse(imgUriStr);
+        Bitmap imgBit = imgUtil.uriToBitmap(this, imageUri);
+        imgName = imgUtil.RandomString(12);
+        imgUtil.saveImage(this, imgBit, imgName);
 
         // 앞에서 받아온 메뉴 이름 값 출력
         String outputMenu = getIntent().getStringExtra("outputMenu");
@@ -72,8 +80,6 @@ public class DietOutputNutient extends AppCompatActivity {
     }
 
     private void updateNutritionalInfo(String menu) {
-        AppDatabase db = DatabaseProvider.getDatabase(this);
-
         fetchFoodMenu(menu, new OnFoodMenuRetrievedListener() {
             @Override
             public void onFoodMenuRetrieved(Food_menu foodMenu) {
@@ -99,8 +105,7 @@ public class DietOutputNutient extends AppCompatActivity {
                 // saveButton 클릭 시 동작 추가
                 Button saveButton = findViewById(R.id.save_diet);
                 saveButton.setOnClickListener(v -> {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    foodcal.saveFoodCal(user.getUid(), null, foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar());
+                    foodcal.saveFoodCal(UserSet.getUserId(), null, foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar(), imgName);
                     Toast.makeText(DietOutputNutient.this, "식단이 저장되었습니다.", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(DietOutputNutient.this, MainActivity2.class);
                     startActivity(intent);
