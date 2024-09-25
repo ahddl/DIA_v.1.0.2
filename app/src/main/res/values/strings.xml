@@ -4,11 +4,15 @@
     <string name="close_nav">Close Navigation Drawer</string>
     <string-array name="dropdown_items">
         <item>기상 후(공복)</item>
-        <item>취침 전</item>
-        <item>식전</item>
-        <item>식후</item>
-        <item>운동 전</item>
-        <item>운동 후</item>
+        <item>아침 식전</item>
+        <item>아침 식후</item>
+        <item>점심 식전</item>
+        <item>점심 식후</item>
+        <item>저녁 식전</item>
+        <item>저녁 식후</item>
+        <item>자기 전</item>
         <item>기타</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
