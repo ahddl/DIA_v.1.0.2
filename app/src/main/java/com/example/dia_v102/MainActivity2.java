@@ -60,8 +60,8 @@ public class MainActivity2 extends AppCompatActivity {
     private ActivityResultLauncher<Intent> takePictureLauncher;
     private ActivityResultLauncher<Intent> pickGalleryLauncher;
 
-    private CollapsingToolbarLayout collapsingToolbarLayout;
-    private AppBarLayout appBarLayout;
+    //private CollapsingToolbarLayout collapsingToolbarLayout;
+    //private AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,7 +167,7 @@ public class MainActivity2 extends AppCompatActivity {
                 }
         );
 
-        // CollapsingToolbarLayout 및 AppBarLayout 초기화
+        /*// CollapsingToolbarLayout 및 AppBarLayout 초기화
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         appBarLayout = findViewById(R.id.app_bar_layout); // AppBarLayout ID에 맞게 수정
 
@@ -186,7 +186,7 @@ public class MainActivity2 extends AppCompatActivity {
                     collapsingToolbarLayout.setTitle("카메라로!\n음식을 인식해보세요");
                 }
             }
-        });
+        });*/
 
     }
     //Outside onCreate

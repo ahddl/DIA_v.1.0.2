@@ -18,17 +18,17 @@
 
     <style name="Theme.DIA_v102" parent="Base.Theme.DIA_v102" />
 
-    <!-- CollapsingToolbar의 제목이 펼쳐졌을 때의 스타일 -->
+  <!--   CollapsingToolbar의 제목이 펼쳐졌을 때의 스타일
     <style name="TextAppearance.App.CollapsingToolbar.Expanded" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="android:textSize">24sp</item> <!-- 글씨 크기 -->
-        <item name="android:textColor">@color/white</item> <!-- 글씨 색상 -->
+        <item name="android:textSize">24sp</item> &lt;!&ndash; 글씨 크기 &ndash;&gt;
+        <item name="android:textColor">@color/white</item> &lt;!&ndash; 글씨 색상 &ndash;&gt;
         <item name="android:maxLines">2</item>
     </style>
 
-    <!-- 접혔을 때 적용되는 스타일이 필요하다면 추가 -->
+    &lt;!&ndash; 접혔을 때 적용되는 스타일이 필요하다면 추가 &ndash;&gt;
     <style name="TextAppearance.App.CollapsingToolbar.Collapsed" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="android:textSize">18sp</item> <!-- 글씨 크기 -->
-        <item name="android:textColor">@color/white</item> <!-- 글씨 색상 -->
+        <item name="android:textSize">18sp</item> &lt;!&ndash; 글씨 크기 &ndash;&gt;
+        <item name="android:textColor">@color/white</item> &lt;!&ndash; 글씨 색상 &ndash;&gt;
         <item name="android:maxLines">2</item>
-    </style>
+    </style>-->
 </resources>
