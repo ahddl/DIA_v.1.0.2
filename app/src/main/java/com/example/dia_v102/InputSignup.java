@@ -19,16 +19,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 
-import java.util.Objects;
 
 public class InputSignup extends AppCompatActivity {
 
-    /*아이디 중복 확인 기능, 아이디/별명/pw/이메일 DB에 저장, pw 소문자/특수 문자1개씩 총7문자 이상인지 확인 기능,
+    /*아이디 중복 확인 기능, 아이디/별명/pw/이메일 DB에 저장, pw 소문자/특수 문자1개씩 총 7문자 이상인지 확인 기능,
     pw랑 pw 확인란 일치 여부 확인 기능, 이메일 수신 동의 및 알림 사항 이메일 전송 가능하게 연결, 별명 mainpage에 뜰 수있게 하기*/
 
     private boolean isEmailAvailable = false;
@@ -36,8 +31,7 @@ public class InputSignup extends AppCompatActivity {
     private boolean isEmailSubscribed = false;  //// 이메일 수신 동의 상태를 추적하는 변수
     RadioButton radioButton;
     private EditText textID,textPW,checkPW, nickName;
-    private FirebaseAuth mAuth;
-
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +56,7 @@ public class InputSignup extends AppCompatActivity {
         textID = findViewById(R.id.textID);
         textPW = findViewById(R.id.password);
         checkPW = findViewById(R.id.Password2);
+        nickName = findViewById(R.id.nickName);
 
         // TextWatcher 추가
         textID.addTextChangedListener(new TextWatcher() {
@@ -76,21 +71,7 @@ public class InputSignup extends AppCompatActivity {
             public void afterTextChanged(Editable s){}
         });
 
-        /*
-        idCheck.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        */
-
-        nickName = findViewById(R.id.nickName);
-
-
-
-
-        /*완료 버튼 -- 누르면 기본정보입력으로 넘어감 (Signup->InputBasicData->InputTime->InputWeek->Diatype)*/
+        /*완료 버튼 -- 누르면 기본 정보 입력으로 넘어감 (Signup->InputBasicData->InputTime->InputWeek->Diatype)*/
         Button nextSignup = findViewById(R.id.nextSignup);
         nextSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,24 +118,13 @@ public class InputSignup extends AppCompatActivity {
         String email = textID.getText().toString().trim();
         String password = textPW.getText().toString().trim();
 
-        // Firebase에서 사용자 생성
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // 회원가입 성공
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(InputSignup.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(InputSignup.this, InputBasicData.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            // 회원가입 실패
-                            Toast.makeText(InputSignup.this, "Registration failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        UserSet.setEmail(email);
+        UserSet.setPW(password);
+        UserSet.setESub(isEmailSubscribed);
+
+        Intent intent = new Intent(InputSignup.this, InputBasicData.class);
+        startActivity(intent);
+        finish();
     }
 
     private void check_Email(String email){
@@ -208,7 +178,7 @@ public class InputSignup extends AppCompatActivity {
             isPWAvailable = false;
             return;
         }
-        // 비밀번호에 특수문자가 1개 이상 포함되었는지 확인
+        // 비밀번호에 특수문자 포함 여부 확인
         if (!PW.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
             checkPW.setError("하나 이상의 특수문자가 포함되어야 합니다.");
             isPWAvailable = false;
@@ -221,4 +191,4 @@ public class InputSignup extends AppCompatActivity {
 
 
 
-//이메일 구독상태, 즉 이메일에 전송 동의했을 떄 이메일 날라가게 해야함, isEmailSubscribed() 함수작성
+//이메일 구독 상태, 즉 이메일 전송을 동의할 때 이메일 전송 해야함, isEmailSubscribed() 함수 작성

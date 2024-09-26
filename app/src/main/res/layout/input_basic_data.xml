@@ -206,6 +206,74 @@
         </LinearLayout>
 
 
+        <LinearLayout
+            android:id="@+id/basic_act5"
+            android:layout_width="350dp"
+            android:layout_height="132dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/confirm_btn_white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:text="> 당뇨병 타입"
+                android:textColor="@color/black"
+                tools:layout_editor_absoluteX="55dp"
+                tools:layout_editor_absoluteY="246dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/type_1"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/button_background_selector"
+                    android:text="1형"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/type_2"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/button_background_selector"
+                    android:text="2형"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/type_preg"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/button_background_selector"
+                    android:text="임신성"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/type_other"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/button_background_selector"
+                    android:text="기타"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/next_basic"
             style="@style/Widget.AppCompat.Button"

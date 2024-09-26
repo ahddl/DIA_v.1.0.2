@@ -14,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.dia_v102.databaseF.Func_UserInfo;
+import com.example.dia_v102.databaseF.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     // 클래스 멤버 변수로 선언
     private List<Food_menu> foodMenus;
+    private FirebaseUser currentUser;
 
 
       /*로고 이모티콘 넣기, 앱 이름 넣기, Google or 카카오 로그인 연동, 아이디 및 pw 찾기 버튼 만들기,
@@ -43,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-
 
         // DB 작업을 background thread 수행
         Executor executor = Executors.newSingleThreadExecutor();
@@ -69,25 +72,14 @@ public class MainActivity extends AppCompatActivity {
             */
         });
 
-
-
-
+        // 자동 로그인
         mAuth = FirebaseAuth.getInstance();
-
-        //User check
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-
+        currentUser = mAuth.getCurrentUser(); //로그인된 유저 있는지 확인.
         if(currentUser != null){
-            Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-            startActivity(intent);
+            CompleteLogin(currentUser);
         }
 
-
-
-
         //로그인 버튼 -- ID와 PW 입력 후 로그인 버튼 누르면 로그인 완료 안내와 함께 메인 페이지(nav)로 넘어감
-
         Button login = findViewById(R.id.btnlogin);
         loginID = findViewById(R.id.loginID);
         loginPW = findViewById(R.id.loginPW);
@@ -111,11 +103,8 @@ public class MainActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // Sign in success
                                     Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
-
-                                    // Navigate to HomeActivity
-                                    Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-                                    startActivity(intent);
-                                    finish();  // Finish LoginActivity so that the user cannot go back to it
+                                    currentUser = mAuth.getCurrentUser();
+                                    CompleteLogin(currentUser);
                                 } else {
                                     // Sign in failed
                                     Toast.makeText(MainActivity.this, "로그인 불가: ID/PW를 확인해주세요.", Toast.LENGTH_SHORT).show();
@@ -201,5 +190,32 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+    }
+    public void CompleteLogin(FirebaseUser currentUser){
+        UserSet.setUserId(currentUser.getUid());
+        Func_UserInfo funcUserInfo = new Func_UserInfo();
+        funcUserInfo.loadData(currentUser.getUid(), new Func_UserInfo.DataLoadListener() {
+            @Override
+            public void onDataLoaded(UserInfo userInfo) {
+                UserSet.setNickname(userInfo.nick);
+                UserSet.setESub(userInfo.eMailSub);
+                UserSet.setHeight(userInfo.height);
+                UserSet.setWeight(userInfo.weight);
+                UserSet.setAge(userInfo.age);
+                UserSet.setAge(userInfo.age);
+                UserSet.setGender(userInfo.gender.charAt(0));
+                UserSet.setType(userInfo.type.charAt(0));
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                // 에러 처리
+            }
+        });
+
+        // Navigate to HomeActivity
+        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+        startActivity(intent);
+        finish();  // Finish LoginActivity so that the user cannot go back to it
     }
 }

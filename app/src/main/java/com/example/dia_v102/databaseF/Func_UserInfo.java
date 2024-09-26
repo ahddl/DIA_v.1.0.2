@@ -5,11 +5,13 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.example.dia_v102.utils.NicknameCallback;
+import com.google.firebase.database.ValueEventListener;
 
 // Firebase Realtime Database 상호 작용 클래스
 public class Func_UserInfo {
@@ -21,8 +23,9 @@ public class Func_UserInfo {
     }
 
     // 사용자 정보 저장
-    public void saveUserInfo(String userID, boolean eMailSub, String nick) {
-        UserInfo userInfo = new UserInfo(userID, eMailSub, nick);
+    public void saveUserInfo(String userID, boolean eMailSub, String nick, int height, int weight, int age, char gender, char type) {
+        UserInfo userInfo = new UserInfo(eMailSub, nick, height, weight, age, gender, type);
+
         myRef.child(userID).setValue(userInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -36,6 +39,40 @@ public class Func_UserInfo {
                         Log.d("Firebase", "Failed to save user data.", e);
                     }
                 });
+    }
+    // 사용자 정보 로드
+    public void loadData(String userID, final DataLoadListener listener) {
+        myRef.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    UserInfo userInfo = dataSnapshot.getValue(UserInfo.class);
+                    if (userInfo != null) {
+                        listener.onDataLoaded(userInfo); // 성공적으로 데이터를 로드한 경우
+                        Log.d("Firebase", "User data loaded successfully.");
+                    } else {
+                        Log.d("Firebase", "User data is null.");
+                        listener.onFailure(new Exception("User data is null."));
+                    }
+                } else {
+                    Log.d("Firebase", "User not found.");
+                    listener.onFailure(new Exception("User not found."));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Firebase", "Failed to load user data.", error.toException());
+                listener.onFailure(error.toException());
+            }
+
+        });
+    }
+
+    // 데이터 로드 완료 시 콜백을 위한 리스너 인터페이스
+    public interface DataLoadListener {
+        void onDataLoaded(UserInfo userInfo);
+        void onFailure(Exception e);
     }
 
     // 사용자 데이터 읽기
