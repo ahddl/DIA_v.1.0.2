@@ -23,8 +23,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
@@ -36,12 +34,6 @@ import java.io.IOException;
 
 
 public class MainActivity2 extends AppCompatActivity {
-
-    /*//FragmentDiet.java로 이동 필요
-    private FirebaseAuth mAuth;
-    private String userNick;
-
-    TextView nickView;*/
 
     /*navigation 하단 탭 생성(4개)*/
     FloatingActionButton fab;
@@ -264,10 +256,9 @@ public class MainActivity2 extends AppCompatActivity {
 
     // 로그아웃 메소드
     private void logout() {
-        Log.d("logout", "is it clicked?");
         // FirebaseAuth 인스턴스 가져오기
         FirebaseAuth.getInstance().signOut();
-
+        UserSet.logOut();
         // 로그인 화면으로 이동
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

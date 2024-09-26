@@ -1,8 +1,6 @@
 package com.example.dia_v102;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,8 +50,7 @@ public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietIt
 
         Context context = holder.itemView.getContext();
         String imgName = foodCal.getImgName();
-        Bitmap imgBit = imgUtil.loadImage(context, imgName);
-        holder.photo.setImageBitmap(imgBit);
+        imgUtil.setImage(context, holder.photo, imgName);
     }
 
     @Override

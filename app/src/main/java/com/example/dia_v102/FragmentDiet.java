@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,7 +99,8 @@ public class FragmentDiet extends Fragment {
             DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), (view1, year, month, dayOfMonth) -> {
                 selectedDate = String.format(Locale.getDefault(), "%d-%02d-%02d", year, month + 1, dayOfMonth);
                 setUnderlineText(dateText, selectedDate);  // 선택한 날짜를 텍스트뷰에 표시
-                loadDietData(selectedDate);  // 선택한 날짜로 데이터 로딩
+                String searchDate = String.format(Locale.getDefault(), "%d%02d%02d", year, month + 1, dayOfMonth);
+                loadDietData(searchDate);  // 선택한 날짜로 데이터 로딩
             }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
             datePickerDialog.show();
         });
