@@ -2,6 +2,8 @@ package com.example.dia_v102;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dia_v102.databaseF.Func_InfoBox;
 import com.example.dia_v102.databaseF.Func_UserInfo;
@@ -29,6 +33,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class FragmentDiabetes extends Fragment {
@@ -39,6 +45,11 @@ public class FragmentDiabetes extends Fragment {
     private final FirebaseUser CurrUser = FirebaseAuth.getInstance().getCurrentUser();
     private String userID;
 
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private final Handler mainThreadHandler = new Handler(Looper.getMainLooper());
+    private BSAdapter adapter;
+    private RecyclerView recyclerView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState){
@@ -46,6 +57,8 @@ public class FragmentDiabetes extends Fragment {
         Func_InfoBox FinfoBox = new Func_InfoBox();
 
         nickView = view.findViewById(R.id.nickName);
+        recyclerView = view.findViewById(R.id.recycler_vieww);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         FindNick(new NicknameCallback() {
             @Override
             public void onCallback(String nickname) {
@@ -54,7 +67,7 @@ public class FragmentDiabetes extends Fragment {
                 nickView.setText(userNick);
             }
         });
-
+        /*
         FloatingActionButton fab = view.findViewById(R.id.fab);
         dialog = new Dialog(requireContext());
         dialog.setContentView(R.layout.dialog_layout);
@@ -90,6 +103,8 @@ public class FragmentDiabetes extends Fragment {
             }
         });
 
+         */
+
 
         loadDiabeteData(DateUtil.dateToString(new Date()));  // 데이터 로드
 
@@ -120,20 +135,27 @@ public class FragmentDiabetes extends Fragment {
     private void loadDiabeteData(String date) {
         infoBox = new Func_InfoBox();
         userID = CurrUser.getUid();
-        infoBox.loadInfoBox(userID, date, new Func_InfoBox.OnDataReceivedListener(){
-            @Override
-            public void onDataReceived(List<InfoBox> infoBoxList){
-                Log.d("BoxOut", "Success");
+        executorService.execute(() -> {
+            infoBox.loadInfoBox(userID, date, new Func_InfoBox.OnDataReceivedListener(){
+                @Override
+                public void onDataReceived(List<InfoBox> infoBoxList){
+                    Log.d("BoxOut", "Success");
 
-                for (InfoBox infoBox : infoBoxList) {
-                    Log.d("BoxOut", "InfoBox Data: " + infoBox.getTime()); // infoBox의 toString() 메서드를 사용하여 데이터를 출력
+                    for (InfoBox infoBox : infoBoxList) {
+                        Log.d("BoxOut", "InfoBox Data: " + infoBox.getTime()); // infoBox의 toString() 메서드를 사용하여 데이터를 출력
+                    }
+                    mainThreadHandler.post(()->{
+                       adapter = new BSAdapter(infoBoxList);
+                       recyclerView.setAdapter(adapter);
+                    });
                 }
-            }
 
-            @Override
-            public void onDataFailed(Exception exception) {
-                Log.d("BoxOut", exception.getMessage());
-            }
+                @Override
+                public void onDataFailed(Exception exception) {
+                    Log.d("BoxOut", exception.getMessage());
+                }
+            });
         });
+
     }
 }
