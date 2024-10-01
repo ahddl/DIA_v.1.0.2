@@ -1,38 +1,26 @@
 package com.example.dia_v102;
 
-import android.app.Dialog;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.dia_v102.databaseF.Func_InfoBox;
 import com.example.dia_v102.databaseF.Func_UserInfo;
 import com.example.dia_v102.databaseF.InfoBox;
 import com.example.dia_v102.utils.DateUtil;
 import com.example.dia_v102.utils.NicknameCallback;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -41,24 +29,19 @@ public class FragmentDiabetes extends Fragment {
     TextView nickView;
     private String userNick;
     private Func_InfoBox infoBox;
-    private Dialog dialog;
     private final FirebaseUser CurrUser = FirebaseAuth.getInstance().getCurrentUser();
     private String userID;
 
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
-    private final Handler mainThreadHandler = new Handler(Looper.getMainLooper());
-    private BSAdapter adapter;
-    private RecyclerView recyclerView;
+    private TextView AvgBlood;
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_diabetes, container,false);
-        Func_InfoBox FinfoBox = new Func_InfoBox();
 
         nickView = view.findViewById(R.id.nickName);
-        recyclerView = view.findViewById(R.id.recycler_vieww);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        AvgBlood = view.findViewById(R.id.averblood);
         FindNick(new NicknameCallback() {
             @Override
             public void onCallback(String nickname) {
@@ -67,43 +50,53 @@ public class FragmentDiabetes extends Fragment {
                 nickView.setText(userNick);
             }
         });
-        /*
-        FloatingActionButton fab = view.findViewById(R.id.fab);
-        dialog = new Dialog(requireContext());
-        dialog.setContentView(R.layout.dialog_layout);
-        // Dialog 중앙에 위치시키기
-        dialog.setOnShowListener(dialogInterface -> {
-            Window window = dialog.getWindow();
-            if (window != null) {
-                window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                window.setGravity(Gravity.CENTER);
-            }
-        });
-        fab.setOnClickListener(new View.OnClickListener(){
+        TabLayout tabLayout = view.findViewById(R.id.tabdiabetes);
+
+        // 탭 추가하기
+        tabLayout.addTab(tabLayout.newTab().setText("혈당"));
+        tabLayout.addTab(tabLayout.newTab().setText("당화혈색소"));
+
+        // 첫 번째 탭을 기본으로 선택하고 TabBloodsugar 프래그먼트 표시
+        if (savedInstanceState == null) {
+            getChildFragmentManager().beginTransaction()
+                    .replace(R.id.tab_layout_container, new TabBloodsugar(), "TabBloodsugar")
+                    .commit();
+            // 첫 번째 탭 선택 상태로 만들기
+            tabLayout.getTabAt(0).select();
+        }
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View v) {
-                dialog.show();
+            public void onTabSelected(TabLayout.Tab tab) {
+                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                Log.d("FragmentDiabetes", "Tab " + tab.getPosition() + " selected");
+                switch (tab.getPosition()) {
+                    case 0:
+                        Log.d("FragmentDiabetes", "Tab 0 selected");  // 로그 추가
+                        transaction.replace(R.id.tab_layout_container, new TabBloodsugar());
+                        break;
+                    case 1:
+                        Log.d("FragmentDiabetes", "Tab 1 selected");  // 로그 추가
+                        transaction.replace(R.id.tab_layout_container, new TabGlycated());
+                        break;
+                }
+                transaction.commit();
             }
-        });
 
-        Spinner dropdownSelect = dialog.findViewById(R.id.dropdown_menu);
-        Button dButton_save = dialog.findViewById(R.id.save_button);
-        EditText sugarBlood = dialog.findViewById(R.id.blood_sugar);
-        dButton_save.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
-                // 버튼 클릭 시 실행할 동작 정의
-                String tag2 = dropdownSelect.getSelectedItem().toString();
-                double sugar = Double.parseDouble(sugarBlood.getText().toString());
-                FinfoBox.saveInfoBox(CurrUser.getUid(), null, HourNMin(), "혈당", tag2, sugar);
-                Toast.makeText(requireContext(), "혈당 데이터가 저장되었습니다.", Toast.LENGTH_SHORT).show();
+            public void onTabUnselected(TabLayout.Tab tab) {
+                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 
-                dialog.dismiss();  // Dialog 닫기
-
+                // 현재 container에 들어있는 fragment를 찾아 제거
+                Fragment currentFragment = getChildFragmentManager().findFragmentById(R.id.tab_layout_container);
+                if (currentFragment != null) {
+                    transaction.remove(currentFragment);
+                    transaction.commit();
+                }
             }
-        });
 
-         */
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
+        });
 
 
         loadDiabeteData(DateUtil.dateToString(new Date()));  // 데이터 로드
@@ -124,30 +117,25 @@ public class FragmentDiabetes extends Fragment {
         userInfo.getNick(userID, callback);
     }
 
-    private String HourNMin(){
-        Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int min = calendar.get(Calendar.MINUTE);
-
-        return String.format(Locale.getDefault(), "%02d-%02d", hour, min);
-    }
-
     private void loadDiabeteData(String date) {
         infoBox = new Func_InfoBox();
         userID = CurrUser.getUid();
+
         executorService.execute(() -> {
+
             infoBox.loadInfoBox(userID, date, new Func_InfoBox.OnDataReceivedListener(){
                 @Override
                 public void onDataReceived(List<InfoBox> infoBoxList){
                     Log.d("BoxOut", "Success");
+                    double sumValue = 0.0;
+                    double avgValue;
 
                     for (InfoBox infoBox : infoBoxList) {
                         Log.d("BoxOut", "InfoBox Data: " + infoBox.getTime()); // infoBox의 toString() 메서드를 사용하여 데이터를 출력
+                        sumValue = sumValue + infoBox.getValue();
                     }
-                    mainThreadHandler.post(()->{
-                       adapter = new BSAdapter(infoBoxList);
-                       recyclerView.setAdapter(adapter);
-                    });
+                    avgValue = sumValue/infoBoxList.size();
+                    AvgBlood.setText(String.format("평균 혈당량 %.2f mg/dL", avgValue));
                 }
 
                 @Override
