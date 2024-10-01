@@ -5,7 +5,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.dia_v102.utils.DateUtil;
-import com.example.dia_v102.utils.InfoBoxCallback;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -44,38 +43,7 @@ public class Func_InfoBox {
             });
     }
 
-    // 데이터를 콜백으로 반환하는 메소드
-    public void getInfoBox(String userID, String tag1, InfoBoxCallback callback) {
-        myRef.child(userID).orderByChild("date")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        List<InfoBox> infoBoxList = new ArrayList<>();
-                        if (dataSnapshot.exists()) {
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                InfoBox infoBox = snapshot.getValue(InfoBox.class);
-                                // tag 값이 일치하는 데이터만 필터링
-                                if (infoBox != null && infoBox.getTag1().equals(tag1)) {
-                                    infoBoxList.add(infoBox);  // 필요한 데이터를 리스트에 추가
-                                }
-                            }
-                            // 데이터 반환을 위해 콜백 호출
-                            callback.onInfoBoxesRetrieved(infoBoxList);
-                        } else {
-                            // 데이터가 없을 경우 빈 리스트 반환
-                            callback.onInfoBoxesRetrieved(new ArrayList<>());
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        // 실패 시 콜백 호출
-                        callback.onFailure(databaseError.toException());
-                    }
-                });
-    }
-
-    public void loadInfoBox(String userID, String date, final Func_InfoBox.OnDataReceivedListener listener) {
+    public void loadInfoBox(String userID, String tag1, String date, final Func_InfoBox.OnDataReceivedListener listener) {
         myRef.child(userID).orderByChild("date").equalTo(date)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -84,7 +52,7 @@ public class Func_InfoBox {
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             InfoBox infoBox  = snapshot.getValue(InfoBox.class);
-                            if (infoBox != null) {
+                            if (infoBox != null && infoBox.getTag1().equals(tag1)) {
                                 infoBoxList.add(infoBox);
                             }
                         }

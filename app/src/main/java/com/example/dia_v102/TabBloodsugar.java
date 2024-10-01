@@ -82,7 +82,7 @@ public class TabBloodsugar extends Fragment {
 
         executorService.execute(() -> {
 
-            infoBox.loadInfoBox(userID, date, new Func_InfoBox.OnDataReceivedListener(){
+            infoBox.loadInfoBox(userID, "혈당", date, new Func_InfoBox.OnDataReceivedListener(){
                 @Override
                 public void onDataReceived(List<InfoBox> infoBoxList){
                     Log.d("BoxOut", "Success");
