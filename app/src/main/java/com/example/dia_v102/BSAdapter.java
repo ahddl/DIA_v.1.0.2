@@ -30,6 +30,8 @@ public class BSAdapter extends RecyclerView.Adapter<BSAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         InfoBox bloodSugar = bloodSugarList.get(position);
+
+        holder.recodeTime.setText(bloodSugar.getTime());
         holder.mealTypeTextView.setText(bloodSugar.getTag2());
         holder.valueTextView.setText(String.valueOf(bloodSugar.getValue()));
     }
@@ -42,11 +44,13 @@ public class BSAdapter extends RecyclerView.Adapter<BSAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView mealTypeTextView;
         TextView valueTextView;
+        TextView recodeTime;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mealTypeTextView = itemView.findViewById(R.id.meal_type);
             valueTextView = itemView.findViewById(R.id.blood_sugar_value);
+            recodeTime = itemView.findViewById(R.id.recode_time);
         }
     }
 }
