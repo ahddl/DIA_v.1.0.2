@@ -14,30 +14,29 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/dark_blue"
-            android:orientation="vertical"
             android:id="@+id/linear1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent">-->
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:padding="20dp"
+                android:background="@color/dark_blue"
                 android:text="카메라로!\n음식을 인식해보세요"
                 android:textColor="@color/white"
                 android:textSize="24dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </LinearLayout>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+       <!-- </LinearLayout>-->
 
         <LinearLayout
             android:id="@+id/linear2"
@@ -46,7 +45,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linear1">
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
 
             <TextView
                 android:id="@+id/diet_date_text"
@@ -64,7 +63,7 @@
 
             <TextView
                 android:id="@+id/diet_date"
-                android:layout_width="130dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginStart="10dp"
                 android:paddingHorizontal="5dp"
