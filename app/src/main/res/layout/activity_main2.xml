@@ -62,6 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="?attr/actionBarSize"
+            android:background="@color/light_blue"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <FrameLayout

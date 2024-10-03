@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue_grey">
+    android:background="@color/light_blue">
 
     <!-- RecyclerView는 아래에 고정 -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-
+        android:background="@drawable/background"
         android:padding="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
                 android:layout_weight="1"
                 android:hint="혈당을 입력하세요"
                 android:inputType="numberDecimal"
-                android:textSize="10dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/unit_text"
@@ -74,14 +74,14 @@
             app:layout_constraintTop_toBottomOf="@+id/input_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="80dp"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_bloodsugar" >
+        app:layout_constraintTop_toBottomOf="@+id/input_bloodsugar">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

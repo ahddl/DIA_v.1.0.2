@@ -17,57 +17,68 @@
         <LinearLayout
             android:id="@+id/profile_linear"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="#D6D6D6"
+            android:layout_height="100dp"
+            android:background="@color/dark_blue"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/profileImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:src="@mipmap/ic_launcher_round" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="30dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_marginStart="20dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/timeNow"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="현재 시간"
-                    android:textSize="10dp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/nickName"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="닉네임"
-                    android:textSize="15dp" />
+                    android:textSize="18sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/averblood"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="평균 혈당량 -- mg/dL"
-                    android:textSize="10dp" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/glycatedhemoglobin"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="당화혈색소 -- %"
-                    android:textSize="10dp" />
+                    android:text="평균 당화혈색소 -- %"
+                    android:textSize="16dp" />
+
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
