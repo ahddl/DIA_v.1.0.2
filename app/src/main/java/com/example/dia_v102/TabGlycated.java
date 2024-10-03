@@ -1,64 +1,115 @@
 package com.example.dia_v102;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TabGlycated#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.dia_v102.databaseF.Func_InfoBox;
+import com.example.dia_v102.databaseF.InfoBox;
+import com.example.dia_v102.utils.DateUtil;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class TabGlycated extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private RecyclerView recyclerView;
+    private BSAdapter adapter;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Func_InfoBox infoBox;
+    private final FirebaseUser CurrUser = FirebaseAuth.getInstance().getCurrentUser();
+    private String userID;
 
-    public TabGlycated() {
-        // Required empty public constructor
-    }
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private final Handler mainThreadHandler = new Handler(Looper.getMainLooper());
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TabGlycated.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TabGlycated newInstance(String param1, String param2) {
-        TabGlycated fragment = new TabGlycated();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // fragment_tab_bloodsugar 레이아웃을 사용하여 view를 생성
+        View view = inflater.inflate(R.layout.tab_glycated, container, false);
+        Func_InfoBox FinfoBox = new Func_InfoBox();
+
+        /*// UI 요소 참조
+        EditText bloodSugarInput = view.findViewById(R.id.glycated);
+        Button saveButton = view.findViewById(R.id.save_button_gly);
+        recyclerView = view.findViewById(R.id.recycler_view_gly);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // 저장 버튼 클릭 리스너
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //String tag2 = dropdownMenu.getSelectedItem().toString();
+                double sugar = Double.parseDouble(bloodSugarInput.getText().toString());
+                FinfoBox.saveInfoBox(CurrUser.getUid(), null, HourNMin(), "당화혈색소", glycated);
+                Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
+                loadDiabeteData(DateUtil.dateToString(new Date()));
+            }
+        });
+
+        // 데이터 로드
+        loadDiabeteData(DateUtil.dateToString(new Date()));*/
+
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.tab_glycated, container, false);
+    /*// Firestore에서 데이터를 로드하여 RecyclerView에 표시
+    private void loadDiabeteData(String date) {
+        infoBox = new Func_InfoBox();
+        userID = CurrUser.getUid();
+
+        executorService.execute(() -> {
+
+            infoBox.loadInfoBox(userID, "혈당", date, new Func_InfoBox.OnDataReceivedListener(){
+                @Override
+                public void onDataReceived(List<InfoBox> infoBoxList){
+                    Log.d("BoxOut", "Success");
+
+                    for (InfoBox infoBox : infoBoxList) {
+                        Log.d("BoxOut", "InfoBox Data: " + infoBox.getTime()); // infoBox의 toString() 메서드를 사용하여 데이터를 출력
+                    }
+                    mainThreadHandler.post(()->{
+                        adapter = new BSAdapter(infoBoxList);
+                        recyclerView.setAdapter(adapter);
+
+                    });
+                }
+
+                @Override
+                public void onDataFailed(Exception exception) {
+                    Log.d("BoxOut", exception.getMessage());
+                }
+            });
+        });
+
     }
+
+    private String HourNMin() {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int min = calendar.get(Calendar.MINUTE);
+
+        return String.format(Locale.getDefault(), "%02d-%02d", hour, min);
+    }*/
 }
