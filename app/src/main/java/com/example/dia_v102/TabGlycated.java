@@ -58,7 +58,7 @@ public class TabGlycated extends Fragment {
         saveButton.setOnClickListener(v -> {
             //String tag2 = dropdownMenu.getSelectedItem().toString();
             double glycated = Double.parseDouble(GlycatedInput.getText().toString());
-            FinfoBox.saveInfoBox(CurrUser.getUid(), null, DateUtil.HourNMin(), "당화혈색소", null, glycated);
+            FinfoBox.saveInfoBox(CurrUser.getUid(), "당화혈색소", null, glycated);
             Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
             loadGlycatedData(DateUtil.dateToString(new Date()));
         });

@@ -1,7 +1,12 @@
 package com.example.dia_v102.databaseF;
 
+import com.example.dia_v102.utils.DateUtil;
+
+import java.util.Date;
+
 public class FoodCal {
     private String date;
+    private String time;
 
     //형태에 따라 빠질 수도 있을듯.
     private String food;
@@ -16,8 +21,9 @@ public class FoodCal {
 
     public FoodCal(){}
 
-    public FoodCal(String date, String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName){
-        this.date = date;
+    public FoodCal(String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName){
+        date = DateUtil.dateToString(new Date());
+        time = DateUtil.HourNMin();
         this.food = food;
         this.calories = calories;
         this.carbohydrate = carbohydrate;
@@ -28,7 +34,7 @@ public class FoodCal {
         this.sugar = sugar;
         this.imgName =imgName;
     }
-    // Getter와 Setter 메서드
+    // Getter/Setter 메서드
     public String getDate() {
         return date;
     }
@@ -36,6 +42,9 @@ public class FoodCal {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public String getTime(){return time;}
+    public void setTime(String time){this.time = time;}
 
     public String getFood() {
         return food;

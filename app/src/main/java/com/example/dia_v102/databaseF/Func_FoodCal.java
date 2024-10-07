@@ -2,9 +2,6 @@ package com.example.dia_v102.databaseF;
 
 import androidx.annotation.NonNull;
 
-import com.example.dia_v102.utils.DateUtil;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,7 +9,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -24,27 +20,18 @@ public class Func_FoodCal {
     }
 
     // 데이터를 저장하는 메서드
-    public void saveFoodCal(String userID, String date, String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName) {
-        if(date == null){
-            date = DateUtil.dateToString(new Date());
-        }
-        FoodCal foodcal = new FoodCal(date, food, calories, carbohydrate, protein, fat, cholesterol, sodium, sugar, imgName);
+    public void saveFoodCal(String userID, String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName) {
+        FoodCal foodcal = new FoodCal(food, calories, carbohydrate, protein, fat, cholesterol, sodium, sugar, imgName);
         myRef.child(userID).push().setValue(foodcal)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        // 저장 성공
-                    }
+                .addOnSuccessListener(aVoid -> {
+                    // 저장 성공
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // 저장 실패
-                    }
+                .addOnFailureListener(e -> {
+                    // 저장 실패
                 });
     }
 
-    // 데이터를 불러오는 메서드
+    // 데이터 로드 메서드
     public void loadFoodCal(String userID, String date, final OnDataReceivedListener listener) {
         myRef.child(userID).orderByChild("date").equalTo(date)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -59,7 +46,7 @@ public class Func_FoodCal {
                             }
                         }
 
-                        // 데이터가 성공적으로 불러와졌음을 알리기 위해 listener 호출
+                        // 데이터 로드 성공을 알리기 위해 listener 호출
                         if (listener != null) {
                             listener.onDataReceived(foodCalList);
                         }
@@ -67,7 +54,7 @@ public class Func_FoodCal {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        // 데이터 불러오기 실패 시 처리
+                        // 데이터 로드 실패 시 처리
                         if (listener != null) {
                             listener.onDataFailed(databaseError.toException());
                         }
