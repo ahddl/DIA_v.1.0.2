@@ -19,13 +19,14 @@ public class FragmentDiabetes extends Fragment {
     TextView nickView;
 
     //private final FirebaseUser CurrUser = FirebaseAuth.getInstance().getCurrentUser();
-    TextView avgBlood;
+    TextView avgBlood, avgHbA1cView;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_diabetes, container,false);
         avgBlood = view.findViewById(R.id.averblood);
+        avgHbA1cView = view.findViewById(R.id.glycatedhemoglobin);
         nickView = view.findViewById(R.id.nickName);
         avgBlood = view.findViewById(R.id.averblood);
         nickView.setText(UserSet.getNickname());
@@ -79,7 +80,7 @@ public class FragmentDiabetes extends Fragment {
         // 데이터 변경 리스너 등록 (여기서 HealthSet 변경 사항을 감지-> notify 함수를 호출)
         // 혈당 변화가 감지-> UI 값 갱신
         HealthSet.addBloodSugarChangeListener(this::updateAvgBlood);
-
+        HealthSet.addHbA1cChangeListener(this::updateAVGHbA1c);
         return view;
     }
 
@@ -87,6 +88,10 @@ public class FragmentDiabetes extends Fragment {
     private void updateAvgBlood() {
         double avgBloodSugar = HealthSet.getBloodSugarAVG();
         avgBlood.setText(String.format(Locale.getDefault(),"평균 혈당량 %.2f mg/dL", avgBloodSugar));
+    }
+    private void updateAVGHbA1c(){
+        double avgHbA1c = HealthSet.getHbA1cAVG();
+        avgHbA1cView.setText(String.format(Locale.getDefault(), "평균 당화혈색소 %.2f", avgHbA1c));
     }
 
     @Override

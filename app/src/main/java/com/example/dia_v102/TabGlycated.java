@@ -89,10 +89,13 @@ public class TabGlycated extends Fragment {
             @Override
             public void onDataReceived(List<InfoBox> infoBoxList){
                 Log.d("BoxOut", "Success");
+                double sumValue = 0.0;
 
                 for (InfoBox infoBox : infoBoxList) {
-                    Log.d("BoxOut", "InfoBox Data: " + infoBox.getTime()); // infoBox의 toString() 메서드를 사용하여 데이터를 출력
+                    sumValue = sumValue + infoBox.getValue();
                 }
+                double avgValue = sumValue/infoBoxList.size();
+                HealthSet.setHbA1cAVG(avgValue);
                 mainThreadHandler.post(()->{
                     adapter = new GlycatedAdapter(infoBoxList);
                     recyclerView.setAdapter(adapter);
