@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
-            android:id="@+id/nowtime_gly"
+            android:id="@+id/nowTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="기록날짜시간"
@@ -41,7 +41,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nowtime_gly">
+            app:layout_constraintTop_toBottomOf="@id/nowTime">
 
             <EditText
                 android:id="@+id/glycated"

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,11 +33,12 @@ import java.util.concurrent.Executors;
 public class TabGlycated extends Fragment {
 
     private RecyclerView recyclerView;
-    private BSAdapter adapter;
+    private GlycatedAdapter adapter;
 
     private Func_InfoBox infoBox;
     private final FirebaseUser CurrUser = FirebaseAuth.getInstance().getCurrentUser();
     private String userID;
+    private TextView nowTime;  // nowTime 변수를 클래스 필드로 선언
 
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private final Handler mainThreadHandler = new Handler(Looper.getMainLooper());
@@ -54,6 +56,10 @@ public class TabGlycated extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view_gly);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        // 날짜 및 시간을 표시할 TextView 참조
+        nowTime = view.findViewById(R.id.nowTime);
+        updateNowTime();
+
         // 저장 버튼 클릭 리스너
         saveButton.setOnClickListener(v -> {
             //String tag2 = dropdownMenu.getSelectedItem().toString();
@@ -69,6 +75,12 @@ public class TabGlycated extends Fragment {
         return view;
     }
 
+    // 현재 시간을 nowTime TextView에 업데이트 하는 메서드
+    private void updateNowTime() {
+        String currentTime = DateUtil.dateToString(new Date()) + " " + DateUtil.HourNMin();
+        nowTime.setText(currentTime);
+    }
+
     private void loadGlycatedData(String date) {
         infoBox = new Func_InfoBox();
         userID = CurrUser.getUid();
@@ -82,7 +94,7 @@ public class TabGlycated extends Fragment {
                     Log.d("BoxOut", "InfoBox Data: " + infoBox.getTime()); // infoBox의 toString() 메서드를 사용하여 데이터를 출력
                 }
                 mainThreadHandler.post(()->{
-                    adapter = new BSAdapter(infoBoxList);
+                    adapter = new GlycatedAdapter(infoBoxList);
                     recyclerView.setAdapter(adapter);
 
                 });
