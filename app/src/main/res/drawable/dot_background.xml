@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/transparent"/> <!-- 기본 색상은 투명으로 설정 -->
+    <corners android:radius="6dp"/> <!-- 반지름 조정 -->
+</shape>
