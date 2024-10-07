@@ -79,6 +79,9 @@
         <activity
             android:name=".GraphDiet"
             android:exported="false" />
+        <activity
+            android:name=".Edit_info"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.actions"

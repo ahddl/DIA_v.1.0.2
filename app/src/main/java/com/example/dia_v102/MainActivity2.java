@@ -7,12 +7,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,12 +23,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class MainActivity2 extends AppCompatActivity {
@@ -43,17 +41,14 @@ public class MainActivity2 extends AppCompatActivity {
 
     FragmentDiet diet;
     FragmentDiabetes diabetes;
-    FragmentChatbot chatbot;
+    FragmentChatbot chating;
     FragmentGraph graph;
 
-    //카메라 및 갤러리 열기 (음식인식 위한)
+    //카메라 및 갤러리 열기 (음식 인식 위한)
     File file;
     Uri uri;
     private ActivityResultLauncher<Intent> takePictureLauncher;
     private ActivityResultLauncher<Intent> pickGalleryLauncher;
-
-    //private CollapsingToolbarLayout collapsingToolbarLayout;
-    //private AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,54 +75,51 @@ public class MainActivity2 extends AppCompatActivity {
 
         diet = new FragmentDiet();
         diabetes = new FragmentDiabetes();
-        chatbot = new FragmentChatbot();
+        chating = new FragmentChatbot();
         graph = new FragmentGraph();
 
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int itemId = item.getItemId();
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
 
-                if (itemId == R.id.tabdiet) {
-                    replaceFragment(diet);
-                    return true;
-                } else if (itemId == R.id.tabdiabetes) {
-                    replaceFragment(diabetes);
-                    return true;
-                } else if (itemId == R.id.tabchatbot) {
-                    replaceFragment(chatbot);
-                    return true;
-                } else if (itemId == R.id.tabgraph) {
-                    replaceFragment(graph);
-                    return true;
-                } else {
-                    return false;
-                }
+            if (itemId == R.id.tabdiet) {
+                replaceFragment(diet);
+                return true;
+            } else if (itemId == R.id.tabdiabetes) {
+                replaceFragment(diabetes);
+                return true;
+            } else if (itemId == R.id.tabchatbot) {
+                replaceFragment(chating);
+                return true;
+            } else if (itemId == R.id.tabgraph) {
+                replaceFragment(graph);
+                return true;
+            } else {
+                return false;
             }
         });
 
-        // 연결 이 안되요 이게 아직 해결이 안됌...
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
 
-                if (id == R.id.bardiet) {
-                    bottomNavigationView.setSelectedItemId(R.id.tabdiet); // bottomNavigationView에서 tabdiet 선택
-                } else if (id == R.id.bardiabetes) {
-                    bottomNavigationView.setSelectedItemId(R.id.tabdiabetes); // bottomNavigationView에서 tabdiabetes 선택
-                } else if (id == R.id.barchatbot) {
-                    bottomNavigationView.setSelectedItemId(R.id.tabchatbot); // bottomNavigationView에서 tabchatbot 선택
-                } else if (id == R.id.bargraph) {
-                    bottomNavigationView.setSelectedItemId(R.id.tabgraph); // bottomNavigationView에서 tabgraph 선택
-                } else if (id == R.id.setting_logout) {
-                    logout();
-                }
-
-                // 드로어 닫기
-                drawerLayout.closeDrawer(navigationView);
-                return true;
+            if (id == R.id.bardiet) {
+                bottomNavigationView.setSelectedItemId(R.id.tabdiet); // bottomNavigationView에서 tabdiet 선택
+            } else if (id == R.id.bardiabetes) {
+                bottomNavigationView.setSelectedItemId(R.id.tabdiabetes); // bottomNavigationView에서 tabdiabetes 선택
+            } else if (id == R.id.barchatbot) {
+                bottomNavigationView.setSelectedItemId(R.id.tabchatbot); // bottomNavigationView에서 tabchatbot 선택
+            } else if (id == R.id.bargraph) {
+                bottomNavigationView.setSelectedItemId(R.id.tabgraph); // bottomNavigationView에서 tabgraph 선택
+            } else if(id == R.id.setting_edit_info){
+                Intent intent = new Intent(this, Edit_info.class);
+                startActivity(intent);
+                finish();
+            }else if (id == R.id.setting_logout) {
+                logout();
             }
+
+            // 드로어 닫기
+            drawerLayout.closeDrawer(navigationView);
+            return true;
         });
 
         // Bottom Sheet Dialog 제거 및 이미지 소스 대화상자 활성화
@@ -159,7 +151,7 @@ public class MainActivity2 extends AppCompatActivity {
                 }
         );
 
-        /*// CollapsingToolbarLayout 및 AppBarLayout 초기화
+        /* CollapsingToolbarLayout 및 AppBarLayout 초기화
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         appBarLayout = findViewById(R.id.app_bar_layout); // AppBarLayout ID에 맞게 수정
 
@@ -187,7 +179,7 @@ public class MainActivity2 extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) { // 메뉴를 인플레이트하는 메서드 추가
         getMenuInflater().inflate(R.menu.toolbar_menu, menu); // toolbar_menu.xml 메뉴 리소스 인플레이트
 
-        //toolbar_menu 알람, 더보기(아직 무슨기능 넣을지 모르겠음) 설정 여기서 해야함
+        //toolbar_menu 알람, 더보기(아직 무슨 기능 넣을지 미정) 설정 여기서 해야함
         return true;
     }
 
@@ -220,7 +212,7 @@ public class MainActivity2 extends AppCompatActivity {
 
             file.createNewFile();
         } catch(IOException e) {
-            e.printStackTrace();
+            Log.d("Camera", Objects.requireNonNull(e.getMessage()));
         }
 
         if (Build.VERSION.SDK_INT >= 24) {
