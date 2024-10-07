@@ -7,7 +7,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dia_v102.R;
 import com.example.dia_v102.databaseF.InfoBox;
 
 import java.util.List;
@@ -41,7 +40,7 @@ public class BSAdapter extends RecyclerView.Adapter<BSAdapter.ViewHolder> {
         return bloodSugarList.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView mealTypeTextView;
         TextView valueTextView;
         TextView recodeTime;
