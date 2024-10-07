@@ -2,6 +2,9 @@ package com.example.dia_v102;
 
 import android.app.Application;
 
+import com.example.dia_v102.databaseF.Func_UserInfo;
+import com.example.dia_v102.databaseF.UserInfo;
+
 public class UserSet extends Application {
     private static String userID;
     private static String nickname;
@@ -64,4 +67,8 @@ public class UserSet extends Application {
         UserSet.type = '\0';
     }
 
+    public static void saveUserSet(){
+        UserInfo userinfo = new UserInfo(eSub, nickname, height, weight, age, gender, type);
+        Func_UserInfo.saveUserInfo(userID, userinfo);
+    }
 }

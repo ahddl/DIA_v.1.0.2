@@ -11,16 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.dia_v102.databaseF.Func_UserInfo;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
@@ -31,7 +26,7 @@ public class InputBasicData extends AppCompatActivity {
     /* 기본 정보 키, 몸무게, 만나이, 성별 입력하는 클래스*/
 
     private char selectedGender = '\0';
-    private char selectDiabete ='\0';
+    private char selectDiabetes ='\0';
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +39,11 @@ public class InputBasicData extends AppCompatActivity {
 
         /*뒤로 가기 버튼 -- 회원가입 화면으로 이동*/
         Button back_basic = findViewById(R.id.back_basic);
-        back_basic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent signupintent = new Intent(InputBasicData.this, InputSignup.class);
-                //intent.putExtra("name","mike"); //인텐트 객체 생성하고 name의 값을 부가데이터로 넣기
-                setResult(RESULT_OK, signupintent);
-                finish();
-            }
-
+        back_basic.setOnClickListener(v -> {
+            Intent signupintent = new Intent(InputBasicData.this, InputSignup.class);
+            //intent.putExtra("name","mike"); //인텐트 객체 생성하고 name의 값을 부가데이터로 넣기
+            setResult(RESULT_OK, signupintent);
+            finish();
         });
 
         // 성별 선택 TextViews
@@ -66,48 +57,45 @@ public class InputBasicData extends AppCompatActivity {
 
 
         // 성별 선택 (여, 남) 리스너
-        View.OnClickListener genderClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 성별 버튼 클릭 시
-                if (v == genderFemale) {
-                    selectedGender = 'F';
-                    genderFemale.setSelected(true); // 성별 여성 버튼을 선택 상태로 설정
-                    genderMale.setSelected(false);  // 성별 남성 버튼을 선택 해제 상태로 설정
-                } else if (v == genderMale) {
-                    selectedGender = 'M';
-                    genderFemale.setSelected(false); // 성별 여성 버튼을 선택 해제 상태로 설정
-                    genderMale.setSelected(true);    // 성별 남성 버튼을 선택 상태로 설정
-                }
+        View.OnClickListener genderClickListener = v -> {
+            // 성별 버튼 클릭 시
+            if (v == genderFemale) {
+                selectedGender = 'F';
+                genderFemale.setSelected(true); // 성별 여성 버튼을 선택 상태로 설정
+                genderMale.setSelected(false);  // 성별 남성 버튼을 선택 해제 상태로 설정
+            } else if (v == genderMale) {
+                selectedGender = 'M';
+                genderFemale.setSelected(false); // 성별 여성 버튼을 선택 해제 상태로 설정
+                genderMale.setSelected(true);    // 성별 남성 버튼을 선택 상태로 설정
+            }
 
-                if (v == type1) {
-                    selectDiabete='1';
-                    type1.setSelected(true);
-                    type2.setSelected(false);
-                    typePreg.setSelected(false);
-                    typeOther.setSelected(false);
-                }
-                else if (v == type2) {
-                    selectDiabete='2';
-                    type1.setSelected(false);
-                    type2.setSelected(true);
-                    typePreg.setSelected(false);
-                    typeOther.setSelected(false);
-                }
-                else if (v == typePreg) {
-                    selectDiabete='p';
-                    type1.setSelected(false);
-                    type2.setSelected(false);
-                    typePreg.setSelected(true);
-                    typeOther.setSelected(false);
-                }
-                else if (v == typeOther) {
-                    selectDiabete='o';
-                    type1.setSelected(false);
-                    type2.setSelected(false);
-                    typePreg.setSelected(false);
-                    typeOther.setSelected(true);
-                }
+            if (v == type1) {
+                selectDiabetes='1';
+                type1.setSelected(true);
+                type2.setSelected(false);
+                typePreg.setSelected(false);
+                typeOther.setSelected(false);
+            }
+            else if (v == type2) {
+                selectDiabetes='2';
+                type1.setSelected(false);
+                type2.setSelected(true);
+                typePreg.setSelected(false);
+                typeOther.setSelected(false);
+            }
+            else if (v == typePreg) {
+                selectDiabetes='p';
+                type1.setSelected(false);
+                type2.setSelected(false);
+                typePreg.setSelected(true);
+                typeOther.setSelected(false);
+            }
+            else if (v == typeOther) {
+                selectDiabetes='o';
+                type1.setSelected(false);
+                type2.setSelected(false);
+                typePreg.setSelected(false);
+                typeOther.setSelected(true);
             }
         };
 
@@ -151,7 +139,7 @@ public class InputBasicData extends AppCompatActivity {
                 return;
             }
 
-            if (selectDiabete=='\0'){
+            if (selectDiabetes=='\0'){
                 Toast.makeText(InputBasicData.this, "당뇨병 타입을 선택해주세요.", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -184,16 +172,15 @@ public class InputBasicData extends AppCompatActivity {
                 return;
             }
             //전부 UserSet에 넣기
-            UserSet.setType(selectDiabete);
+            UserSet.setType(selectDiabetes);
             UserSet.setHeight(height);
             UserSet.setWeight(weight);
             UserSet.setAge(age);
             UserSet.setGender(selectedGender);
             //Log.d("Firebase", UserSet.getUserId()+"\n"+UserSet.getESub()+"\n"+UserSet.getNickname()+"\n"+UserSet.getHeight()+"\n"+UserSet.getWeight()+"\n"+UserSet.getAge()+"\n"+UserSet.getGender()+"\n"+UserSet.getType());
 
-            // 다음 활동으로 이동(InputTime임)
 
-            //userInfo.saveUserInfo(UserSet.getUserId(), UserSet.getESub(), UserSet.getNickname(), UserSet.getHeight(), UserSet.getWeight(), UserSet.getAge(), UserSet.getGender(), UserSet.getType());
+
             try {
                 registerUser();
                 Intent intent = new Intent(InputBasicData.this, MainActivity2.class);
@@ -204,7 +191,7 @@ public class InputBasicData extends AppCompatActivity {
                 Log.d("EError", "Error saving user info: " + e.getMessage());
             }
 
-
+            // 다음 활동으로 이동 (원래는 InputTime)
             Intent intent = new Intent(InputBasicData.this, MainActivity.class);
             startActivity(intent);
 
@@ -220,33 +207,20 @@ public class InputBasicData extends AppCompatActivity {
     }
 
     private void registerUser() {
-        Func_UserInfo userInfo = new Func_UserInfo();
 
-
-        // Firebase에서 사용자 생성
+        // Firebase authentication 사용자 생성
         mAuth.createUserWithEmailAndPassword(UserSet.getEmail(), UserSet.getPW())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // 회원가입 성공
-                            UserSet.setUserId(mAuth.getCurrentUser().getUid());
-                            userInfo.saveUserInfo(
-                                    UserSet.getUserId(),
-                                    UserSet.getESub(),
-                                    UserSet.getNickname(),
-                                    UserSet.getHeight(),
-                                    UserSet.getWeight(),
-                                    UserSet.getAge(),
-                                    UserSet.getGender(),
-                                    UserSet.getType()
-                            );
-                            Toast.makeText(InputBasicData.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // 회원가입 성공
+                        UserSet.loginComplete();
+                        UserSet.setUserId(mAuth.getCurrentUser().getUid());
+                        UserSet.saveUserSet();
+                        Toast.makeText(InputBasicData.this, "Registration successful", Toast.LENGTH_SHORT).show();
 
-                        } else {
-                            // 회원가입 실패
-                            Toast.makeText(InputBasicData.this, "Registration failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                        }
+                    } else {
+                        // 회원가입 실패
+                        Toast.makeText(InputBasicData.this, "Registration failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

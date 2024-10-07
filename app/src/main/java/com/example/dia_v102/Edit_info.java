@@ -13,8 +13,6 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dia_v102.databaseF.Func_UserInfo;
-
 public class Edit_info extends AppCompatActivity {
     // 선언한 View들
     private EditText heightEditText, weightEditText, ageEditText;
@@ -29,7 +27,6 @@ public class Edit_info extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.fix_basic_data);
-        Func_UserInfo userInfo = new Func_UserInfo();
 
         setting_Current();
 
@@ -141,16 +138,7 @@ public class Edit_info extends AppCompatActivity {
             UserSet.setGender(selectedGender);
 
             try {
-                userInfo.saveUserInfo(
-                        UserSet.getUserId(),
-                        UserSet.getESub(),
-                        UserSet.getNickname(),
-                        UserSet.getHeight(),
-                        UserSet.getWeight(),
-                        UserSet.getAge(),
-                        UserSet.getGender(),
-                        UserSet.getType()
-                );
+                UserSet.saveUserSet();
                 Toast.makeText(Edit_info.this, "저장되었습니다.", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 Log.d("EError", "Error saving user info: " + e.getMessage());
