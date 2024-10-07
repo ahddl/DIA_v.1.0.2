@@ -10,19 +10,15 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.dia_v102.databaseF.Func_UserInfo;
-import com.example.dia_v102.utils.NicknameCallback;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Locale;
 import java.util.Objects;
 
 public class FragmentDiabetes extends Fragment {
     TextView nickView;
-    private String userNick;
-    private final FirebaseUser CurrUser = FirebaseAuth.getInstance().getCurrentUser();
+
+    //private final FirebaseUser CurrUser = FirebaseAuth.getInstance().getCurrentUser();
     TextView avgBlood;
 
 
@@ -32,11 +28,7 @@ public class FragmentDiabetes extends Fragment {
         avgBlood = view.findViewById(R.id.averblood);
         nickView = view.findViewById(R.id.nickName);
         avgBlood = view.findViewById(R.id.averblood);
-        FindNick(nickname -> {
-            userNick = nickname;
-            UserSet.setNickname(userNick);
-            nickView.setText(userNick);
-        });
+        nickView.setText(UserSet.getNickname());
         TabLayout tabLayout = view.findViewById(R.id.tabdiabetes);
 
         // 탭 추가
@@ -91,18 +83,6 @@ public class FragmentDiabetes extends Fragment {
         return view;
     }
 
-    private void FindNick(NicknameCallback callback) {
-        if (CurrUser == null) {
-            callback.onCallback(null);
-            return;
-        }
-
-        String userID = CurrUser.getUid();
-        UserSet.setUserId(userID);
-        Func_UserInfo userInfo = new Func_UserInfo();
-
-        userInfo.getNick(userID, callback);
-    }
     // 평균 혈당량 업데이트 메서드
     private void updateAvgBlood() {
         double avgBloodSugar = HealthSet.getBloodSugarAVG();

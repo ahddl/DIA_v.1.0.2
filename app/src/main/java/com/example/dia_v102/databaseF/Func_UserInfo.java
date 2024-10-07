@@ -3,7 +3,6 @@ package com.example.dia_v102.databaseF;
 import android.util.Log;
 import androidx.annotation.NonNull;
 
-import com.example.dia_v102.utils.NicknameCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -60,32 +59,4 @@ public class Func_UserInfo {
         void onDataLoaded(UserInfo userInfo);
         void onFailure(Exception e);
     }
-
-    // 사용자 데이터 읽기
-    // 닉네임을 반환하는 함수
-    public void getNick(String userID, final NicknameCallback nicknameCallback) {
-        myRef.child(userID).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DataSnapshot dataSnapshot = task.getResult();
-                if (dataSnapshot.exists()) {
-                    // UserInfo 객체로 변환하고 닉네임 가져오기
-                    UserInfo userInfo = dataSnapshot.getValue(UserInfo.class);
-                    if (userInfo != null) {
-                        nicknameCallback.onCallback(userInfo.getNick());
-                    } else {
-                        Log.d("Firebase", "User data is null");
-                        nicknameCallback.onCallback(null);
-                    }
-                } else {
-                    Log.d("Firebase", "User not found");
-                    nicknameCallback.onCallback(null);
-                }
-            } else {
-                Log.d("Firebase", "Failed to retrieve user data", task.getException());
-                nicknameCallback.onCallback(null);
-            }
-        });
-    }
-
-
 }
