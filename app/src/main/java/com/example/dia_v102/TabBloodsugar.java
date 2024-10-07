@@ -29,6 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -44,14 +45,13 @@ public class TabBloodsugar extends Fragment {
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private final Handler mainThreadHandler = new Handler(Looper.getMainLooper());
 
-    private TextView nowTime;  // nowTime 변수를 클래스의 필드로 선언
+    private TextView nowTime;  // nowTime 변수를 클래스 필드로 선언
     private final Handler timeHandler = new Handler(Looper.getMainLooper()); // 시간 업데이트를 위한 Handler
-    private Runnable timeRunnable; // 시간을 업데이트할 Runnable
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // fragment_tab_bloodsugar 레이아웃을 사용하여 view를 생성
+        // fragment_tab_bloodsugar 레이아웃 사용 -> view 생성
         View view = inflater.inflate(R.layout.tab_bloodsugar, container, false);
         Func_InfoBox FinfoBox = new Func_InfoBox();
 
@@ -62,37 +62,36 @@ public class TabBloodsugar extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        /*// 날짜 및 시간을 표시할 TextView 참조
-        TextView nowTime = view.findViewById(R.id.nowtime);
+        /* 날짜 및 시간을 표시할 TextView 참조
+        TextView nowTime = view.findViewById(R.id.now_time);
 
-        // 현재 날짜와 시간을 recode_time에 설정
+        // 현재 날짜와 시간을 recode_time 설정
         String currentTime = DateUtil.dateToString(new Date()) + " " + HourNMin();
         nowTime.setText(currentTime);*/
 
         // 날짜 및 시간을 표시할 TextView 참조
         nowTime = view.findViewById(R.id.nowtime);
-
-        // 현재 날짜와 시간을 nowTime에 설정
         updateNowTime();
 
         // 저장 버튼 클릭 리스너
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String tag2 = dropdownMenu.getSelectedItem().toString();
-                double sugar = Double.parseDouble(bloodSugarInput.getText().toString());
-                String currentTime = DateUtil.dateToString(new Date()) + " " + HourNMin();
-                FinfoBox.saveInfoBox(CurrUser.getUid(), null, currentTime, "혈당", tag2, sugar);
-                Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
-                loadDiabeteData(DateUtil.dateToString(new Date()));
-            }
+        saveButton.setOnClickListener(v -> {
+            String tag2 = dropdownMenu.getSelectedItem().toString();
+            double sugar = Double.parseDouble(bloodSugarInput.getText().toString());
+            String currentTime = DateUtil.dateToString(new Date()) + " " + HourNMin();
+            FinfoBox.saveInfoBox(CurrUser.getUid(), null, currentTime, "혈당", tag2, sugar);
+            Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
+            HealthSet.setBloodSugarRecent(sugar);
+            loadDiabetesData(DateUtil.dateToString(new Date()));
         });
 
         // 데이터 로드
-        loadDiabeteData(DateUtil.dateToString(new Date()));
+        loadDiabetesData(DateUtil.dateToString(new Date()));
 
-        // 시간 업데이트를 위한 Runnable 설정
-        timeRunnable = new Runnable() {
+        // 시간 업데이트 위한 Runnable 설정
+        // 현재 시간을 업데이트
+        // 1초 후에 다시 실행
+        // 시간을 업데이트 할 Runnable
+        Runnable timeRunnable = new Runnable() {
             @Override
             public void run() {
                 updateNowTime(); // 현재 시간을 업데이트
@@ -104,41 +103,39 @@ public class TabBloodsugar extends Fragment {
         return view;
     }
 
-    // 현재 시간을 nowTime TextView에 업데이트하는 메서드
+    // 현재 시간을 nowTime TextView에 업데이트 하는 메서드
     private void updateNowTime() {
-        String currentTime = DateUtil.dateToString(new Date()) + " " + HourNMin();
+        String currentTime = DateUtil.dateToString(new Date()) + " " + DateUtil.HourNMin();
         nowTime.setText(currentTime);
     }
 
-    // Firestore에서 데이터를 로드하여 RecyclerView에 표시
-    private void loadDiabeteData(String date) {
+    // Firebase 데이터 로드-> RecyclerView에 표시
+    private void loadDiabetesData(String date) {
         infoBox = new Func_InfoBox();
         userID = CurrUser.getUid();
 
-        executorService.execute(() -> {
+        executorService.execute(() -> infoBox.loadInfoBox(userID, "혈당", date, new Func_InfoBox.OnDataReceivedListener(){
+            @Override
+            public void onDataReceived(List<InfoBox> infoBoxList){
+                //Log.d("BoxOut", "Success");
+                double sumValue = 0.0;
 
-            infoBox.loadInfoBox(userID, "혈당", date, new Func_InfoBox.OnDataReceivedListener(){
-                @Override
-                public void onDataReceived(List<InfoBox> infoBoxList){
-                    Log.d("BoxOut", "Success");
-
-                    for (InfoBox infoBox : infoBoxList) {
-                        Log.d("BoxOut", "InfoBox Data: " + infoBox.getTime()); // infoBox의 toString() 메서드를 사용하여 데이터를 출력
-                    }
-                    mainThreadHandler.post(()->{
-                        adapter = new BSAdapter(infoBoxList);
-                        recyclerView.setAdapter(adapter);
-
-                    });
+                for (InfoBox infoBox : infoBoxList) {
+                    sumValue = sumValue + infoBox.getValue();
                 }
+                double avgValue = sumValue/infoBoxList.size();
+                HealthSet.setBloodSugarAVG(avgValue);
+                mainThreadHandler.post(()->{
+                    adapter = new BSAdapter(infoBoxList);
+                    recyclerView.setAdapter(adapter);
+                });
+            }
 
-                @Override
-                public void onDataFailed(Exception exception) {
-                    Log.d("BoxOut", exception.getMessage());
-                }
-            });
-        });
-
+            @Override
+            public void onDataFailed(Exception exception) {
+                Log.d("BoxOut", Objects.requireNonNull(exception.getMessage()));
+            }
+        }));
     }
 
     private String HourNMin() {
