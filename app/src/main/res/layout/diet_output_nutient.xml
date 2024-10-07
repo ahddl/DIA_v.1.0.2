@@ -77,7 +77,7 @@
         android:layout_marginTop="25dp"
         android:text="저장"
         android:textSize="12sp"
-        android:background="@drawable/botton_background"/>
+        android:background="@drawable/button_background"/>
 
 
 </LinearLayout>
