@@ -23,10 +23,8 @@ import com.example.dia_v102.utils.DateUtil;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -60,7 +58,7 @@ public class TabGlycated extends Fragment {
         saveButton.setOnClickListener(v -> {
             //String tag2 = dropdownMenu.getSelectedItem().toString();
             double glycated = Double.parseDouble(GlycatedInput.getText().toString());
-            FinfoBox.saveInfoBox(CurrUser.getUid(), null, HourNMin(), "당화혈색소", null, glycated);
+            FinfoBox.saveInfoBox(CurrUser.getUid(), null, DateUtil.HourNMin(), "당화혈색소", null, glycated);
             Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
             loadGlycatedData(DateUtil.dateToString(new Date()));
         });
@@ -71,7 +69,6 @@ public class TabGlycated extends Fragment {
         return view;
     }
 
-    // Firestore에서 데이터를 로드하여 RecyclerView에 표시
     private void loadGlycatedData(String date) {
         infoBox = new Func_InfoBox();
         userID = CurrUser.getUid();
@@ -97,13 +94,5 @@ public class TabGlycated extends Fragment {
             }
         }));
 
-    }
-
-    private String HourNMin() {
-        Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int min = calendar.get(Calendar.MINUTE);
-
-        return String.format(Locale.getDefault(), "%02d-%02d", hour, min);
     }
 }

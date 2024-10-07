@@ -25,10 +25,8 @@ import com.example.dia_v102.utils.DateUtil;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -77,7 +75,7 @@ public class TabBloodsugar extends Fragment {
         saveButton.setOnClickListener(v -> {
             String tag2 = dropdownMenu.getSelectedItem().toString();
             double sugar = Double.parseDouble(bloodSugarInput.getText().toString());
-            String currentTime = DateUtil.dateToString(new Date()) + " " + HourNMin();
+            String currentTime = DateUtil.dateToString(new Date()) + " " + DateUtil.HourNMin();
             FinfoBox.saveInfoBox(CurrUser.getUid(), null, currentTime, "혈당", tag2, sugar);
             Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
             HealthSet.setBloodSugarRecent(sugar);
@@ -136,13 +134,5 @@ public class TabBloodsugar extends Fragment {
                 Log.d("BoxOut", Objects.requireNonNull(exception.getMessage()));
             }
         }));
-    }
-
-    private String HourNMin() {
-        Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int min = calendar.get(Calendar.MINUTE);
-
-        return String.format(Locale.getDefault(), "%02d시 %02d분", hour, min);
     }
 }

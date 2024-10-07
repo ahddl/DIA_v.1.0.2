@@ -2,6 +2,7 @@ package com.example.dia_v102.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -23,5 +24,13 @@ public class DateUtil {
     public static Date stringToDate(String dateString, String format) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.getDefault());
         return sdf.parse(dateString);
+    }
+
+    public static String HourNMin() {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int min = calendar.get(Calendar.MINUTE);
+
+        return String.format(Locale.getDefault(), "%02d시 %02d분", hour, min);
     }
 }
