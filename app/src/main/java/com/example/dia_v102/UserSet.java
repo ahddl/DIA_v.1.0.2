@@ -18,7 +18,7 @@ public class UserSet extends Application {
     public static void setEmail(String email){UserSet.email = email;}
     public static String getPW(){return pw;}
     public static void setPW(String pw){UserSet.pw = pw;}
-    public void loginComplete() {UserSet.email = ""; UserSet.pw = "";}
+    public static void loginComplete() {UserSet.email = ""; UserSet.pw = "";}
 
 
     public static String getUserId() {
@@ -37,6 +37,12 @@ public class UserSet extends Application {
     public static boolean getESub(){return eSub;}
     public static void setESub(boolean eSub){UserSet.eSub = eSub;}
     public static char getType() {return type;}
+    public static String getTypeStr() {
+        if(type == '1' || type == '2'){return type+"형";}
+        else if(type=='p'){return "임신성 당뇨";}
+        else if(type=='o'){return "기타";}
+        else return "";
+    }
     public static void setType(char type){UserSet.type = type;}
     public static char getGender() {return gender;}
     public static void setGender(char gender){UserSet.gender = gender;}

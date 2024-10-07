@@ -3,11 +3,13 @@ package com.example.dia_v102;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -29,6 +32,8 @@ public class FragmentChatbot extends Fragment {
     private TextView ResponseView;
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     protected String API_KEY = "API KEY PUTIN";
+    private final int MAX_CLICK = 3;
+    private int clicks = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState){
@@ -36,28 +41,35 @@ public class FragmentChatbot extends Fragment {
         ResponseView = view.findViewById(R.id.GPTRes);
         Button sendButton = view.findViewById(R.id.sendButton);
 
-        sendButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
+        sendButton.setOnClickListener(v -> {
+            clicks++;
+            if(clicks <= MAX_CLICK){
                 sendPromptToChatGPT();
             }
+            else{
+                Toast.makeText(requireContext(), "클릭을 너무 많이 하지 마세요.", Toast.LENGTH_SHORT).show();
+            }
+
         });
         return view;
 
     }
 
     private void sendPromptToChatGPT() {
-        String prompt = "식사 메뉴를 3~5가지 추천해 줘.\n";
+        String prompt = "식사 메뉴를 3가지 추천하라(번호와 이름만 출력)\n"
+                +"그 아래에 영양소 섭취 상태에 근거한 추천 이유를 간략히 서술하라";
         /*
                 + "아래의 정보를 참고하라\n"
                 +"성별: "+UserSet.getGender()
                 +"나이: "+UserSet.getAge()
                 +"키: "+UserSet.getHeight()+"cm"
                 +"몸무게: "+UserSet.getWeight()+"kg"
-                +"현재시간: "
-                +"오늘 영양소 섭취"
-                +"오늘 평균 혈당"
-                +"최근 혈당"
+                +"현재 시간: "+DateUtil.HourNMin()
+                +"당뇨병 정보: "+UserSet.getTypeStr()
+                +"오늘 영양소 섭취: " +
+                +"상태: "
+                +"오늘 평균 혈당: "+HealthSet.getBloodSugarAVG()
+                +"최근 혈당: "+HealthSet.getBloodSugarRecent()
          */
         OkHttpClient client = new OkHttpClient();
 
@@ -70,7 +82,7 @@ public class FragmentChatbot extends Fragment {
             messages.put(new JSONObject().put("role", "user").put("content", prompt));
             json.put("messages", messages);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.d("GPT_JSON", Objects.requireNonNull(e.getMessage()));
         }
 
         RequestBody body;
@@ -80,7 +92,7 @@ public class FragmentChatbot extends Fragment {
         Request request;
         request = new Request.Builder()
                 .url("https://api.openai.com/v1/chat/completions")
-                .header("Authorization", "Bearer " + API_KEY)//여기 api-key 추가해야함.
+                .header("Authorization", "Bearer " + API_KEY)//여기 api-key 추가.
                 .post(body)
                 .build();
 
@@ -88,14 +100,15 @@ public class FragmentChatbot extends Fragment {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
+                Log.d("client_req", Objects.requireNonNull(e.getMessage()));
                 updateUI("Failed to get response");
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    String responseBody = response.body().string();
+                    String responseBody = (response.body() != null ?  response.body().string() : "");
+
                     try {
                         // 응답 처리
                         JSONObject jsonResponse = new JSONObject(responseBody);
@@ -105,7 +118,7 @@ public class FragmentChatbot extends Fragment {
                         // UI 업데이트
                         updateUI(chatGptResponse);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        Log.d("Response", Objects.requireNonNull(e.getMessage()));
                     }
                 } else {
                     updateUI("Error: " + response.message());
@@ -114,7 +127,7 @@ public class FragmentChatbot extends Fragment {
         });
     }
 
-    // UI 스레드에서 TextView 업데이트
+    // UI 스레드-TextView 업데이트
     private void updateUI(String message) {
         mainHandler.post(() -> ResponseView.setText(message));
     }
