@@ -15,10 +15,25 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/background"
-        android:padding="16dp"
+        android:paddingLeft="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/input_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/nowtime"
@@ -30,24 +45,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageButton
+                android:id="@+id/info"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/baseline_info_outline_24"
+                android:backgroundTint="@color/pale_grey"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+
 
         <!-- 숫자 입력 필드 -->
         <LinearLayout
             android:id="@+id/input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/nowtime"
+            app:layout_constraintTop_toBottomOf="@id/input_layout2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
             <!-- 드롭다운 메뉴 (식전/식후/기타) -->
             <Spinner
                 android:id="@+id/dropdown_menu"
-                android:layout_width="100dp"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
                 android:entries="@array/dropdown_items"
@@ -76,10 +99,10 @@
         <!-- 저장 버튼 -->
         <Button
             android:id="@+id/save_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
             android:text="저장"
+            android:textSize="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_layout" />

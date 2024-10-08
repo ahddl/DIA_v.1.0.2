@@ -13,6 +13,17 @@
         <item>자기 전</item>
         <item>기타</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="menu_array">
+        <item>아침</item>
+        <item>점심</item>
+        <item>저녁</item>
+        <item>간식</item>
+    </string-array>
+    <string name="importance_of_management">혈당 관리는 당뇨병 예방과 합병증 방지에 필수적입니다. 적절한 혈당 조절은 신체의 에너지 균형을 유지하고, 전반적인 건강을 향상시키는 데 도움을 줍니다.</string>
+    <string name="blood_sugar_records">아래의 수치표를 기준으로 혈당조절 기록을 설정하였습니다.</string>
+    <string name="table_reference">수치표는 &lt;대한당뇨병학회, 당뇨병혈당조절목표&gt;를 참고하였습니다.</string>
+    <string name="importance_of_management_gly">당화혈색소(HbA1c) 관리는 당뇨병 환자의 장기간 혈당 조절을 모니터링하는 데 중요합니다. HbA1c 수준을 목표 범위 내로 유지하면 당뇨병 관련 합병증의 위험을 줄이고 전반적인 건강을 개선하는 데 도움이 됩니다.</string>
+    <string name="gly_records">아래의 수치표를 기준으로 당화혈색소 기록을 설정하였습니다.</string>
+    <string name="table_reference_gly">수치표는 &lt;대한당뇨병학회, 2021 당뇨병 진료지침 - 당뇨병 진단 및 분류&gt;를 참고하였습니다.</string>
+
 </resources>

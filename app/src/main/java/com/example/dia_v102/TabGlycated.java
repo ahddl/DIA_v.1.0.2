@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dia_v102.databaseF.Func_InfoBox;
 import com.example.dia_v102.databaseF.InfoBox;
 import com.example.dia_v102.utils.DateUtil;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -60,6 +63,10 @@ public class TabGlycated extends Fragment {
         nowTime = view.findViewById(R.id.nowTime);
         updateNowTime();
 
+        // info 버튼 클릭 리스너 추가
+        ImageButton infoButton = view.findViewById(R.id.info_gly);
+        infoButton.setOnClickListener(v -> showGlycatedInfoDialog());
+
         // 저장 버튼 클릭 리스너
         saveButton.setOnClickListener(v -> {
             //String tag2 = dropdownMenu.getSelectedItem().toString();
@@ -73,6 +80,18 @@ public class TabGlycated extends Fragment {
         loadGlycatedData(DateUtil.dateToString(new Date()));
 
         return view;
+    }
+
+    // showGlycatedInfoDialog 표시 메서드
+    private void showGlycatedInfoDialog() {
+        BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
+        View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.info_bottomsheet_gly, null);
+        dialog.setContentView(dialogView);
+
+        ImageView closeButton = dialogView.findViewById(R.id.close_button_gly);
+        closeButton.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
     }
 
     // 현재 시간을 nowTime TextView에 업데이트 하는 메서드
