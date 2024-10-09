@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- '이전' 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/backBtn"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Back"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/tagName"
+        android:textColor="@color/white"
+        android:background="@drawable/button_background"/>
+
+    <!-- 상단 바 영역 -->
+    <RelativeLayout
+        android:id="@+id/tagName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <!-- 제목 (약관 동의) -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="약관 동의"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!-- 스크롤 가능한 약관 내용 -->
+
+    <!-- 약관 동의 체크박스 및 다음 버튼 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="520dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="@color/light_blue_grey"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_terms_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="약관 내용이 여기에 표시됩니다."
+            android:textSize="16sp" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical">
+
+        <!-- 동의 체크박스 -->
+        <CheckBox
+            android:id="@+id/cb_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="약관에 동의합니다" />
+
+        <!-- 다음 버튼 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nextBtn"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_background"
+            android:layout_gravity="center"
+            android:text="다음"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:enabled="false"/>
+    </LinearLayout>
+
+</LinearLayout>

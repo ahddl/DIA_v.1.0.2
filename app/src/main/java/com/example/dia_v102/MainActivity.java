@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button join_button = findViewById(R.id.joinbotton);
         join_button.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, InputSignup.class);
+            Intent intent = new Intent(MainActivity.this, TermsActivity.class);
             startActivity(intent);
         });
 

@@ -28,6 +28,9 @@
             android:name=".FindPW"
             android:exported="false" />
         <activity
+            android:name=".TermsActivity"
+            android:exported="false" />
+        <activity
             android:name=".InputDiatype"
             android:exported="false" />
         <activity
