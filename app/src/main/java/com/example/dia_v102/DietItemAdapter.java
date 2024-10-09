@@ -36,18 +36,17 @@ public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietIt
     public void onBindViewHolder(DietItemViewHolder holder, int position) {
         FoodCal foodCal = foodCals.get(position);
         holder.menuName.setText(foodCal.getFood());
-        // 아래 부분은 영양성분 전체를 클래스 하나에 저장하게 만들어야 구현 가능.
-        // holder.nutritionInfo.setText(dietItem.nutritionInfo);
-        // 사진 URI를 ImageView에 로드하는 코드 추가
-        String nutriateText = "칼로리: " + foodCal.getCalories() +
-                "\n 탄수화물: " + foodCal.getCarbohydrate() +
-                "\n 단백질: " + foodCal.getProtein() +
-                "\n 지방: " + foodCal.getFat() +
-                "\n 콜레스테롤: " + foodCal.getCholesterol() +
-                "\n 나트륨: " + foodCal.getSodium() +
-                "\n 설탕 당: " + foodCal.getSugar();
+
+        String nutriateText = "칼로리: " + foodCal.getCalories() + " kcal"+
+                "\n 탄수화물: " + foodCal.getCarbohydrate() + " g" +
+                "\n 단백질: " + foodCal.getProtein() + " g"+
+                "\n 지방: " + foodCal.getFat() + "g"+
+                "\n 콜레스테롤: " + foodCal.getCholesterol() + " mg"+
+                "\n 나트륨: " + foodCal.getSodium() + " mg"+
+                "\n 설탕 당: " + foodCal.getSugar() + " g";
         holder.nutritionInfo.setText(nutriateText);
 
+        // 사진 URI를 ImageView에 set
         Context context = holder.itemView.getContext();
         String imgName = foodCal.getImgName();
         imgUtil.setImage(context, holder.photo, imgName);
