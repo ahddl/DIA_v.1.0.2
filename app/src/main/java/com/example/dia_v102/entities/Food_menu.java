@@ -89,4 +89,29 @@ public class Food_menu {
     public void setSugar(double sugar) {
         this.sugar = sugar;
     }
+
+    public void addInfo(String food,  double Calories, double Carbohydrate, double Protein, double Fat, double Cholesterol, double Sodium, double Sugar){
+        if(this.food == null){
+            this.food=food;
+            this.calories = Calories;
+            this.carbohydrate = Carbohydrate;
+            this.protein = Protein;
+            this.fat = Fat;
+            this.cholesterol = Cholesterol;
+            this.sodium = Sodium;
+            this.sugar = Sugar;
+        }
+        else{
+            this.food += "/"+food;
+            this.calories += Calories;
+            this.carbohydrate += Carbohydrate;
+            this.protein += Protein;
+            this.fat += Fat;
+            this.cholesterol += Cholesterol;
+            this.sodium += Sodium;
+            this.sugar += Sugar;
+        }
+
+
+    }
 }
