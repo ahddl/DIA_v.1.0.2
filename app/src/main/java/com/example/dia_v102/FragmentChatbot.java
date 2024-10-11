@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.dia_v102.utils.DateUtil;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -57,19 +59,19 @@ public class FragmentChatbot extends Fragment {
 
     private void sendPromptToChatGPT() {
         String prompt = "식사 메뉴를 3가지 추천하라(번호와 이름만 출력)\n"
-                +"그 아래에 영양소 섭취 상태에 근거한 추천 이유를 간략히 서술하라";
+                +"그 아래에 영양소 섭취 상태에 근거한 추천 이유를 간략히 서술하라\n"
+                + "아래의 정보를 참고하라"
+                +"\n성별: "+UserSet.getGender()
+                +"\n나이: "+UserSet.getAge()
+                +"\n키: "+UserSet.getHeight()+"cm"
+                +"\n몸무게: "+UserSet.getWeight()+"kg"
+                +"\n당뇨병 정보: "+UserSet.getTypeStr()
+                +"\n현재 시간: "+ DateUtil.HourNMin()
+                +"\n오늘 평균 혈당: "+HealthSet.getBloodSugarAVG()
+                +"\n최근 혈당: "+HealthSet.getBloodSugarRecent()
+                ;
         /*
-                + "아래의 정보를 참고하라\n"
-                +"성별: "+UserSet.getGender()
-                +"나이: "+UserSet.getAge()
-                +"키: "+UserSet.getHeight()+"cm"
-                +"몸무게: "+UserSet.getWeight()+"kg"
-                +"현재 시간: "+DateUtil.HourNMin()
-                +"당뇨병 정보: "+UserSet.getTypeStr()
-                +"오늘 영양소 섭취: " +
-                +"상태: "
-                +"오늘 평균 혈당: "+HealthSet.getBloodSugarAVG()
-                +"최근 혈당: "+HealthSet.getBloodSugarRecent()
+                +"\n상태: "
          */
         OkHttpClient client = new OkHttpClient();
 
