@@ -5,23 +5,69 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/photo"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"/>
-
     <TextView
-        android:id="@+id/menu_name"
+        android:id="@+id/morning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="아침점심저녁 중 하나 뜨는 곳"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/recode_time_diet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="저장한 시간"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- 여기에 파이차트 추가하기-->
+
+    <!-- 파이차트 옆 더보기 버튼을 클릭하면 더 추가적인 영양소 정보 뜨게 하기-->
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp" />
+    <LinearLayout
+        android:id="@+id/infoButton"
+        android:layout_width="match_parent"
+        android:layout_height="20sp"/>
 
     <TextView
         android:id="@+id/nutrition_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="영양소 \n칼로리: \n 탄수화물: \n 단백질:
+        \n 지방: \n 콜레스테롤: \n 설탕 당: " />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/menu_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="menu이름1"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
