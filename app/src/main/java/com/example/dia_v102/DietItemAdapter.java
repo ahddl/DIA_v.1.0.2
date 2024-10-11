@@ -68,6 +68,9 @@ public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietIt
         dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         PieData data = new PieData(dataSet);
         data.setValueTextSize(14f);
+        holder.pieChart.setHoleRadius(35f);
+        holder.pieChart.setTransparentCircleRadius(40f);
+
         holder.pieChart.setData(data);
         holder.pieChart.invalidate(); // refresh
 
