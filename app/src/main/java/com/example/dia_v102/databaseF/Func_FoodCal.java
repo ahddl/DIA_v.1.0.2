@@ -20,8 +20,8 @@ public class Func_FoodCal {
     }
 
     // 데이터를 저장하는 메서드
-    public void saveFoodCal(String userID, String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName) {
-        FoodCal foodcal = new FoodCal(food, calories, carbohydrate, protein, fat, cholesterol, sodium, sugar, imgName);
+    public void saveFoodCal(String userID, String food, String tag, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName) {
+        FoodCal foodcal = new FoodCal(food, tag, calories, carbohydrate, protein, fat, cholesterol, sodium, sugar, imgName);
         myRef.child(userID).push().setValue(foodcal)
                 .addOnSuccessListener(aVoid -> {
                     // 저장 성공

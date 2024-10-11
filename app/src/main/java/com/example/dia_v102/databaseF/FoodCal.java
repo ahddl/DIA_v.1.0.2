@@ -10,6 +10,7 @@ public class FoodCal {
 
     //형태에 따라 빠질 수도 있을듯.
     private String food;
+    private String tag;
     private double calories;
     private double carbohydrate;
     private double protein;
@@ -21,10 +22,11 @@ public class FoodCal {
 
     public FoodCal(){}
 
-    public FoodCal(String food, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName){
+    public FoodCal(String food, String tag, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName){
         date = DateUtil.dateToString(new Date());
         time = DateUtil.HourNMin();
         this.food = food;
+        this.tag = tag;
         this.calories = calories;
         this.carbohydrate = carbohydrate;
         this.protein = protein;
@@ -53,6 +55,9 @@ public class FoodCal {
     public void setFood(String food) {
         this.food = food;
     }
+
+    public String getTag() {return tag;}
+    public void setTag(){this.tag = tag;}
 
     public double getCalories() {
         return calories;

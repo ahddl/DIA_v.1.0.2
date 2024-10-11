@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,24 +26,21 @@ import com.example.dia_v102.entities.Food_menu;
 import com.example.dia_v102.utils.CameraGalleryPicker;
 import com.example.dia_v102.utils.imgUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.dia_v102.databaseF.Func_FoodCal;
 
 public class DietOutputNutrient extends AppCompatActivity {
 
-    TextView outputMenu1;
-    TextView nutList;
-    TextView caloriesTextView;
+    TextView outputMenu1, nutList, caloriesTextView;
     ProgressBar caloriesProgressBar;
 
     Func_FoodCal foodCal = new Func_FoodCal();
 
-    String imgUriStr;
-    String imgName;
-    static List<Food_menu> foodnameList = new ArrayList<>();
-    static List<String> imgnameList = new ArrayList<>();
+    String imgUriStr, imgName;
+    Spinner dropdownMenu;
+    static Food_menu sumMenus = new Food_menu();
+    static String imgNameStr="";
 
     //카메라 관련
     CameraGalleryPicker imgPicker;
@@ -55,11 +55,12 @@ public class DietOutputNutrient extends AppCompatActivity {
         nutList = findViewById(R.id.nutList);
         caloriesTextView = findViewById(R.id.caloriesTextView);
         caloriesProgressBar = findViewById(R.id.caloriesProgressBar);
+        dropdownMenu = findViewById(R.id.dropdown_menu);
 
         imgUriStr = getIntent().getStringExtra("ImgUriStr");
         Uri imageUri = Uri.parse(imgUriStr);
         Bitmap imgBit = imgUtil.uriToBitmap(this, imageUri);
-        imgName = imgUtil.RandomString(12);
+        imgName = imgUtil.RandomString(8);
         imgUtil.saveImage(this, imgBit, imgName);
 
         // 앞에서 받아온 메뉴 이름 값 출력
@@ -103,21 +104,27 @@ public class DietOutputNutrient extends AppCompatActivity {
                 // saveButton 클릭 시 동작 추가
                 Button addButton = findViewById(R.id.re_input);
                 addButton.setOnClickListener(v -> {
-                    foodnameList.add(foodMenu);
-                    imgnameList.add(imgName);
+                    sumMenus.addInfo(foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar());
+                    imgNameStr += imgNameStr.isEmpty()?(imgName):"/"+(imgName);
                     imgPicker.showImageSourceDialog();
                 });
+
+                Button showSave = findViewById(R.id.select_tag);
+                LinearLayout hiddenSave = findViewById(R.id.hiddenSave);
+                showSave.setOnClickListener(v->{
+                    if(hiddenSave.getVisibility() == View.GONE){hiddenSave.setVisibility(View.VISIBLE);}
+                    else {hiddenSave.setVisibility(View.GONE);}
+                });
+
                 Button saveButton = findViewById(R.id.exit_save);
                 saveButton.setOnClickListener(v -> {
-                    //하단 2줄 위로 뺄 수 있을지 고민(중복)
-                    foodnameList.add(foodMenu);
-                    imgnameList.add(imgName);
-
-                    for(int i=0; i< foodnameList.size();i++){
-                        Food_menu menu = foodnameList.get(i);
-                        String imgFile = imgnameList.get(i);
-                        foodCal.saveFoodCal(UserSet.getUserId(), menu.getFood(), menu.getCalories(), menu.getCarbohydrate(), menu.getProtein(), menu.getFat(), menu.getCholesterol(), menu.getSodium(), menu.getSugar(), imgFile);
-                    }
+                    sumMenus.addInfo(foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar());
+                    imgNameStr += imgNameStr.isEmpty()?(imgName):"/"+(imgName);
+                    String tag = dropdownMenu.getSelectedItem().toString();
+                    foodCal.saveFoodCal(UserSet.getUserId(), sumMenus.getFood(), tag, sumMenus.getCalories(), sumMenus.getCarbohydrate(), sumMenus.getProtein(), sumMenus.getFat(), sumMenus.getCholesterol(), sumMenus.getSodium(), sumMenus.getSugar(), imgNameStr);
+                    //리셋.
+                    sumMenus = new Food_menu();
+                    imgNameStr = "";
 
                     Toast.makeText(DietOutputNutrient.this, "식단이 저장되었습니다.", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(DietOutputNutrient.this, MainActivity2.class);

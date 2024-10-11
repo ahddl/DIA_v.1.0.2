@@ -63,14 +63,17 @@
         android:layout_marginEnd="16dp"
 
         android:padding="16dp"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:textColor="@android:color/black"
         android:text="Nutritional Information"
         android:background="@drawable/custom_backgraoud"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:orientation="horizontal"
         android:gravity="center">
 
@@ -87,7 +90,7 @@
             android:textSize="12sp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/exit_save"
+            android:id="@+id/select_tag"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="100dp"
             android:layout_height="40dp"
@@ -97,6 +100,37 @@
             android:textColor="@color/white"
             android:textSize="12sp" />
 
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/hiddenSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone">
+
+        <Spinner
+            android:id="@+id/dropdown_menu"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.3"
+            android:layout_marginStart="40sp"
+            android:entries="@array/menu_array"
+            android:spinnerMode="dropdown" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/exit_save"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="40sp"
+            android:background="@drawable/button_background"
+            android:text="저장"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
     </LinearLayout>
 
 
