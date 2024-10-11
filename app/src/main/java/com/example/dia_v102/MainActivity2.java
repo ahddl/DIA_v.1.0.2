@@ -3,10 +3,7 @@ package com.example.dia_v102;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,25 +13,21 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.dia_v102.utils.CameraGalleryPicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class MainActivity2 extends AppCompatActivity {
@@ -49,16 +42,9 @@ public class MainActivity2 extends AppCompatActivity {
     FragmentChatbot chatting;
     FragmentGraph graph;
 
-
     LinearLayout dietBtn, diabetesBtn, chatBtn, graphBtn;
-
-    //카메라 및 갤러리 열기 (음식 인식 위한)
-    File file;
-    Uri uri;
-    private ActivityResultLauncher<Intent> takePictureLauncher;
-    private ActivityResultLauncher<Intent> pickGalleryLauncher;
-
     private  List<LinearLayout> tabButtons;
+    CameraGalleryPicker imgPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,34 +95,8 @@ public class MainActivity2 extends AppCompatActivity {
             return true;
         });
 
-        // Bottom Sheet Dialog 제거 및 이미지 소스 창 활성화
-        fab.setOnClickListener(v -> showImageSourceDialog());
+        cameraInput();
 
-        // ActivityResultLauncher 초기화
-        takePictureLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == RESULT_OK) {
-                        startMainActivity2(uri);
-                    } else {
-                        Toast.makeText(this, "사진을 촬영하지 않았습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
-
-        pickGalleryLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        Uri selectedImageUri = result.getData().getData();
-                        if (selectedImageUri != null) {
-                            startMainActivity2(selectedImageUri);
-                        }
-                    } else {
-                        Toast.makeText(this, "사진을 선택하지 않았습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
 
         /* CollapsingToolbarLayout 및 AppBarLayout 초기화
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
@@ -159,6 +119,40 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });*/
 
+    }
+
+    private void cameraInput() {
+        // ActivityResultLauncher 초기화
+        //카메라 및 갤러리 열기 (음식 인식 위한)
+        ActivityResultLauncher<Intent> takePictureLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Uri uri = imgPicker.getUri();
+                        startMainActivity2(uri);
+                    } else {
+                        Toast.makeText(this, "사진을 촬영하지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        ActivityResultLauncher<Intent> pickGalleryLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Uri selectedImageUri = result.getData().getData();
+                        if (selectedImageUri != null) {
+                            startMainActivity2(selectedImageUri);
+                        }
+                    } else {
+                        Toast.makeText(this, "사진을 선택하지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        imgPicker = new CameraGalleryPicker(this, takePictureLauncher, pickGalleryLauncher);
+        // Bottom Sheet Dialog 제거 및 이미지 소스 창 활성화
+        fab.setOnClickListener(v -> imgPicker.showImageSourceDialog());
     }
 
     private void bottomNavigation() {
@@ -225,62 +219,6 @@ public class MainActivity2 extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    private void showImageSourceDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("이미지 소스 선택")
-                .setItems(new String[]{"카메라", "갤러리"}, (dialog, which) -> {
-                    if (which == 0) {
-                        takePicture();
-                    } else {
-                        openGallery();
-                    }
-                });
-        builder.create().show();
-    }
-
-    private void takePicture() {
-        try {
-            file = createFile();
-            if (file.exists()) {
-                file.delete();
-            }
-
-            file.createNewFile();
-        } catch(IOException e) {
-            Log.d("Camera", Objects.requireNonNull(e.getMessage()));
-        }
-
-        if (Build.VERSION.SDK_INT >= 24) {
-            uri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".fileprovider", file);
-        } else {
-            uri = Uri.fromFile(file);
-        }
-
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-
-        takePictureLauncher.launch(intent);
-    }
-
-    private File createFile() {
-        String filename = "capture.jpg";
-        File outFile = new File(getFilesDir(), filename);
-        Log.d("Main", "파일 경로 : " + outFile.getAbsolutePath());
-        return outFile;
-    }
-
-    private void openGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        pickGalleryLauncher.launch(intent);
-    }
-
-    private void startMainActivity2(Uri imageUri) {
-        Intent intent2 = new Intent(this, DietCheckMenu.class);
-        intent2.putExtra("imageUri", imageUri.toString());
-        startActivity(intent2);
-    }
-
     private void logout() {
         FirebaseAuth.getInstance().signOut();
         UserSet.logOut();
@@ -289,5 +227,11 @@ public class MainActivity2 extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish(); // 현재 activity 종료
+    }
+
+    private void startMainActivity2(Uri imageUri) {
+        Intent intent = new Intent(this, DietCheckMenu.class);
+        intent.putExtra("imageUri", imageUri.toString());
+        startActivity(intent);
     }
 }

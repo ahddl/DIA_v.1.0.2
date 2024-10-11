@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -18,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.dia_v102.database.AppDatabase;
 import com.example.dia_v102.database.DatabaseProvider;
 import com.example.dia_v102.entities.Food_menu;
+import com.example.dia_v102.utils.CameraGalleryPicker;
 import com.example.dia_v102.utils.imgUtil;
 
 import java.util.ArrayList;
@@ -38,6 +41,9 @@ public class DietOutputNutrient extends AppCompatActivity {
     String imgName;
     static List<Food_menu> foodnameList = new ArrayList<>();
     static List<String> imgnameList = new ArrayList<>();
+
+    //카메라 관련
+    CameraGalleryPicker imgPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +78,7 @@ public class DietOutputNutrient extends AppCompatActivity {
     }
 
     private void updateNutritionalInfo(String menu) {
+        cameraInput();
         fetchFoodMenu(menu, new OnFoodMenuRetrievedListener() {
             @Override
             public void onFoodMenuRetrieved(Food_menu foodMenu) {
@@ -98,7 +105,7 @@ public class DietOutputNutrient extends AppCompatActivity {
                 addButton.setOnClickListener(v -> {
                     foodnameList.add(foodMenu);
                     imgnameList.add(imgName);
-                    //아래에 이미지 그거 받아오는 과정 넣어주셈요
+                    imgPicker.showImageSourceDialog();
                 });
                 Button saveButton = findViewById(R.id.exit_save);
                 saveButton.setOnClickListener(v -> {
@@ -145,5 +152,42 @@ public class DietOutputNutrient extends AppCompatActivity {
     public interface OnFoodMenuRetrievedListener {
         void onFoodMenuRetrieved(Food_menu foodMenu);
         void onFoodMenuNotFound();
+    }
+
+    private void cameraInput() {
+        // ActivityResultLauncher 초기화
+        ActivityResultLauncher<Intent> takePictureLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Uri uri = imgPicker.getUri();
+                        startAct(uri);
+                    } else {
+                        Toast.makeText(this, "사진을 촬영하지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        ActivityResultLauncher<Intent> pickGalleryLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Uri selectedImageUri = result.getData().getData();
+                        if (selectedImageUri != null) {
+                            startAct(selectedImageUri);
+                        }
+                    } else {
+                        Toast.makeText(this, "사진을 선택하지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        imgPicker = new CameraGalleryPicker(this, takePictureLauncher, pickGalleryLauncher);
+    }
+
+    private void startAct(Uri imageUri) {
+        Intent intent = new Intent(this, DietCheckMenu.class);
+        intent.putExtra("imageUri", imageUri.toString());
+        startActivity(intent);
     }
 }
