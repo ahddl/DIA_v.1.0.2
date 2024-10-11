@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DietOutputNutient"
+    tools:context=".DietOutputNutrient"
     android:padding="16dp"
     android:orientation="vertical"
     android:gravity="center">
@@ -67,17 +67,37 @@
         android:textColor="@android:color/black"
         android:text="Nutritional Information"
         android:background="@drawable/custom_backgraoud"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        style="@style/Widget.AppCompat.Button"
-        android:textColor="@color/white"
-        android:id="@+id/save_diet"
-        android:layout_width="80dp"
-        android:layout_height="35dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="저장"
-        android:textSize="12sp"
-        android:background="@drawable/button_background"/>
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/re_input"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20sp"
+            android:background="@drawable/button_background"
+            android:text="추가"
+
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/exit_save"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20sp"
+            android:background="@drawable/button_background"
+            android:text="종료"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -20,13 +20,14 @@ import com.example.dia_v102.database.DatabaseProvider;
 import com.example.dia_v102.entities.Food_menu;
 import com.example.dia_v102.utils.imgUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.dia_v102.databaseF.Func_FoodCal;
 
 public class DietOutputNutrient extends AppCompatActivity {
 
-    TextView outputmenu1;
+    TextView outputMenu1;
     TextView nutList;
     TextView caloriesTextView;
     ProgressBar caloriesProgressBar;
@@ -35,6 +36,8 @@ public class DietOutputNutrient extends AppCompatActivity {
 
     String imgUriStr;
     String imgName;
+    static List<Food_menu> foodnameList = new ArrayList<>();
+    static List<String> imgnameList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,7 @@ public class DietOutputNutrient extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.diet_output_nutient);
 
-        outputmenu1 = findViewById(R.id.outputmenu1);
-        //pieChart = findViewById(R.id.pieChart);
+        outputMenu1 = findViewById(R.id.outputmenu1);
         nutList = findViewById(R.id.nutList);
         caloriesTextView = findViewById(R.id.caloriesTextView);
         caloriesProgressBar = findViewById(R.id.caloriesProgressBar);
@@ -57,7 +59,7 @@ public class DietOutputNutrient extends AppCompatActivity {
         // 앞에서 받아온 메뉴 이름 값 출력
         String outputMenu = getIntent().getStringExtra("outputMenu");
         if (outputMenu != null) {
-            outputmenu1.setText(outputMenu);
+            outputMenu1.setText(outputMenu);
             updateNutritionalInfo(outputMenu);
         }
 
@@ -92,9 +94,24 @@ public class DietOutputNutrient extends AppCompatActivity {
 
                  */
                 // saveButton 클릭 시 동작 추가
-                Button saveButton = findViewById(R.id.save_diet);
+                Button addButton = findViewById(R.id.re_input);
+                addButton.setOnClickListener(v -> {
+                    foodnameList.add(foodMenu);
+                    imgnameList.add(imgName);
+                    //아래에 이미지 그거 받아오는 과정 넣어주셈요
+                });
+                Button saveButton = findViewById(R.id.exit_save);
                 saveButton.setOnClickListener(v -> {
-                    foodCal.saveFoodCal(UserSet.getUserId(), foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar(), imgName);
+                    //하단 2줄 위로 뺄 수 있을지 고민(중복)
+                    foodnameList.add(foodMenu);
+                    imgnameList.add(imgName);
+
+                    for(int i=0; i< foodnameList.size();i++){
+                        Food_menu menu = foodnameList.get(i);
+                        String imgFile = imgnameList.get(i);
+                        foodCal.saveFoodCal(UserSet.getUserId(), menu.getFood(), menu.getCalories(), menu.getCarbohydrate(), menu.getProtein(), menu.getFat(), menu.getCholesterol(), menu.getSodium(), menu.getSugar(), imgFile);
+                    }
+
                     Toast.makeText(DietOutputNutrient.this, "식단이 저장되었습니다.", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(DietOutputNutrient.this, MainActivity2.class);
                     startActivity(intent);
