@@ -1,6 +1,5 @@
 package com.example.dia_v102;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -26,8 +25,6 @@ import com.example.dia_v102.databaseF.Func_InfoBox;
 import com.example.dia_v102.databaseF.InfoBox;
 import com.example.dia_v102.utils.DateUtil;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Date;
 import java.util.List;
@@ -41,8 +38,6 @@ public class TabBloodsugar extends Fragment {
     private BSAdapter adapter;
 
     private Func_InfoBox infoBox;
-    private final FirebaseUser CurrUser = FirebaseAuth.getInstance().getCurrentUser();
-    private String userID;
 
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private final Handler mainThreadHandler = new Handler(Looper.getMainLooper());
@@ -83,7 +78,7 @@ public class TabBloodsugar extends Fragment {
         saveButton.setOnClickListener(v -> {
             String tag2 = dropdownMenu.getSelectedItem().toString();
             double sugar = Double.parseDouble(bloodSugarInput.getText().toString());
-            FinfoBox.saveInfoBox(CurrUser.getUid(), "혈당", tag2, sugar);
+            FinfoBox.saveInfoBox("혈당", tag2, sugar);
             Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
             HealthSet.setBloodSugarRecent(sugar);
             loadDiabetesData(DateUtil.dateToString(new Date()));
@@ -129,9 +124,8 @@ public class TabBloodsugar extends Fragment {
     // Firebase 데이터 로드-> RecyclerView에 표시
     private void loadDiabetesData(String date) {
         infoBox = new Func_InfoBox();
-        userID = CurrUser.getUid();
 
-        executorService.execute(() -> infoBox.loadInfoBox(userID, "혈당", date, new Func_InfoBox.OnDataReceivedListener(){
+        executorService.execute(() -> infoBox.loadInfoBox("혈당", date, new Func_InfoBox.OnDataReceivedListener(){
             @Override
             public void onDataReceived(List<InfoBox> infoBoxList){
                 //Log.d("BoxOut", "Success");

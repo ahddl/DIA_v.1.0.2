@@ -24,8 +24,6 @@ import com.example.dia_v102.databaseF.Func_InfoBox;
 import com.example.dia_v102.databaseF.InfoBox;
 import com.example.dia_v102.utils.DateUtil;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Date;
 import java.util.List;
@@ -39,8 +37,6 @@ public class TabGlycated extends Fragment {
     private GlycatedAdapter adapter;
 
     private Func_InfoBox infoBox;
-    private final FirebaseUser CurrUser = FirebaseAuth.getInstance().getCurrentUser();
-    private String userID;
     private TextView nowTime;  // nowTime 변수를 클래스 필드로 선언
 
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -71,7 +67,7 @@ public class TabGlycated extends Fragment {
         saveButton.setOnClickListener(v -> {
             //String tag2 = dropdownMenu.getSelectedItem().toString();
             double glycated = Double.parseDouble(GlycatedInput.getText().toString());
-            FinfoBox.saveInfoBox(CurrUser.getUid(), "당화혈색소", null, glycated);
+            FinfoBox.saveInfoBox("당화혈색소", null, glycated);
             Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
             loadGlycatedData(DateUtil.dateToString(new Date()));
         });
@@ -102,9 +98,8 @@ public class TabGlycated extends Fragment {
 
     private void loadGlycatedData(String date) {
         infoBox = new Func_InfoBox();
-        userID = CurrUser.getUid();
 
-        executorService.execute(() -> infoBox.loadInfoBox(userID, "당화혈색소", date, new Func_InfoBox.OnDataReceivedListener(){
+        executorService.execute(() -> infoBox.loadInfoBox("당화혈색소", date, new Func_InfoBox.OnDataReceivedListener(){
             @Override
             public void onDataReceived(List<InfoBox> infoBoxList){
                 Log.d("BoxOut", "Success");

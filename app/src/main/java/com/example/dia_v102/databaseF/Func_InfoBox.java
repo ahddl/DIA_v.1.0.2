@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 public class Func_InfoBox {
@@ -23,18 +24,18 @@ public class Func_InfoBox {
 
     public Func_InfoBox(){
         myRef = FirebaseDatabase.getInstance().getReference("box");
-        userID_ =  FirebaseAuth.getInstance().getCurrentUser().getUid();
+        userID_ =  Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
-    public void saveInfoBox(String userID, String tag1, String tag2, double value){
+    public void saveInfoBox(String tag1, String tag2, double value){
         InfoBox infobox = new InfoBox(tag1, tag2, value);
-        myRef.child(userID).push().setValue(infobox)
+        myRef.child(userID_).push().setValue(infobox)
             .addOnSuccessListener(avoid -> Log.d("Firebase", "Box data saved successfully."))
             .addOnFailureListener(e -> Log.d("Firebase", "Failed to save user data.", e));
     }
 
-    public void loadInfoBox(String userID, String tag1, String date, final Func_InfoBox.OnDataReceivedListener listener) {
-        myRef.child(userID).orderByChild("date").equalTo(date)
+    public void loadInfoBox(String tag1, String date, final Func_InfoBox.OnDataReceivedListener listener) {
+        myRef.child(userID_).orderByChild("date").equalTo(date)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -64,8 +65,8 @@ public class Func_InfoBox {
                     }
                 });
     }
-    public void loadInfoBox_date(String userID, String tag1, final Func_InfoBox.OnData_DateReceivedListener listener) {
-        myRef.child(userID).orderByChild("date")
+    public void loadInfoBox_date(String tag1, final Func_InfoBox.OnData_DateReceivedListener listener) {
+        myRef.child(userID_).orderByChild("date")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -81,7 +82,9 @@ public class Func_InfoBox {
                             if(tag != null && tag.equals(tag1)) {
                                 if (date != null && value != null) {
                                     // 날짜별로 값을 합산하고 개수를 증가시킴
+                                    //noinspection DataFlowIssue
                                     dateSumMap.put(date, dateSumMap.getOrDefault(date, 0.0) + value);
+                                    //noinspection DataFlowIssue
                                     dateCountMap.put(date, dateCountMap.getOrDefault(date, 0) + 1);
                                 }
                             }
@@ -90,10 +93,17 @@ public class Func_InfoBox {
                         // 날짜별 평균을 계산
                         Map<String, Double> dateAverageMap = new TreeMap<>();
                         for (String date : dateSumMap.keySet()) {
-                            double sum = dateSumMap.get(date);
-                            int count = dateCountMap.get(date);
-                            double average = sum / count;  // 평균 계산
-                            dateAverageMap.put(date, average);
+                            try {
+                                //noinspection DataFlowIssue
+                                double sum = dateSumMap.get(date);
+                                //noinspection DataFlowIssue
+                                int count = dateCountMap.get(date);
+                                double average = sum / count;  // 평균 계산
+                                dateAverageMap.put(date, average);
+                            }catch(NullPointerException error){
+                                Log.d("Graph", Objects.requireNonNull(error.getMessage()));
+                            }
+
                         }
 
                         if(listener != null){
