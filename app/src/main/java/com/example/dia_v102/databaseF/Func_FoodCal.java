@@ -2,6 +2,7 @@ package com.example.dia_v102.databaseF;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -10,17 +11,20 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Func_FoodCal {
     private final DatabaseReference myRef;
+    protected String userID;
 
     public Func_FoodCal() {
         myRef = FirebaseDatabase.getInstance().getReference("food");
+        userID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
     // 데이터를 저장하는 메서드
-    public void saveFoodCal(String userID, String food, String tag, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName) {
+    public void saveFoodCal(String food, String tag, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName) {
         FoodCal foodcal = new FoodCal(food, tag, calories, carbohydrate, protein, fat, cholesterol, sodium, sugar, imgName);
         myRef.child(userID).push().setValue(foodcal)
                 .addOnSuccessListener(aVoid -> {
@@ -32,7 +36,7 @@ public class Func_FoodCal {
     }
 
     // 데이터 로드 메서드
-    public void loadFoodCal(String userID, String date, final OnDataReceivedListener listener) {
+    public void loadFoodCal(String date, final OnDataReceivedListener listener) {
         myRef.child(userID).orderByChild("date").equalTo(date)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

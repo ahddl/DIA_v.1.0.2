@@ -57,7 +57,7 @@ public class FoodCal {
     }
 
     public String getTag() {return tag;}
-    public void setTag(){this.tag = tag;}
+    public void setTag(String tag){this.tag = tag;}
 
     public double getCalories() {
         return calories;

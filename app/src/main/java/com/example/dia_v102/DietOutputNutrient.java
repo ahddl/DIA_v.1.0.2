@@ -147,7 +147,7 @@ public class DietOutputNutrient extends AppCompatActivity {
             sumMenus.addInfo(foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar());
             imgNameStr += imgNameStr.isEmpty()?(imgName):"/"+(imgName);
             String tag = dropdownMenu.getSelectedItem().toString();
-            foodCal.saveFoodCal(UserSet.getUserId(), sumMenus.getFood(), tag, sumMenus.getCalories(), sumMenus.getCarbohydrate(), sumMenus.getProtein(), sumMenus.getFat(), sumMenus.getCholesterol(), sumMenus.getSodium(), sumMenus.getSugar(), imgNameStr);
+            foodCal.saveFoodCal(sumMenus.getFood(), tag, sumMenus.getCalories(), sumMenus.getCarbohydrate(), sumMenus.getProtein(), sumMenus.getFat(), sumMenus.getCholesterol(), sumMenus.getSodium(), sumMenus.getSugar(), imgNameStr);
             //리셋.
             sumMenus = new Food_menu();
             imgNameStr = "";

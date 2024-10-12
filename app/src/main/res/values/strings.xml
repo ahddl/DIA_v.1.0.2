@@ -17,7 +17,6 @@
         <item>아침</item>
         <item>점심</item>
         <item>저녁</item>
-        <item>간식</item>
     </string-array>
     <string name="importance_of_management">혈당 관리는 당뇨병 예방과 합병증 방지에 필수적입니다. 적절한 혈당 조절은 신체의 에너지 균형을 유지하고, 전반적인 건강을 향상시키는 데 도움을 줍니다.</string>
     <string name="blood_sugar_records">아래의 수치표를 기준으로 혈당조절 기록을 설정하였습니다.</string>

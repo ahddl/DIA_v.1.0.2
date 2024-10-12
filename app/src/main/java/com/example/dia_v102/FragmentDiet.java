@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dia_v102.databaseF.FoodCal;
 import com.example.dia_v102.databaseF.Func_FoodCal;
 import com.example.dia_v102.utils.DateUtil;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -91,13 +90,12 @@ public class FragmentDiet extends Fragment {
         textView.setText(spannableString);
     }
 
-    // 백그라운드에서 데이터를 로드 & UI 업데이트
+    // 백그라운드에서 데이터 로드 & UI 업데이트
     private void loadDietData() {
         String date = selectedDate;
         foodCal = new Func_FoodCal();
-        String userID = FirebaseAuth.getInstance().getUid();
         executorService.execute(() -> {
-            foodCal.loadFoodCal(userID, date, new Func_FoodCal.OnDataReceivedListener(){
+            foodCal.loadFoodCal(date, new Func_FoodCal.OnDataReceivedListener(){
                 @Override
                 public void onDataReceived(List<FoodCal> foodCalList){
                     // 메인 스레드에서 UI 업데이트
