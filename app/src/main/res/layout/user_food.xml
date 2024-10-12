@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp">
+
+            <TextView
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:text="음식 이름"
+                android:textSize="15sp"
+                tools:ignore="TextSizeCheck" />
+
+            <EditText
+                android:id="@+id/food_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="음식 이름을 기입하세요"
+                android:layout_marginStart="10sp"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp">
+
+            <TextView
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:text="칼로리(열량)"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/food_calories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="kcal 단위"
+                android:layout_marginStart="10sp"
+                android:inputType="numberDecimal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp">
+
+            <TextView
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:text="탄수화물"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/food_carbohydrate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="g 단위"
+                android:layout_marginStart="10sp"
+                android:inputType="numberDecimal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp">
+
+            <TextView
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:text="단백질"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/food_protein"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="g 단위"
+                android:layout_marginStart="10sp"
+                android:inputType="numberDecimal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp">
+
+            <TextView
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:text="지방"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/food_fat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="g 단위"
+                android:layout_marginStart="10sp"
+                android:inputType="numberDecimal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp">
+
+            <TextView
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:text="콜레스테롤"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/food_cholesterol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="mg 단위"
+                android:layout_marginStart="10sp"
+                android:inputType="numberDecimal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp">
+
+            <TextView
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:text="나트륨"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/food_sodium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="mg 단위"
+                android:layout_marginStart="10sp"
+                android:inputType="numberDecimal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp">
+
+            <TextView
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:text="설탕 당"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/food_sugar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="g 단위"
+                android:layout_marginStart="10sp"
+                android:inputType="numberDecimal"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="100sp"
+            android:layout_height="50sp"
+            android:text="저장" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

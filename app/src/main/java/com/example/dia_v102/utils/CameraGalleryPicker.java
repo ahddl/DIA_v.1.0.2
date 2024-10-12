@@ -11,6 +11,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 
+import com.example.dia_v102.userFood;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -37,11 +39,15 @@ public class CameraGalleryPicker {
     public void showImageSourceDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("이미지 소스 선택")
-                .setItems(new String[]{"카메라", "갤러리"}, (dialog, which) -> {
+                .setItems(new String[]{"카메라", "갤러리", "직접 입력"}, (dialog, which) -> {
                     if (which == 0) {
                         takePicture(); // 카메라 열기
-                    } else {
+                    } else if (which == 1){
                         openGallery(); // 갤러리 열기
+                    } else {
+                        //사용자 함수 추가.
+                        Intent intent = new Intent(context, userFood.class);
+                        context.startActivity(intent);
                     }
                 });
         builder.create().show();

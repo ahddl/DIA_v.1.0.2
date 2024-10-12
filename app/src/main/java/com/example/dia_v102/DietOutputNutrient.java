@@ -37,7 +37,7 @@ public class DietOutputNutrient extends AppCompatActivity {
 
     Func_FoodCal foodCal = new Func_FoodCal();
 
-    String imgUriStr, imgName;
+    String imgUriStr, imgName, userInput;
     Spinner dropdownMenu;
     static Food_menu sumMenus = new Food_menu();
     static String imgNameStr="";
@@ -57,17 +57,31 @@ public class DietOutputNutrient extends AppCompatActivity {
         caloriesProgressBar = findViewById(R.id.caloriesProgressBar);
         dropdownMenu = findViewById(R.id.dropdown_menu);
 
+        cameraInput();
+
         imgUriStr = getIntent().getStringExtra("ImgUriStr");
-        Uri imageUri = Uri.parse(imgUriStr);
-        Bitmap imgBit = imgUtil.uriToBitmap(this, imageUri);
-        imgName = imgUtil.RandomString(8);
-        imgUtil.saveImage(this, imgBit, imgName);
+        if (imgUriStr != null){
+            Uri imageUri = Uri.parse(imgUriStr);
+            Bitmap imgBit = imgUtil.uriToBitmap(this, imageUri);
+            imgName = imgUtil.RandomString(8);
+            imgUtil.saveImage(this, imgBit, imgName);
+        }
+
 
         // 앞에서 받아온 메뉴 이름 값 출력
         String outputMenu = getIntent().getStringExtra("outputMenu");
         if (outputMenu != null) {
             outputMenu1.setText(outputMenu);
             updateNutritionalInfo(outputMenu);
+        }
+
+        userInput = getIntent().getStringExtra("userInput");
+        if(userInput != null){
+            String[] menuInfo = userInput.split("/");
+            Food_menu menu = new Food_menu();
+            menu.addInfo(menuInfo[0], Double.parseDouble(menuInfo[1]), Double.parseDouble(menuInfo[2]), Double.parseDouble(menuInfo[3]), Double.parseDouble(menuInfo[4]), Double.parseDouble(menuInfo[5]), Double.parseDouble(menuInfo[6]), Double.parseDouble(menuInfo[7]));
+            imgName="_";
+            updateUI(menu);
         }
 
         // 시스템 바 인셋 설정
@@ -79,20 +93,32 @@ public class DietOutputNutrient extends AppCompatActivity {
     }
 
     private void updateNutritionalInfo(String menu) {
-        cameraInput();
         fetchFoodMenu(menu, new OnFoodMenuRetrievedListener() {
             @Override
-            public void onFoodMenuRetrieved(Food_menu foodMenu) {
+            public void onFoodMenuRetrieved(Food_menu food) {
+                updateUI(food);
                 // 검색된 경우 UI 업데이트
-                String nutriaText = "음식 이름: " + foodMenu.getFood() +
-                        "\n 칼로리: " + foodMenu.getCalories() + " kcal"+
-                        "\n 탄수화물: " + foodMenu.getCarbohydrate() + " g" +
-                        "\n 단백질: " + foodMenu.getProtein() + " g" +
-                        "\n 지방: " + foodMenu.getFat() + " g" +
-                        "\n 콜레스테롤: " + foodMenu.getCholesterol() + " mg" +
-                        "\n 나트륨: " + foodMenu.getSodium() + " mg" +
-                        "\n 설탕 당: " + foodMenu.getSugar() + " g";
-                nutList.setText(nutriaText);
+            }
+
+            @Override
+            public void onFoodMenuNotFound() {
+                runOnUiThread(() -> Toast.makeText(DietOutputNutrient.this, "해당 메뉴를 찾을 수 없습니다.", Toast.LENGTH_LONG).show());
+            }
+        });
+    }
+
+    public void updateUI(Food_menu foodMenu){
+
+
+        String nutriaText = "음식 이름: " + foodMenu.getFood() +
+                "\n 칼로리: " + foodMenu.getCalories() + " kcal"+
+                "\n 탄수화물: " + foodMenu.getCarbohydrate() + " g" +
+                "\n 단백질: " + foodMenu.getProtein() + " g" +
+                "\n 지방: " + foodMenu.getFat() + " g" +
+                "\n 콜레스테롤: " + foodMenu.getCholesterol() + " mg" +
+                "\n 나트륨: " + foodMenu.getSodium() + " mg" +
+                "\n 설탕 당: " + foodMenu.getSugar() + " g";
+        nutList.setText(nutriaText);
 
                 /*프로그래스 바 및 칼로리 텍스트 업데이트
                 double totalCalories = totalCalories + foodMenu.getCalories();
@@ -101,42 +127,34 @@ public class DietOutputNutrient extends AppCompatActivity {
                 caloriesProgressBar.setProgress((int) (totalCalories / averageDailyCalories * 100));
 
                  */
-                // saveButton 클릭 시 동작 추가
-                Button addButton = findViewById(R.id.re_input);
-                addButton.setOnClickListener(v -> {
-                    sumMenus.addInfo(foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar());
-                    imgNameStr += imgNameStr.isEmpty()?(imgName):"/"+(imgName);
-                    imgPicker.showImageSourceDialog();
-                });
+        // saveButton 클릭 시 동작 추가
+        Button addButton = findViewById(R.id.re_input);
+        addButton.setOnClickListener(v -> {
+            sumMenus.addInfo(foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar());
+            imgNameStr += imgNameStr.isEmpty()?(imgName):"/"+(imgName);
+            imgPicker.showImageSourceDialog();
+        });
 
-                Button showSave = findViewById(R.id.select_tag);
-                LinearLayout hiddenSave = findViewById(R.id.hiddenSave);
-                showSave.setOnClickListener(v->{
-                    if(hiddenSave.getVisibility() == View.GONE){hiddenSave.setVisibility(View.VISIBLE);}
-                    else {hiddenSave.setVisibility(View.GONE);}
-                });
+        Button showSave = findViewById(R.id.select_tag);
+        LinearLayout hiddenSave = findViewById(R.id.hiddenSave);
+        showSave.setOnClickListener(v->{
+            if(hiddenSave.getVisibility() == View.GONE){hiddenSave.setVisibility(View.VISIBLE);}
+            else {hiddenSave.setVisibility(View.GONE);}
+        });
 
-                Button saveButton = findViewById(R.id.exit_save);
-                saveButton.setOnClickListener(v -> {
-                    sumMenus.addInfo(foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar());
-                    imgNameStr += imgNameStr.isEmpty()?(imgName):"/"+(imgName);
-                    String tag = dropdownMenu.getSelectedItem().toString();
-                    foodCal.saveFoodCal(UserSet.getUserId(), sumMenus.getFood(), tag, sumMenus.getCalories(), sumMenus.getCarbohydrate(), sumMenus.getProtein(), sumMenus.getFat(), sumMenus.getCholesterol(), sumMenus.getSodium(), sumMenus.getSugar(), imgNameStr);
-                    //리셋.
-                    sumMenus = new Food_menu();
-                    imgNameStr = "";
+        Button saveButton = findViewById(R.id.exit_save);
+        saveButton.setOnClickListener(v -> {
+            sumMenus.addInfo(foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar());
+            imgNameStr += imgNameStr.isEmpty()?(imgName):"/"+(imgName);
+            String tag = dropdownMenu.getSelectedItem().toString();
+            foodCal.saveFoodCal(UserSet.getUserId(), sumMenus.getFood(), tag, sumMenus.getCalories(), sumMenus.getCarbohydrate(), sumMenus.getProtein(), sumMenus.getFat(), sumMenus.getCholesterol(), sumMenus.getSodium(), sumMenus.getSugar(), imgNameStr);
+            //리셋.
+            sumMenus = new Food_menu();
+            imgNameStr = "";
 
-                    Toast.makeText(DietOutputNutrient.this, "식단이 저장되었습니다.", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(DietOutputNutrient.this, MainActivity2.class);
-                    startActivity(intent);
-                });
-
-            }
-
-            @Override
-            public void onFoodMenuNotFound() {
-                runOnUiThread(() -> Toast.makeText(DietOutputNutrient.this, "해당 메뉴를 찾을 수 없습니다.", Toast.LENGTH_LONG).show());
-            }
+            Toast.makeText(DietOutputNutrient.this, "식단이 저장되었습니다.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(DietOutputNutrient.this, MainActivity2.class);
+            startActivity(intent);
         });
     }
 

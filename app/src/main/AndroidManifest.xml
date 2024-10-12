@@ -74,10 +74,13 @@
             android:name=".FragmentDiet"
             android:exported="false" />
         <activity
+            android:name=".userFood"
+            android:exported="false" />
+        <activity
             android:name=".DietCheckMenu"
             android:exported="false" />
         <activity
-            android:name=".DietOutputNutient"
+            android:name=".DietOutputNutrient"
             android:exported="false" />
         <activity
             android:name=".Data"
