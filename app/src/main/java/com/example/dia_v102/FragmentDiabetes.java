@@ -17,10 +17,7 @@ import java.util.Objects;
 
 public class FragmentDiabetes extends Fragment {
     TextView nickView;
-
-    //private final FirebaseUser CurrUser = FirebaseAuth.getInstance().getCurrentUser();
     TextView avgBlood, avgHbA1cView;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -36,7 +33,7 @@ public class FragmentDiabetes extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("혈당"));
         tabLayout.addTab(tabLayout.newTab().setText("당화혈색소"));
 
-        // 첫 번째 탭 기본 선택. TabBloodsugar Frag. 표시
+        // 첫 번째 탭(TabBloodsugar) 기본 선택.x
         if (savedInstanceState == null) {
             getChildFragmentManager().beginTransaction()
                     .replace(R.id.tab_layout_container, new TabBloodsugar(), "TabBloodsugar")
@@ -77,8 +74,7 @@ public class FragmentDiabetes extends Fragment {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {}
         });
-        // 데이터 변경 리스너 등록 (여기서 HealthSet 변경 사항을 감지-> notify 함수를 호출)
-        // 혈당 변화가 감지-> UI 값 갱신
+        // 데이터 변경 리스너 등록 (여기서 HealthSet 변경 사항을 감지-> notify 함수를 호출-> UI 값 갱신)
         HealthSet.addBloodSugarChangeListener(this::updateAvgBlood);
         HealthSet.addHbA1cChangeListener(this::updateAVGHbA1c);
         return view;
@@ -99,6 +95,7 @@ public class FragmentDiabetes extends Fragment {
         super.onDestroy();
         // 리스너 제거
         HealthSet.removeBloodSugarChangeListener(this::updateAvgBlood);
+        HealthSet.removeHbA1CChangeListener(this::updateAVGHbA1c);
     }
 
 }

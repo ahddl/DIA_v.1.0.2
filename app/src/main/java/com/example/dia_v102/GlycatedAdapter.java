@@ -14,7 +14,6 @@ import com.example.dia_v102.databaseF.InfoBox;
 import java.util.List;
 
 public class GlycatedAdapter extends RecyclerView.Adapter<GlycatedAdapter.ViewHolder> {
-
     private final List<InfoBox> GlycatedList;
 
     public GlycatedAdapter(List<InfoBox> bloodSugarList) {
@@ -59,8 +58,7 @@ public class GlycatedAdapter extends RecyclerView.Adapter<GlycatedAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView valueTextView;
-        TextView recodeTime;
+        TextView valueTextView, recodeTime;
         View dotViewGly;
 
         public ViewHolder(@NonNull View itemView) {

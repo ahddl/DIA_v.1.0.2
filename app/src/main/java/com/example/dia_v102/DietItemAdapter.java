@@ -74,7 +74,7 @@ public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietIt
         holder.pieChart.setData(data);
         holder.pieChart.invalidate(); // refresh
 
-        // 파이차트 클릭 시 nutritionInfo의 visibility를 VISIBLE로 변경
+        // 클릭 시 nutritionInfo를 VISIBLE로 변경
         holder.infoButton.setOnClickListener(v -> {
             if (holder.hiddenView.getVisibility() == View.GONE) {
                 holder.hiddenView.setVisibility(View.VISIBLE);
@@ -96,20 +96,20 @@ public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietIt
         String foodFull = foodCal.getFood();
         String imgFull = foodCal.getImgName();
         String[] foods = foodFull.split("/");
-        String[] imgs = imgFull.split("/");
+        String[] images = imgFull.split("/");
         i = 0;
-        int foodnNum = foods.length;
-        imgSlider(holder, foods[i], imgs[i]);
+        int foodNum = foods.length;
+        imgSlider(holder, foods[i], images[i]);
         holder.front.setOnClickListener(v->{
             if(i!=0){
                 i-=1;
-                imgSlider(holder, foods[i], imgs[i]);
+                imgSlider(holder, foods[i], images[i]);
             }
         });
         holder.back.setOnClickListener(v->{
-           if(i!=foodnNum-1){
+           if(i!=foodNum-1){
                i+=1;
-               imgSlider(holder, foods[i], imgs[i]);
+               imgSlider(holder, foods[i], images[i]);
            }
         });
 

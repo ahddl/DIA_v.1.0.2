@@ -1,12 +1,10 @@
 package com.example.dia_v102;
 
-import androidx.annotation.NonNull;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -42,15 +40,10 @@ public class InputSignup extends AppCompatActivity {
 
         /*뒤로 가기 버튼 -- main 화면으로 이동*/
         Button back1 = findViewById(R.id.back1);
-        back1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent signupintent = new Intent(InputSignup.this, MainActivity.class);
-                //intent.putExtra("name","mike"); //인텐트 객체 생성하고 name의 값을 부가데이터로 넣기
-                setResult(RESULT_OK, signupintent);
-                finish();
-            }
-
+        back1.setOnClickListener(v -> {
+            Intent signupintent = new Intent(InputSignup.this, MainActivity.class);
+            setResult(RESULT_OK, signupintent);
+            finish();
         });
 
         textID = findViewById(R.id.textID);
@@ -73,20 +66,17 @@ public class InputSignup extends AppCompatActivity {
 
         /*완료 버튼 -- 누르면 기본 정보 입력으로 넘어감 (Signup->InputBasicData->InputTime->InputWeek->Diatype)*/
         Button nextSignup = findViewById(R.id.nextSignup);
-        nextSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                check_PW(textPW.getText().toString(), checkPW.getText().toString());
-                if(isEmailAvailable && isPWAvailable) {
-                    UserSet.setNickname(nickName.getText().toString());
-                    registerUser();
-                }
-                if(!isEmailAvailable){
-                    Toast.makeText(InputSignup.this, "이메일이 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
-                }
-                if(!isPWAvailable) {
-                    Toast.makeText(InputSignup.this, "비밀번호 입력이 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
-                }
+        nextSignup.setOnClickListener(v -> {
+            check_PW(textPW.getText().toString(), checkPW.getText().toString());
+            if(isEmailAvailable && isPWAvailable) {
+                UserSet.setNickname(nickName.getText().toString());
+                registerUser();
+            }
+            if(!isEmailAvailable){
+                Toast.makeText(InputSignup.this, "이메일이 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
+            }
+            if(!isPWAvailable) {
+                Toast.makeText(InputSignup.this, "비밀번호 입력이 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -96,12 +86,9 @@ public class InputSignup extends AppCompatActivity {
         radioButton.setChecked(isEmailSubscribed); // 초기 상태 설정
 
 
-        radioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isEmailSubscribed = !isEmailSubscribed; // 구독 상태 토글
-                radioButton.setChecked(isEmailSubscribed);  // 라디오 버튼 상태 업데이트
-            }
+        radioButton.setOnClickListener(v -> {
+            isEmailSubscribed = !isEmailSubscribed; // 구독 상태 토글
+            radioButton.setChecked(isEmailSubscribed);  // 라디오 버튼 상태 업데이트
         });
 
 
@@ -139,8 +126,7 @@ public class InputSignup extends AppCompatActivity {
             isEmailAvailable = false;
             return;
         }
-        /*
-        // Firebase Authentication으로 이메일 중복 여부 확인
+        /* Firebase Authentication으로 이메일 중복 여부 확인
         mAuth.fetchSignInMethodsForEmail(email)
             .addOnCompleteListener(this, new OnCompleteListener<SignInMethodQueryResult>() {
                 @Override
@@ -188,7 +174,5 @@ public class InputSignup extends AppCompatActivity {
         isPWAvailable = true;
     }
 }
-
-
 
 //이메일 구독 상태, 즉 이메일 전송을 동의할 때 이메일 전송 해야함, isEmailSubscribed() 함수 작성

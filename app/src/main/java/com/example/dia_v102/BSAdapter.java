@@ -11,6 +11,7 @@ import android.graphics.Color;
 
 import com.example.dia_v102.databaseF.InfoBox;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class BSAdapter extends RecyclerView.Adapter<BSAdapter.ViewHolder> {
@@ -43,17 +44,13 @@ public class BSAdapter extends RecyclerView.Adapter<BSAdapter.ViewHolder> {
         String mealType = bloodSugar.getTag2(); // mealType 확인
 
         // 색상 결정 로직
-        if ("기상 후(공복)".equals(mealType) ||
-                "자기 전".equals(mealType) ||
-                "기타".equals(mealType)) {
+        if (Arrays.asList("기상 후(공복)", "자기 전", "기타").contains(mealType)) {
             if (bloodSugarValue >= 80 && bloodSugarValue <= 130) {
                 dotColor = Color.GREEN; // 정상 범위
             } else {
                 dotColor = Color.RED; // 경고 범위
             }
-        } else if ("아침 식전".equals(mealType) ||
-                "점심 식전".equals(mealType) ||
-                "저녁 식전".equals(mealType)) {
+        } else if (Arrays.asList("아침 식전", "점심 식전", "저녁 식전").contains(mealType)) {
             if (bloodSugarValue >= 100 && bloodSugarValue <= 120) {
                 dotColor = Color.GREEN; // 정상 범위
             } else {

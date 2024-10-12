@@ -41,7 +41,6 @@ public class InputBasicData extends AppCompatActivity {
         Button back_basic = findViewById(R.id.back_basic);
         back_basic.setOnClickListener(v -> {
             Intent signupintent = new Intent(InputBasicData.this, InputSignup.class);
-            //intent.putExtra("name","mike"); //인텐트 객체 생성하고 name의 값을 부가데이터로 넣기
             setResult(RESULT_OK, signupintent);
             finish();
         });
@@ -57,7 +56,7 @@ public class InputBasicData extends AppCompatActivity {
 
 
         // 성별 선택 (여, 남) 리스너
-        View.OnClickListener genderClickListener = v -> {
+        View.OnClickListener selectClickListener = v -> {
             // 성별 버튼 클릭 시
             if (v == genderFemale) {
                 selectedGender = 'F';
@@ -99,12 +98,12 @@ public class InputBasicData extends AppCompatActivity {
             }
         };
 
-        genderFemale.setOnClickListener(genderClickListener);
-        genderMale.setOnClickListener(genderClickListener);
-        type1.setOnClickListener(genderClickListener);
-        type2.setOnClickListener(genderClickListener);
-        typePreg.setOnClickListener(genderClickListener);
-        typeOther.setOnClickListener(genderClickListener);
+        genderFemale.setOnClickListener(selectClickListener);
+        genderMale.setOnClickListener(selectClickListener);
+        type1.setOnClickListener(selectClickListener);
+        type2.setOnClickListener(selectClickListener);
+        typePreg.setOnClickListener(selectClickListener);
+        typeOther.setOnClickListener(selectClickListener);
 
         /*완료버튼 -- 누르면 활동량입력-하루시간단위 화면으로 넘어감 (Signup->InputBasicData->InputTime->InputWeek->Diatype)*/
 
@@ -214,7 +213,7 @@ public class InputBasicData extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // 회원가입 성공
                         UserSet.loginComplete();
-                        UserSet.setUserId(mAuth.getCurrentUser().getUid());
+                        UserSet.setUserId(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
                         UserSet.saveUserSet();
                         Toast.makeText(InputBasicData.this, "Registration successful", Toast.LENGTH_SHORT).show();
 

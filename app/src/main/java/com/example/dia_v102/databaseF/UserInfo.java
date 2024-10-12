@@ -24,7 +24,4 @@ public class UserInfo {
         this.gender = String.valueOf(gender);
         this.type = String.valueOf(type);
     }
-    public String getNick() {
-        return nick;
-    }
 }

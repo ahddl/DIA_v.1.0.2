@@ -27,7 +27,7 @@ public class TermsActivity extends AppCompatActivity {
             finish();
         });
 
-        // 체크박스 상태에 따라 '다음' 버튼 활성화
+        // check-box 상태에 따라 '다음' 버튼 활성화
         cbAgree.setOnCheckedChangeListener((buttonView, isChecked) -> btnNext.setEnabled(isChecked));
 
         // '다음' 버튼 클릭 시의 동작 (예: 회원가입 다음 단계로 이동)

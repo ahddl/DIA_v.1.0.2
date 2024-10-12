@@ -49,17 +49,17 @@ public class MainActivity extends AppCompatActivity {
             foodMenus = db.food_menuDao().getAll();
             // 작업이 끝난 후에도 UI 업데이트를 하지 않음
             if (foodMenus.isEmpty()) {
-                // DB가 empty 하면 XML 데이터를 삽입
+                // DB가 empty 하면 XML 데이터 삽입
                 DatabaseProvider.parseCsvAndInsertToDB(this, R.raw.food_data37);
-                //Log.d("ROOMDB", "Complete!");
+                //Log.d("ROOM DB", "Complete!");
             }
             /* 나중에 확인용.
             else {
                 // DB가 이미 채워져 있음을 알리는 메시지
-                //Log.d("DBROOM", "Full DB");
+                //Log.d("DB ROOM", "Full DB");
                 // DB 내용 확인
                 for (Food_menu menu : foodMenus) {
-                    Log.d("DBROOM", "ID: " + menu.getId() + ", Name: " + menu.getFood() + ", Calories: " + menu.getCalories());
+                    Log.d("DB ROOM", "ID: " + menu.getId() + ", Name: " + menu.getFood() + ", Calories: " + menu.getCalories());
                 }
             }
             */
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /*회원가입 버튼 -- 누르면 Signup->InputBasicData->InputTime->InputWeek->Diatype 입력 완료 후
-        다시 main으로 돌아와서 로그인 하면 메인페이지(nav)로 넘어감*/
+        다시 MainActivity로 돌아와서 로그인 하면 메인 페이지(nav)로 넘어감*/
 
         Button join_button = findViewById(R.id.joinbotton);
         join_button.setOnClickListener(v -> {
@@ -111,9 +111,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //나중에 카카오 로그인 버튼으로 사용할 것임
-        //임시로 일단 눌리면 메인화면(nav) 나타나게 설정
-        Button googlelogin = findViewById(R.id.googlelogin);
-        googlelogin.setOnClickListener(v -> {
+        //임시 설정: 눌리면 메인 화면(nav) 이동
+        Button googleLogin = findViewById(R.id.googlelogin);
+        googleLogin.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
             startActivity(intent);
         });

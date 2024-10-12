@@ -1,7 +1,5 @@
 package com.example.dia_v102;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -45,7 +43,7 @@ public class DietCheckMenu extends AppCompatActivity {
     ImageView imageView1;
     Button outputOk;
     Button outputNo;
-    TextView outputmenu;
+    TextView outputMenu;
     TextView dateTime;
 
     Interpreter tflite;
@@ -61,7 +59,7 @@ public class DietCheckMenu extends AppCompatActivity {
         imageView1 = findViewById(R.id.imageView1);
         outputOk = findViewById(R.id.outputOk);
         outputNo = findViewById(R.id.outputNo);
-        outputmenu = findViewById(R.id.outputmenu);
+        outputMenu = findViewById(R.id.outputmenu);
         dateTime = findViewById(R.id.dateTime);
 
         executorService = Executors.newSingleThreadExecutor();
@@ -69,7 +67,6 @@ public class DietCheckMenu extends AppCompatActivity {
         try {
             labels = loadLabels();
         } catch (IOException e) {
-            e.printStackTrace();
             Log.e(TAG, "Error loading labels", e);
         }
 
@@ -84,9 +81,9 @@ public class DietCheckMenu extends AppCompatActivity {
         setDateTime();
 
         outputOk.setOnClickListener(v -> {
-            String outputMenu = outputmenu.getText().toString();
-            Intent intent = new Intent(DietCheckMenu.this, DietOutputNutient.class);
-            intent.putExtra("outputMenu", outputMenu);
+            String MenuString = outputMenu.getText().toString();
+            Intent intent = new Intent(DietCheckMenu.this, DietOutputNutrient.class);
+            intent.putExtra("outputMenu", MenuString);
             intent.putExtra("ImgUriStr", imageUriString);
             startActivity(intent);
         });
@@ -115,12 +112,11 @@ public class DietCheckMenu extends AppCompatActivity {
                 Bitmap bitmap = imgUtil.uriToBitmap(this, imageUri);
                 if (bitmap != null) {
                     String recognizedFood = recognizeFood(bitmap);
-                    runOnUiThread(() -> outputmenu.setText(recognizedFood));
+                    runOnUiThread(() -> outputMenu.setText(recognizedFood));
                 } else {
                     Log.d(TAG, "Bitmap is null");
                 }
             } catch (IOException e) {
-                e.printStackTrace();
                 Log.e(TAG, "Error loading model", e);
             }
         });

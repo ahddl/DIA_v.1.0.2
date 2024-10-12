@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.example.dia_v102.databaseF.Func_InfoBox;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class GraphDiabetes extends Fragment {
     private BarChart barChart;
@@ -38,10 +37,9 @@ public class GraphDiabetes extends Fragment {
 
     private void loadData() {
         Func_InfoBox loadBox = new Func_InfoBox();
-        String userID = FirebaseAuth.getInstance().getUid();
         Log.d("DateSum", "call");
         String tag1 = "혈당";
-        loadBox.loadInfoBox_date(userID, tag1, new Func_InfoBox.OnData_DateReceivedListener() {
+        loadBox.loadInfoBox_date(tag1, new Func_InfoBox.OnData_DateReceivedListener() {
             @Override
             public void onData_DateReceived(Map<String, Double> dateSumMap) {
                 Log.d("DateSum", "why");
@@ -70,7 +68,7 @@ public class GraphDiabetes extends Fragment {
         int index = 0;
         for (Map.Entry<String, Double> entry : dateSumMap.entrySet()) {
             entries.add(new BarEntry(index, entry.getValue().floatValue())); // 막대그래프 Entry에 값 추가
-            dateLabels.add(entry.getKey()); // 날짜 레이블 추가
+            dateLabels.add(entry.getKey().substring(5)); // 날짜 레이블 추가
             index++;
         }
 
@@ -91,12 +89,12 @@ public class GraphDiabetes extends Fragment {
         barChart.setFitBars(true); // 그래프의 막대가 차트에 맞도록 설정
         barChart.invalidate(); // 차트 새로고침
 
-        // 처음에 최대 5개의 항목만 표시되게 설정
-        barChart.setVisibleXRangeMaximum(5);
+        // 처음에 최대 7개의 항목만 표시되게 설정
+        barChart.setVisibleXRangeMaximum(7);
 
         // 가장 최근 데이터로 화면을 이동 (마지막 5개를 보여줌)
-        if (dateSumMap.size() > 5) {
-            barChart.moveViewToX(dateSumMap.size() - 5);
+        if (dateSumMap.size() > 7) {
+            barChart.moveViewToX(dateSumMap.size() - 7);
         }
     }
 }

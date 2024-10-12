@@ -28,7 +28,7 @@ public class FindPW extends AppCompatActivity {
         editTextEmail = findViewById(R.id.editTextEmail);
         Button resetPWButton = findViewById(R.id.resetPasswordButton);
 
-        /*뒤로 가기 버튼 -- mainactivity 로 이동*/
+        /*뒤로 가기 버튼 -- main activity 로 이동*/
         Button back1 = findViewById(R.id.back1);
         back1.setOnClickListener(v -> {
             Intent signupintent = new Intent(FindPW.this, MainActivity.class);

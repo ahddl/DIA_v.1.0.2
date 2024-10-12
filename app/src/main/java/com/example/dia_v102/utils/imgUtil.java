@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.Random;
 
 public class imgUtil {
@@ -24,14 +25,14 @@ public class imgUtil {
             // 비트맵을 JPEG 형식으로 저장
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.d("imgSave", Objects.requireNonNull(e.getMessage()));
         } finally {
             try {
                 if (fos != null) {
                     fos.close();
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.d("imgSave", Objects.requireNonNull(e.getMessage()));
             }
         }
     }
@@ -43,7 +44,7 @@ public class imgUtil {
             // 파일에서 비트맵으로 변환
             return BitmapFactory.decodeStream(fis);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.d("imgLoad", Objects.requireNonNull(e.getMessage()));
             return null;
         } finally {
             try {
@@ -51,7 +52,7 @@ public class imgUtil {
                     fis.close();
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.d("imgLoad", Objects.requireNonNull(e.getMessage()));
             }
         }
     }
@@ -91,7 +92,7 @@ public class imgUtil {
                 return null;
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("url2Bit", Objects.requireNonNull(e.getMessage()));
             Log.e(TAG, "Error converting URI to Bitmap", e);
             return null;
         }

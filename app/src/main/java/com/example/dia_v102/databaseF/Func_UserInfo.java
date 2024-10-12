@@ -36,19 +36,19 @@ public class Func_UserInfo {
                         listener.onDataLoaded(userInfo); // 데이터 로드 성공
                         Log.d("Firebase", "User data loaded successfully.");
                     } else {
-                        Log.d("Firebase", "User data is null.");
                         listener.onFailure(new Exception("User data is null."));
+                        Log.d("Firebase", "User data is null.");
                     }
                 } else {
-                    Log.d("Firebase", "User not found.");
                     listener.onFailure(new Exception("User not found."));
+                    Log.d("Firebase", "User not found.");
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("Firebase", "Failed to load user data.", error.toException());
                 listener.onFailure(error.toException());
+                Log.d("Firebase", "Failed to load user data.", error.toException());
             }
 
         });
