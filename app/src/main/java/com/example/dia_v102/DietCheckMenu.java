@@ -1,6 +1,10 @@
 package com.example.dia_v102;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +12,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +32,7 @@ import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -39,7 +45,7 @@ import com.example.dia_v102.utils.imgUtil;
 public class DietCheckMenu extends AppCompatActivity {
 
     private static final String TAG = "CheckMenu";
-
+    private SharedPreferences sharedPreferences;
     ImageView imageView1;
     Button outputOk;
     Button outputNo;
@@ -86,6 +92,12 @@ public class DietCheckMenu extends AppCompatActivity {
             intent.putExtra("outputMenu", MenuString);
             intent.putExtra("ImgUriStr", imageUriString);
             startActivity(intent);
+            if (isBloodSugarAlarmAgreed()) {  // 혈당 알람 동의 여부 확인
+                Alarm alarm = new Alarm();
+                alarm.setBloodSugarAlarm(this, 10);  // 10초 후 알람 설정
+            } else {
+                Toast.makeText(DietCheckMenu.this, "혈당 알람 설정에 동의해야 합니다.", Toast.LENGTH_SHORT).show();
+            }
         });
 
         outputNo.setOnClickListener(v -> {
@@ -99,6 +111,11 @@ public class DietCheckMenu extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+    private boolean isBloodSugarAlarmAgreed() {
+        // SharedPreferences에서 혈당 알람 동의 여부 확인
+        SharedPreferences sharedPreferences = getSharedPreferences("AlarmPrefs", MODE_PRIVATE);
+        return sharedPreferences.getBoolean("isBloodSugarAlarmAgreed", false);  // 기본값 false
     }
 
     private void loadModelAndRecognize(Uri imageUri) {
