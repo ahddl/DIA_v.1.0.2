@@ -10,19 +10,19 @@ public class StopAlarm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-     
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("알람 중지")
                 .setMessage("알람을 중지하시겠습니까?")
-                .setPositiveButton("확인", (dialog, which) -> {
-                    Alarm.stopAlarmSound(this);  
-                    finish();  
+                .setPositiveButton("네", (dialog, which) -> {
+                    Alarm.stopAlarmSound(this);
+                    finish();
                 })
-                .setNegativeButton("취소", (dialog, which) -> {
-                    finish();  
+                .setNegativeButton("아니요", (dialog, which) -> {
+                    finish();
                 });
 
         AlertDialog dialog = builder.create();
-        dialog.show();  
+        dialog.show();
     }
 }
