@@ -21,7 +21,12 @@ public class UserSet extends Application {
     public static void setEmail(String email){UserSet.email = email;}
     public static String getPW(){return pw;}
     public static void setPW(String pw){UserSet.pw = pw;}
-    public static void loginComplete() {UserSet.email = ""; UserSet.pw = "";}
+    public static void loginComplete(String UserID) {
+        UserSet.userID = UserID;
+        UserSet.email = ""; UserSet.pw = "";
+        UserInfo userinfo = new UserInfo(eSub, nickname, height, weight, age, gender, type);
+        Func_UserInfo.saveUserInfo(userID, userinfo);
+    }
 
 
     public static String getUserId() {
@@ -66,9 +71,9 @@ public class UserSet extends Application {
         UserSet.gender = '\0';
         UserSet.type = '\0';
     }
-
     public static void saveUserSet(){
         UserInfo userinfo = new UserInfo(eSub, nickname, height, weight, age, gender, type);
         Func_UserInfo.saveUserInfo(userID, userinfo);
     }
+
 }

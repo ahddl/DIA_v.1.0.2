@@ -182,17 +182,11 @@ public class InputBasicData extends AppCompatActivity {
 
             try {
                 registerUser();
-                Intent intent = new Intent(InputBasicData.this, MainActivity2.class);
-                startActivity(intent);
-                finish();
-
             } catch (Exception e) {
                 Log.d("EError", "Error saving user info: " + e.getMessage());
             }
 
-            // 다음 활동으로 이동 (원래는 InputTime)
-            Intent intent = new Intent(InputBasicData.this, MainActivity.class);
-            startActivity(intent);
+
 
         });
 
@@ -206,19 +200,21 @@ public class InputBasicData extends AppCompatActivity {
     }
 
     private void registerUser() {
-
+        Log.d("EError", "Error Register");
         // Firebase authentication 사용자 생성
         mAuth.createUserWithEmailAndPassword(UserSet.getEmail(), UserSet.getPW())
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
+                        Log.d("EError", "Success Register");
                         // 회원가입 성공
-                        UserSet.loginComplete();
-                        UserSet.setUserId(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
-                        UserSet.saveUserSet();
+                        UserSet.loginComplete(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
                         Toast.makeText(InputBasicData.this, "Registration successful", Toast.LENGTH_SHORT).show();
-
+                        // 다음 활동으로 이동 (원래는 InputTime)
+                        Intent intent = new Intent(InputBasicData.this, MainActivity.class);
+                        startActivity(intent);
                     } else {
                         // 회원가입 실패
+                        Log.d("EError", "Error Register2");
                         Toast.makeText(InputBasicData.this, "Registration failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
