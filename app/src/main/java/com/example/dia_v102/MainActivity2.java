@@ -90,7 +90,10 @@ public class MainActivity2 extends AppCompatActivity {
             }else if (id == R.id.setting_logout) {
                 logout();
             }
-
+            else if (id == R.id.setting_alarm_settings) {  // 알람 설정 처리 부분 추가
+                Intent intent = new Intent(MainActivity2.this, Alarm.class);
+                startActivity(intent);  // Alarm 액티비티로 이동
+            }
             drawerLayout.closeDrawer(navigationView);// 드로어 닫기
             return true;
         });
