@@ -97,10 +97,12 @@
             android:exported="false" />
         <activity
             android:name=".Alarm"
-            android:exported="false" />
-        <activity
-            android:name=".StopAlarm"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:exported="true" />
+        <activity android:name=".StopAlarm"
+            android:theme="@style/Theme.AppCompat.Dialog"
             android:exported="false"/>
+
 
 
         <meta-data
