@@ -1,0 +1,8 @@
+<resources>
+    <!-- 기존 테마 유지 -->
+    <style name="Theme.AppCompat.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- 다이얼로그 크기 및 모양을 설정 -->
+        <item name="android:windowMinWidthMajor">30%</item>
+        <item name="android:windowMinWidthMinor">30%</item>
+    </style>
+</resources>
