@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- 외부 저장소에서 읽기 권한 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <!-- 절전 모드에서도 알람을 울리기 위한 권한 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -91,6 +95,13 @@
         <activity
             android:name=".GraphDiet"
             android:exported="false" />
+        <activity
+            android:name=".Alarm"
+            android:exported="false" />
+        <activity
+            android:name=".StopAlarm"
+            android:exported="false"/>
+
 
         <meta-data
             android:name="com.google.android.actions"
@@ -104,6 +115,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <!-- AlarmReceiver 등록 -->
+        <receiver android:name=".AlarmReceiver" android:exported="false" />
 
     </application>
 
