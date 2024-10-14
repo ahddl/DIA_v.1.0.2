@@ -58,6 +58,10 @@ public class MainActivity2 extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
+        // 제목을 "DIABETIC:CARE"로 변경
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("DIABETIC:CARE");
+        }
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
