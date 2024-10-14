@@ -96,6 +96,9 @@
             android:name=".GraphDiet"
             android:exported="false" />
         <activity
+            android:name=".temp_Activity"
+            android:exported="false" />
+        <activity
             android:name=".Alarm"
             android:theme="@style/Theme.AppCompat.Dialog"
             android:exported="true" />
