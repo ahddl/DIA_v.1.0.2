@@ -18,7 +18,7 @@
         android:gravity="center"
         android:textSize="30dp" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/caloriesTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         android:progressTint="@color/pastel_rainbow7"
         android:progressDrawable="@drawable/progressbar"
         android:layout_below="@id/caloriesTextView"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"/>-->
 
     <TextView
         android:id="@+id/nutritionalTextView"

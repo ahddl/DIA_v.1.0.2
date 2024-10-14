@@ -53,8 +53,7 @@ public class DietOutputNutrient extends AppCompatActivity {
 
         outputMenu1 = findViewById(R.id.outputmenu1);
         nutList = findViewById(R.id.nutList);
-        caloriesTextView = findViewById(R.id.caloriesTextView);
-        caloriesProgressBar = findViewById(R.id.caloriesProgressBar);
+
         dropdownMenu = findViewById(R.id.dropdown_menu);
 
         cameraInput();
