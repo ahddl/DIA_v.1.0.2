@@ -17,10 +17,8 @@ public class StopAlarm extends AppCompatActivity {
                 .setPositiveButton("네", (dialog, which) -> {
                     Alarm.stopAlarmSound(this);
                     finish();
-                })
-                .setNegativeButton("아니요", (dialog, which) -> {
-                    finish();
                 });
+
 
         AlertDialog dialog = builder.create();
         dialog.show();

@@ -113,7 +113,7 @@ public class Alarm extends AppCompatActivity {
             Toast.makeText(context, secondsLater + "초 후 알람이 설정되었습니다.", Toast.LENGTH_SHORT).show();
 
         } catch (SecurityException e) {
-            Toast.makeText(context, "정확한 알람 설정 권한이 필요합니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "알람 설정 권한이 필요합니다.", Toast.LENGTH_LONG).show();
         }
     }
 

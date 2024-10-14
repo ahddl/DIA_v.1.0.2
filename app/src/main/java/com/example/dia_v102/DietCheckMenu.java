@@ -95,8 +95,6 @@ public class DietCheckMenu extends AppCompatActivity {
             if (isBloodSugarAlarmAgreed()) {  // 혈당 알람 동의 여부 확인
                 Alarm alarm = new Alarm();
                 alarm.setBloodSugarAlarm(this, 10);  // 10초 후 알람 설정
-            } else {
-                Toast.makeText(DietCheckMenu.this, "혈당 알람 설정에 동의해야 합니다.", Toast.LENGTH_SHORT).show();
             }
         });
 
