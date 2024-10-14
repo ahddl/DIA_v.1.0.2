@@ -22,7 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="300sp"
         android:text="response"
-        android:textSize="15sp"/>
+        android:textSize="15sp"
+        android:layout_margin="25sp"/>
 
     <Button
         android:id="@+id/sendButton"
