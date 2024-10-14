@@ -32,15 +32,13 @@ import com.example.dia_v102.databaseF.Func_FoodCal;
 
 public class DietOutputNutrient extends AppCompatActivity {
 
-    TextView outputMenu1, nutList, caloriesTextView;
-    ProgressBar caloriesProgressBar;
-
+    TextView outputMenu1, nutList;
     Func_FoodCal foodCal = new Func_FoodCal();
-
     String imgUriStr, imgName, userInput;
     Spinner dropdownMenu;
     static Food_menu sumMenus = new Food_menu();
     static String imgNameStr="";
+    int quantity;
 
     //카메라 관련
     CameraGalleryPicker imgPicker;
@@ -66,7 +64,7 @@ public class DietOutputNutrient extends AppCompatActivity {
             imgUtil.saveImage(this, imgBit, imgName);
         }
 
-
+        quantity = getIntent().getIntExtra("quantity", 1);
         // 앞에서 받아온 메뉴 이름 값 출력
         String outputMenu = getIntent().getStringExtra("outputMenu");
         if (outputMenu != null) {
@@ -82,6 +80,7 @@ public class DietOutputNutrient extends AppCompatActivity {
             imgName="_";
             updateUI(menu);
         }
+
 
         // 시스템 바 인셋 설정
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -110,13 +109,13 @@ public class DietOutputNutrient extends AppCompatActivity {
 
 
         String nutriaText = "음식 이름: " + foodMenu.getFood() +
-                "\n 칼로리: " + foodMenu.getCalories() + " kcal"+
-                "\n 탄수화물: " + foodMenu.getCarbohydrate() + " g" +
-                "\n 단백질: " + foodMenu.getProtein() + " g" +
-                "\n 지방: " + foodMenu.getFat() + " g" +
-                "\n 콜레스테롤: " + foodMenu.getCholesterol() + " mg" +
-                "\n 나트륨: " + foodMenu.getSodium() + " mg" +
-                "\n 설탕 당: " + foodMenu.getSugar() + " g";
+                "\n 칼로리: " + foodMenu.getCalories()*quantity + " kcal"+
+                "\n 탄수화물: " + foodMenu.getCarbohydrate()*quantity + " g" +
+                "\n 단백질: " + foodMenu.getProtein()*quantity + " g" +
+                "\n 지방: " + foodMenu.getFat()*quantity + " g" +
+                "\n 콜레스테롤: " + foodMenu.getCholesterol()*quantity + " mg" +
+                "\n 나트륨: " + foodMenu.getSodium()*quantity + " mg" +
+                "\n 설탕 당: " + foodMenu.getSugar()*quantity + " g";
         nutList.setText(nutriaText);
 
                 /*프로그래스 바 및 칼로리 텍스트 업데이트
@@ -129,7 +128,7 @@ public class DietOutputNutrient extends AppCompatActivity {
         // saveButton 클릭 시 동작 추가
         Button addButton = findViewById(R.id.re_input);
         addButton.setOnClickListener(v -> {
-            sumMenus.addInfo(foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar());
+            sumMenus.addInfo(foodMenu.getFood(), foodMenu.getCalories()*quantity, foodMenu.getCarbohydrate()*quantity, foodMenu.getProtein()*quantity, foodMenu.getFat()*quantity, foodMenu.getCholesterol()*quantity, foodMenu.getSodium()*quantity, foodMenu.getSugar()*quantity);
             imgNameStr += imgNameStr.isEmpty()?(imgName):"/"+(imgName);
             imgPicker.showImageSourceDialog();
         });
@@ -143,7 +142,7 @@ public class DietOutputNutrient extends AppCompatActivity {
 
         Button saveButton = findViewById(R.id.exit_save);
         saveButton.setOnClickListener(v -> {
-            sumMenus.addInfo(foodMenu.getFood(), foodMenu.getCalories(), foodMenu.getCarbohydrate(), foodMenu.getProtein(), foodMenu.getFat(), foodMenu.getCholesterol(), foodMenu.getSodium(), foodMenu.getSugar());
+            sumMenus.addInfo(foodMenu.getFood(), foodMenu.getCalories()*quantity, foodMenu.getCarbohydrate()*quantity, foodMenu.getProtein()*quantity, foodMenu.getFat()*quantity, foodMenu.getCholesterol()*quantity, foodMenu.getSodium()*quantity, foodMenu.getSugar()*quantity);
             imgNameStr += imgNameStr.isEmpty()?(imgName):"/"+(imgName);
             String tag = dropdownMenu.getSelectedItem().toString();
             foodCal.saveFoodCal(sumMenus.getFood(), tag, sumMenus.getCalories(), sumMenus.getCarbohydrate(), sumMenus.getProtein(), sumMenus.getFat(), sumMenus.getCholesterol(), sumMenus.getSodium(), sumMenus.getSugar(), imgNameStr);

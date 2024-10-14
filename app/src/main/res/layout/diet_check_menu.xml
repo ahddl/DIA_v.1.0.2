@@ -15,19 +15,19 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:srcCompat="@mipmap/ic_launcher"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="25dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="인식한 메뉴가 맞습니까?"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/dateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12dp"
+        android:textSize="12sp"
         android:hint="날짜 시간"
         android:layout_marginBottom="30dp"
         android:gravity="center_horizontal"
@@ -37,22 +37,51 @@
         android:id="@+id/outputmenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="21dp"
+        android:textSize="21sp"
         android:hint="이곳에 인식한 메뉴 이름이 나타남"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="35dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="글자 크기 테스트"
+        android:textSize="20sp"
+        android:layout_marginEnd="10sp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/up"
+                android:layout_width="40sp"
+                android:layout_height="30sp"
+                android:layout_marginBottom="-10sp"/>
+            <Button
+                android:id="@+id/down"
+                android:layout_width="40sp"
+                android:layout_height="30sp"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="30sp">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/outputOk"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="80dp"
             android:layout_height="35dp"
-            android:layout_marginTop="25dp"
             android:background="@drawable/button_background"
             android:text="O"
             android:textColor="@color/white"
@@ -63,8 +92,7 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="80dp"
             android:layout_height="35dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginStart="50dp"
             android:background="@drawable/button_background"
             android:text="X"
             android:textColor="@color/white"

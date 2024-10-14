@@ -1,8 +1,5 @@
 package com.example.dia_v102;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -12,7 +9,6 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +28,6 @@ import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -45,17 +40,14 @@ import com.example.dia_v102.utils.imgUtil;
 public class DietCheckMenu extends AppCompatActivity {
 
     private static final String TAG = "CheckMenu";
-    private SharedPreferences sharedPreferences;
     ImageView imageView1;
-    Button outputOk;
-    Button outputNo;
-    TextView outputMenu;
-    TextView dateTime;
+    Button outputOk, outputNo, upBtn, downBtn;
+    TextView outputMenu, dateTime, quantity;
 
     Interpreter tflite;
     List<String> labels;
     ExecutorService executorService;
-
+    int num_quan = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +59,10 @@ public class DietCheckMenu extends AppCompatActivity {
         outputNo = findViewById(R.id.outputNo);
         outputMenu = findViewById(R.id.outputmenu);
         dateTime = findViewById(R.id.dateTime);
+
+        upBtn = findViewById(R.id.up);
+        downBtn = findViewById(R.id.down);
+        quantity = findViewById(R.id.quantity);
 
         executorService = Executors.newSingleThreadExecutor();
 
@@ -85,16 +81,30 @@ public class DietCheckMenu extends AppCompatActivity {
         }
 
         setDateTime();
+        quantity.setText(num_quan + " 인분");
+
+        upBtn.setOnClickListener(v->{
+            if(num_quan<=7){
+                num_quan+=1;
+                quantity.setText(num_quan + " 인분");
+            }
+        });
+        downBtn.setOnClickListener(v->{
+            if(num_quan>1){
+                num_quan-=1;
+                quantity.setText(num_quan + " 인분");
+            }
+        });
 
         outputOk.setOnClickListener(v -> {
             String MenuString = outputMenu.getText().toString();
             Intent intent = new Intent(DietCheckMenu.this, DietOutputNutrient.class);
             intent.putExtra("outputMenu", MenuString);
+            intent.putExtra("quantity", num_quan);
             intent.putExtra("ImgUriStr", imageUriString);
             startActivity(intent);
             if (isBloodSugarAlarmAgreed()) {  // 혈당 알람 동의 여부 확인
-                Alarm alarm = new Alarm();
-                alarm.setBloodSugarAlarm(this, 10);  // 10초 후 알람 설정
+                Alarm.setBloodSugarAlarm(this, 10);  // 10초 후 알람 설정
             }
         });
 
