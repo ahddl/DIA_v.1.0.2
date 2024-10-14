@@ -27,7 +27,6 @@ public class GraphDiabetes extends Fragment {
     private BarChart barChart;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState){
-        Log.d("DateSum", "start");
         View view = inflater.inflate(R.layout.graph_diabetes, container, false);
         barChart = view.findViewById(R.id.barChart);
         loadData();
@@ -42,14 +41,6 @@ public class GraphDiabetes extends Fragment {
         loadBox.loadInfoBox_date(tag1, new Func_InfoBox.OnData_DateReceivedListener() {
             @Override
             public void onData_DateReceived(Map<String, Double> dateSumMap) {
-                Log.d("DateSum", "why");
-                // 결과를 처리하는 부분 (예: 출력, 다른 메서드 호출 등)
-                for (Map.Entry<String, Double> entry : dateSumMap.entrySet()) {
-                    String dateKey = entry.getKey();
-                    Double sumValue = entry.getValue();
-                    // 결과 출력 예시
-                    Log.d("DateSum", "날짜: " + dateKey + ", 합계: " + sumValue);
-                }
                 drawBarChart(dateSumMap);
             }
 
@@ -67,13 +58,13 @@ public class GraphDiabetes extends Fragment {
 
         int index = 0;
         for (Map.Entry<String, Double> entry : dateSumMap.entrySet()) {
-            entries.add(new BarEntry(index, entry.getValue().floatValue())); // 막대그래프 Entry에 값 추가
+            entries.add(new BarEntry(index, entry.getValue().floatValue())); // 막대 그래프 Entry에 값 추가
             dateLabels.add(entry.getKey().substring(5)); // 날짜 레이블 추가
             index++;
         }
 
         BarDataSet dataSet = new BarDataSet(entries, "Blood Sugar by Date");
-        dataSet.setColors(Color.RED); // 막대그래프 색상 설정
+        dataSet.setColors(Color.RED); // 막대 그래프 색상 설정
         dataSet.setValueTextSize(12f);
 
         // X축 설정
@@ -86,13 +77,13 @@ public class GraphDiabetes extends Fragment {
         barData.setBarWidth(0.9f); // 막대 너비 설정
 
         barChart.setData(barData);
-        barChart.setFitBars(true); // 그래프의 막대가 차트에 맞도록 설정
+        barChart.setFitBars(true); // 그래프 막대가 차트에 맞도록 설정
         barChart.invalidate(); // 차트 새로고침
 
         // 처음에 최대 7개의 항목만 표시되게 설정
         barChart.setVisibleXRangeMaximum(7);
 
-        // 가장 최근 데이터로 화면을 이동 (마지막 5개를 보여줌)
+        // 가장 최근 데이터로 화면을 이동 (마지막 7개를 보여줌)
         if (dateSumMap.size() > 7) {
             barChart.moveViewToX(dateSumMap.size() - 7);
         }

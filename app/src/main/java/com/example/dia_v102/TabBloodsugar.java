@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dia_v102.databaseF.Func_InfoBox;
 import com.example.dia_v102.databaseF.InfoBox;
 import com.example.dia_v102.utils.DateUtil;
+import com.example.dia_v102.utils.FoodDanger;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Date;
@@ -79,6 +80,7 @@ public class TabBloodsugar extends Fragment {
             String tag2 = dropdownMenu.getSelectedItem().toString();
             double sugar = Double.parseDouble(bloodSugarInput.getText().toString());
             FinfoBox.saveInfoBox("혈당", tag2, sugar);
+            FoodDanger.isDanger(tag2, sugar);
             Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
             HealthSet.setBloodSugarRecent(sugar);
             loadDiabetesData(DateUtil.dateToString(new Date()));
