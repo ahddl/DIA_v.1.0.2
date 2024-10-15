@@ -17,7 +17,7 @@
 
     <item
         android:id="@+id/tabchatbot"
-        android:title="챗봇"
+        android:title="식단추천"
         android:icon="@drawable/baseline_chat_24"/>
 
     <item
