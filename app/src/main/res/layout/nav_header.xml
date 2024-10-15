@@ -9,26 +9,28 @@
     android:background="@drawable/headerbkg"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-   <!-- <ImageView
+    <!--<ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/user_1"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"/>-->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NickName"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/scdreammedium"
+        android:text="DIABETIC:CARE"
+        android:textSize="20sp"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_marginBottom="3dp"/>
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="어떤 내용이 들어가면 좋을까요??"
+        android:text="당뇨관리 아직 늦지 않았습니다."
         android:textColor="@color/white"
-        android:textSize="14sp"
-        android:layout_marginBottom="16dp"/>-->
+        android:textSize="12sp"
+        android:layout_marginBottom="30dp"/>
 
 </LinearLayout>

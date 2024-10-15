@@ -13,6 +13,6 @@
         android:layout_height="wrap_content"
         android:text="알람 중지"
         android:textSize="18sp"
-        android:padding="12dp" />
+        android:background="@drawable/button_background"/>
 
 </LinearLayout>

@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-
-
-    <TextView
-        android:id="@+id/recode_time_diet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="저장한 시간"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:background="@drawable/background"
+        android:paddingLeft="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:paddingEnd="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
+            android:id="@+id/recode_time_diet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="저장한 시간"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- meme 레이아웃이 recode_time_diet 아래에 위치하도록 수정 -->
+        <LinearLayout
+            android:id="@+id/meme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/recode_time_diet"
+            app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="menu이름1"
@@ -41,81 +63,88 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20sp"
             android:text="(칼로리 표시)"/>
-
     </LinearLayout>
-    <!-- 여기에 파이차트 추가하기-->
+
+    <!-- 파이차트 추가 -->
     <LinearLayout
         android:id="@+id/chartHidden"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/meme"
+        app:layout_constraintStart_toStartOf="parent">
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp" />
+
+    <LinearLayout
+        android:id="@+id/infoButton"
+        android:layout_width="match_parent"
+        android:layout_height="20sp"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:id="@+id/hiddenView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gone">
-        <!-- 파이차트 옆 더보기 버튼을 클릭하면 더 추가적인 영양소 정보 뜨게 하기-->
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pieChart"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp" />
-
+        <!-- 숨겨진 정보들 -->
         <LinearLayout
-            android:id="@+id/infoButton"
-            android:layout_width="match_parent"
-            android:layout_height="20sp" />
-
-        <LinearLayout
-            android:id="@+id/hiddenView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
+            android:orientation="horizontal">
             <ImageView
                 android:id="@+id/photo"
                 android:layout_width="157dp"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop" />
-
             <TextView
                 android:id="@+id/nutrition_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="영양소 \n칼로리: \n 탄수화물: \n 단백질:
-                \n 지방: \n 콜레스테롤: \n 설탕 당: " />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
-                <Button
-                    android:id="@+id/frontBtn"
-                    android:layout_width="50dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="10sp"
-                    android:text="p"/>
-                <TextView
-                    android:id="@+id/menu_name"
-                    android:layout_width="80sp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="음식 명"
-                    android:textStyle="bold"
-                    android:textSize="12sp"
-                    />
+                android:layout_marginLeft="5dp"
+                android:text="영양소 \n칼로리: \n 탄수화물: \n 단백질: \n 지방: \n 콜레스테롤: \n 설탕 당: " />
+        </LinearLayout>
 
-                <Button
-                    android:id="@+id/backBtn"
-                    android:layout_width="50dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10sp"
-                    android:text="N"/>
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center">
 
+            <ImageButton
+                android:id="@+id/frontBtn"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/baseline_keyboard_double_arrow_left_24" />
+
+            <TextView
+                android:id="@+id/menu_name"
+                android:layout_width="80sp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="음식 명"
+                android:textStyle="bold"
+                android:textSize="12sp" />
+
+            <ImageButton
+                android:id="@+id/backBtn"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/baseline_keyboard_double_arrow_right_24" />
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

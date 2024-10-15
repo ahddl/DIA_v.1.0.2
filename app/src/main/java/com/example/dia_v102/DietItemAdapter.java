@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -132,7 +133,7 @@ public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietIt
         ImageView photo;
         PieChart pieChart;
         LinearLayout infoButton, chartHidden, hiddenView;
-        Button front, back;
+        ImageButton front, back;
 
 
         public DietItemViewHolder(View itemView) {

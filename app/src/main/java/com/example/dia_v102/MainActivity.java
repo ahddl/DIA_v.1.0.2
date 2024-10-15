@@ -110,13 +110,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        //나중에 카카오 로그인 버튼으로 사용할 것임
+        /*//나중에 카카오 로그인 버튼으로 사용할 것임
         //임시 설정: 눌리면 메인 화면(nav) 이동
         Button googleLogin = findViewById(R.id.googlelogin);
         googleLogin.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
             startActivity(intent);
-        });
+        });*/
 
 
         /*아이디 찾기 버튼 -- 아이디 찾기 클래스 없음. 일단 주석 처리
