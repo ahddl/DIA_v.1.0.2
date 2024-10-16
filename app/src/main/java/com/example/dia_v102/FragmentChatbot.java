@@ -61,14 +61,14 @@ public class FragmentChatbot extends Fragment {
         String prompt = "식사 메뉴를 3가지 추천하라(번호와 이름만 출력)\n"
                 +"그 아래에 영양소 섭취 상태에 근거한 추천 이유를 간략히 서술하라\n"
                 + "아래의 정보를 참고하라"
-                +"\n성별: "+UserSet.getGender()
-                +"\n나이: "+UserSet.getAge()
-                +"\n키: "+UserSet.getHeight()+"cm"
-                +"\n몸무게: "+UserSet.getWeight()+"kg"
-                +"\n당뇨병 정보: "+UserSet.getTypeStr()
+                +"\n성별: "+SetUser.getGender()
+                +"\n나이: "+SetUser.getAge()
+                +"\n키: "+SetUser.getHeight()+"cm"
+                +"\n몸무게: "+SetUser.getWeight()+"kg"
+                +"\n당뇨병 정보: "+SetUser.getTypeStr()
                 +"\n현재 시간: "+ DateUtil.HourNMin()
-                +"\n오늘 평균 혈당: "+HealthSet.getBloodSugarAVG()
-                +"\n최근 혈당: "+HealthSet.getBloodSugarRecent()
+                +"\n오늘 평균 혈당: "+SetHealth.getBloodSugarAVG()
+                +"\n최근 혈당: "+SetHealth.getBloodSugarRecent()
                 ;
         /*
                 +"\n상태: "

@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.dia_v102.utils.FileUtil;
 
 public class InputTerms extends AppCompatActivity {
 
@@ -15,11 +18,12 @@ public class InputTerms extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.input_term);
-
+        TextView term = findViewById(R.id.tv_terms_content);
+        String termString = FileUtil.readFromAssets(this, "terms.txt");
         Button btnBack = findViewById(R.id.backBtn);
         btnNext = findViewById(R.id.nextBtn);
         CheckBox cbAgree = findViewById(R.id.cb_agree);
-
+        term.setText(termString);
         // '이전' 버튼 클릭 시 처음으로 이동
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(InputTerms.this,MainActivity.class);
