@@ -66,6 +66,36 @@ public class Func_FoodCal {
                 });
     }
 
+    public void loadFoodCal_Graph(final OnDataReceivedListener listener) {
+        myRef.child(userID).orderByChild("date")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        List<FoodCal> foodCalList = new ArrayList<>();
+
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            FoodCal foodcal = snapshot.getValue(FoodCal.class);
+                            if (foodcal != null) {
+                                foodCalList.add(foodcal);
+                            }
+                        }
+
+                        // 데이터 로드 성공을 알리기 위해 listener 호출
+                        if (listener != null) {
+                            listener.onDataReceived(foodCalList);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // 데이터 로드 실패 시 처리
+                        if (listener != null) {
+                            listener.onDataFailed(databaseError.toException());
+                        }
+                    }
+                });
+    }
+
     // 데이터를 받기 위한 인터페이스
     public interface OnDataReceivedListener {
         void onDataReceived(List<FoodCal> foodCalList);

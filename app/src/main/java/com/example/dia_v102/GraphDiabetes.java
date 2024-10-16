@@ -36,7 +36,6 @@ public class GraphDiabetes extends Fragment {
 
     private void loadData() {
         Func_InfoBox loadBox = new Func_InfoBox();
-        Log.d("DateSum", "call");
         String tag1 = "혈당";
         loadBox.loadInfoBox_date(tag1, new Func_InfoBox.OnData_DateReceivedListener() {
             @Override
@@ -46,7 +45,6 @@ public class GraphDiabetes extends Fragment {
 
             @Override
             public void onDataFailed(Exception e) {
-                Log.d("DateSum", "Fail");
                 Log.d("FirebaseError", Objects.requireNonNull(e.getMessage()));
             }
         });
