@@ -1,34 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentChatbot"
-    android:gravity="center"
-    android:orientation="vertical">
+    tools:context=".FragmentChatbot">
 
-    <TextView
-        android:id="@+id/textChat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chatbot response"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/GPTRes"
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="300sp"
-        android:text="response"
-        android:textSize="15sp"
-        android:layout_margin="25sp"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/sendButton"
-        android:layout_width="160sp"
-        android:layout_height="80sp"
-        android:text="식단 추천"/>
+        <TextView
+            android:id="@+id/textChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="식단 추천"
+            android:layout_marginTop="16dp"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textChat2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="gpt 3.5 ver 을 사용하였습니다."
+            android:layout_marginTop="5dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/GPTRes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="response"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:padding="16dp"
+            android:textColor="@android:color/black"
+            android:background="@drawable/custom_backgraoud" />
+
+        <Button
+            android:id="@+id/sendButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/button_background"
+            android:text="식단 추천" />
+    </LinearLayout>
+</ScrollView>
