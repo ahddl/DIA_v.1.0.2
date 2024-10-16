@@ -36,7 +36,7 @@ import java.util.concurrent.Executors;
 public class TabBloodsugar extends Fragment {
 
     private RecyclerView recyclerView;
-    private BSAdapter adapter;
+    private Adapter_bloodSugar adapter;
 
     private Func_InfoBox infoBox;
 
@@ -82,7 +82,7 @@ public class TabBloodsugar extends Fragment {
             FinfoBox.saveInfoBox("혈당", tag2, sugar);
             FoodDanger.isDanger(tag2, sugar);
             Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
-            HealthSet.setBloodSugarRecent(sugar);
+            SetHealth.setBloodSugarRecent(sugar);
             loadDiabetesData(DateUtil.dateToString(new Date()));
         });
 
@@ -137,9 +137,9 @@ public class TabBloodsugar extends Fragment {
                     sumValue = sumValue + infoBox.getValue();
                 }
                 double avgValue = sumValue/infoBoxList.size();
-                HealthSet.setBloodSugarAVG(avgValue);
+                SetHealth.setBloodSugarAVG(avgValue);
                 mainThreadHandler.post(()->{
-                    adapter = new BSAdapter(infoBoxList);
+                    adapter = new Adapter_bloodSugar(infoBoxList);
                     recyclerView.setAdapter(adapter);
                 });
             }

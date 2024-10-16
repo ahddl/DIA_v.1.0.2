@@ -23,7 +23,7 @@ public class Func_FoodCal {
         userID = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
-    // 데이터를 저장하는 메서드
+    // 데이터 저장 메서드
     public void saveFoodCal(String food, String tag, double calories, double carbohydrate, double protein, double fat, double cholesterol, double sodium, double sugar, String imgName) {
         FoodCal foodcal = new FoodCal(food, tag, calories, carbohydrate, protein, fat, cholesterol, sodium, sugar, imgName);
         myRef.child(userID).push().setValue(foodcal)

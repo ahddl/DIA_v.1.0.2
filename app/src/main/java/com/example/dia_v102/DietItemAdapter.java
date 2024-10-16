@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,7 +39,7 @@ public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietIt
     @Override
     public DietItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.diet_item, parent, false);
+                .inflate(R.layout.item_diet, parent, false);
         return new DietItemViewHolder(view);
     }
 
@@ -75,7 +74,7 @@ public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietIt
         holder.pieChart.setData(data);
         holder.pieChart.invalidate(); // refresh
 
-        // 클릭 시 nutritionInfo를 VISIBLE로 변경
+        // 클릭 시 nutritionInfo VISIBLE로 변경
         holder.infoButton.setOnClickListener(v -> {
             if (holder.hiddenView.getVisibility() == View.GONE) {
                 holder.hiddenView.setVisibility(View.VISIBLE);

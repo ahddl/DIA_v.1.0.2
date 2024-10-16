@@ -9,7 +9,6 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,15 +36,6 @@ public class Alarm extends AppCompatActivity {
         // 혈당 알람 버튼 클릭 시 다이얼로그 호출
         findViewById(R.id.btnBloodSugarAlarm).setOnClickListener(v -> showAlarmConfirmationDialog());
 
-
-        Button btnBack = findViewById(R.id.backBtn);
-
-        // '이전' 버튼 클릭 시 처음으로 이동
-        btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(Alarm.this,MainActivity2.class);
-            startActivity(intent);
-            finish();
-        });
     }
 
     // 권한 요청 함수

@@ -228,7 +228,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     private void logout() {
         FirebaseAuth.getInstance().signOut();
-        UserSet.logOut();
+        SetUser.logOut();
 
         // 로그인 창으로 이동
         Intent intent = new Intent(this, MainActivity.class);

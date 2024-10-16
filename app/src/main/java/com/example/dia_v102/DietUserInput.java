@@ -10,13 +10,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class userFood extends AppCompatActivity {
+public class DietUserInput extends AppCompatActivity {
     Button save;
     EditText foodName, foodCalories, foodCarbohydrate, foodProtein, foodFat, foodCholesterol, foodSodium, foodSugar;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_food);
+        setContentView(R.layout.diet_user_food);
 
         save = findViewById(R.id.saveBtn);
 
@@ -44,14 +44,14 @@ public class userFood extends AppCompatActivity {
             if (name.isEmpty() || calories.isEmpty() || carbohydrate.isEmpty() || protein.isEmpty() ||
                     fat.isEmpty() || cholesterol.isEmpty() || sodium.isEmpty() || sugar.isEmpty()) {
                 // 하나라도 비어있다면 경고 메시지
-                Toast.makeText(userFood.this, "모든 필드를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DietUserInput.this, "모든 필드를 입력해주세요.", Toast.LENGTH_SHORT).show();
             } else {
                 // 입력값이 모두 존재하면 /로 연결된 문자열을 만듦
                 String foodInfoString = name + "/" + calories + "/" + carbohydrate + "/" + protein + "/" +
                         fat + "/" + cholesterol + "/" + sodium + "/" + sugar;
                 Log.d("whyNull", foodInfoString);
                 // 인텐트를 사용하여 다음 액티비티로 데이터 전달
-                Intent intent = new Intent(userFood.this, DietOutputNutrient.class);
+                Intent intent = new Intent(DietUserInput.this, DietOutputNutrient.class);
                 intent.putExtra("userInput", foodInfoString);
                 startActivity(intent);
             }

@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button join_button = findViewById(R.id.joinbotton);
         join_button.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, TermsActivity.class);
+            Intent intent = new Intent(MainActivity.this, InputTerms.class);
             startActivity(intent);
         });
 
@@ -149,18 +149,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void CompleteLogin(FirebaseUser currentUser){
-        UserSet.setUserId(currentUser.getUid());
+        SetUser.setUserId(currentUser.getUid());
         Func_UserInfo funcUserInfo = new Func_UserInfo();
         funcUserInfo.loadData(currentUser.getUid(), new Func_UserInfo.DataLoadListener() {
             @Override
             public void onDataLoaded(UserInfo userInfo) {
-                UserSet.setNickname(userInfo.nick);
-                UserSet.setESub(userInfo.eMailSub);
-                UserSet.setHeight(userInfo.height);
-                UserSet.setWeight(userInfo.weight);
-                UserSet.setAge(userInfo.age);
-                UserSet.setGender(userInfo.gender.charAt(0));
-                UserSet.setType(userInfo.type.charAt(0));
+                SetUser.setNickname(userInfo.nick);
+                SetUser.setESub(userInfo.eMailSub);
+                SetUser.setHeight(userInfo.height);
+                SetUser.setWeight(userInfo.weight);
+                SetUser.setAge(userInfo.age);
+                SetUser.setGender(userInfo.gender.charAt(0));
+                SetUser.setType(userInfo.type.charAt(0));
             }
 
             @Override

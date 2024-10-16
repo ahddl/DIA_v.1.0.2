@@ -37,7 +37,7 @@ import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class temp_Activity extends Fragment {
+public class TabDayBloodSugar extends Fragment {
     private TextView dateText;
     private String selectedDate;
     private LineChart lineChart;
@@ -45,7 +45,7 @@ public class temp_Activity extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.temp_layout, container, false);
+        View view = inflater.inflate(R.layout.tab_day_bloodsugar, container, false);
         lineChart = view.findViewById(R.id.lineChart);
 
         dateText = view.findViewById(R.id.diet_date);

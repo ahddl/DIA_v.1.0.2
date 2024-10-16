@@ -69,7 +69,7 @@ public class InputSignup extends AppCompatActivity {
         nextSignup.setOnClickListener(v -> {
             check_PW(textPW.getText().toString(), checkPW.getText().toString());
             if(isEmailAvailable && isPWAvailable) {
-                UserSet.setNickname(nickName.getText().toString());
+                SetUser.setNickname(nickName.getText().toString());
                 registerUser();
             }
             if(!isEmailAvailable){
@@ -105,9 +105,9 @@ public class InputSignup extends AppCompatActivity {
         String email = textID.getText().toString().trim();
         String password = textPW.getText().toString().trim();
 
-        UserSet.setEmail(email);
-        UserSet.setPW(password);
-        UserSet.setESub(isEmailSubscribed);
+        SetUser.setEmail(email);
+        SetUser.setPW(password);
+        SetUser.setESub(isEmailSubscribed);
 
         Intent intent = new Intent(InputSignup.this, InputBasicData.class);
         startActivity(intent);

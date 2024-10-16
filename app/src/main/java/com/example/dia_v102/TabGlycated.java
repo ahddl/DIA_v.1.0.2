@@ -34,7 +34,7 @@ import java.util.concurrent.Executors;
 public class TabGlycated extends Fragment {
 
     private RecyclerView recyclerView;
-    private GlycatedAdapter adapter;
+    private Adapter_glycated adapter;
 
     private Func_InfoBox infoBox;
     private TextView nowTime;  // nowTime 변수를 클래스 필드로 선언
@@ -109,9 +109,9 @@ public class TabGlycated extends Fragment {
                     sumValue = sumValue + infoBox.getValue();
                 }
                 double avgValue = sumValue/infoBoxList.size();
-                HealthSet.setHbA1cAVG(avgValue);
+                SetHealth.setHbA1cAVG(avgValue);
                 mainThreadHandler.post(()->{
-                    adapter = new GlycatedAdapter(infoBoxList);
+                    adapter = new Adapter_glycated(infoBoxList);
                     recyclerView.setAdapter(adapter);
 
                 });

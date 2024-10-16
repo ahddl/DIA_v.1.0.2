@@ -14,7 +14,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Edit_info extends AppCompatActivity {
-    // 선언한 View들
+    // 선언한 View
     private EditText heightEditText, weightEditText, ageEditText;
     private Button genderFemale, genderMale, type1, type2, typePreg, typeOther;
     private RadioButton emailRadio;
@@ -130,15 +130,15 @@ public class Edit_info extends AppCompatActivity {
                 return;
             }
             //전부 UserSet에 넣기
-            UserSet.setESub(isEmailSubscribed);
-            UserSet.setType(selectDiabetes);
-            UserSet.setHeight(height);
-            UserSet.setWeight(weight);
-            UserSet.setAge(age);
-            UserSet.setGender(selectedGender);
+            SetUser.setESub(isEmailSubscribed);
+            SetUser.setType(selectDiabetes);
+            SetUser.setHeight(height);
+            SetUser.setWeight(weight);
+            SetUser.setAge(age);
+            SetUser.setGender(selectedGender);
 
             try {
-                UserSet.saveUserSet();
+                SetUser.saveUserSet();
                 Toast.makeText(Edit_info.this, "저장되었습니다.", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 Log.d("EError", "Error saving user info: " + e.getMessage());
@@ -158,21 +158,21 @@ public class Edit_info extends AppCompatActivity {
         weightEditText = findViewById(R.id.weight);
         ageEditText = findViewById(R.id.age);
 
-        heightEditText.setText(String.valueOf(UserSet.getHeight()));
-        weightEditText.setText(String.valueOf(UserSet.getWeight()));
-        ageEditText.setText(String.valueOf(UserSet.getAge()));
+        heightEditText.setText(String.valueOf(SetUser.getHeight()));
+        weightEditText.setText(String.valueOf(SetUser.getWeight()));
+        ageEditText.setText(String.valueOf(SetUser.getAge()));
 
-        isEmailSubscribed = UserSet.getESub();
+        isEmailSubscribed = SetUser.getESub();
         emailRadio.setChecked(isEmailSubscribed);
 
         //성별 설정
-        selectedGender = UserSet.getGender();
+        selectedGender = SetUser.getGender();
         boolean isMale = (selectedGender == 'M');
         genderFemale.setSelected(!isMale);
         genderMale.setSelected(isMale);
 
         // 당뇨병 타입
-        selectDiabetes = UserSet.getType();
+        selectDiabetes = SetUser.getType();
         if(selectDiabetes=='1'){type1.setSelected(true);}
         else if(selectDiabetes=='2'){type2.setSelected(true);}
         else if(selectDiabetes=='p'){typePreg.setSelected(true);}

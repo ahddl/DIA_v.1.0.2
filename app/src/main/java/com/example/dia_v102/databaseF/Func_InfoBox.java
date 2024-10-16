@@ -73,7 +73,7 @@ public class Func_InfoBox {
                         Map<String, Double> dateSumMap = new TreeMap<>();  // 날짜별 합산 저장
                         Map<String, Integer> dateCountMap = new TreeMap<>();  // 날짜별 데이터 개수 저장
 
-                        // Firebase에서 날짜별로 데이터 합산
+                        // Firebase- 날짜 별로 데이터 합산
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             String tag = snapshot.child("tag1").getValue(String.class);
                             String date = snapshot.child("date").getValue(String.class);  // 날짜 필드
@@ -81,7 +81,7 @@ public class Func_InfoBox {
 
                             if(tag != null && tag.equals(tag1)) {
                                 if (date != null && value != null) {
-                                    // 날짜별로 값을 합산하고 개수를 증가시킴
+                                    // 날짜 별 값을 합산, 개수를 증가
                                     //noinspection DataFlowIssue
                                     dateSumMap.put(date, dateSumMap.getOrDefault(date, 0.0) + value);
                                     //noinspection DataFlowIssue
@@ -123,7 +123,7 @@ public class Func_InfoBox {
 
 
 
-    // 데이터를 받기 위한 인터페이스
+    // 데이터 받기 위한 인터페이스
     public interface OnDataReceivedListener {
         void onDataReceived(List<InfoBox> infoBoxList);
         void onDataFailed(Exception exception);

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.dia_v102.Alarm;
-import com.example.dia_v102.StopAlarm;
+import com.example.dia_v102.AlarmStop;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -15,7 +15,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Alarm.playAlarmSound(context);
 
         // 알람 중지 화면을 띄우기 위한 인텐트 실행
-        Intent stopAlarmIntent = new Intent(context, StopAlarm.class);
+        Intent stopAlarmIntent = new Intent(context, AlarmStop.class);
         stopAlarmIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  // 새로운 Task로 실행
         context.startActivity(stopAlarmIntent);  // 중지 화면(Activity) 실행
     }

@@ -171,11 +171,11 @@ public class InputBasicData extends AppCompatActivity {
                 return;
             }
             //전부 UserSet에 넣기
-            UserSet.setType(selectDiabetes);
-            UserSet.setHeight(height);
-            UserSet.setWeight(weight);
-            UserSet.setAge(age);
-            UserSet.setGender(selectedGender);
+            SetUser.setType(selectDiabetes);
+            SetUser.setHeight(height);
+            SetUser.setWeight(weight);
+            SetUser.setAge(age);
+            SetUser.setGender(selectedGender);
             //Log.d("Firebase", UserSet.getUserId()+"\n"+UserSet.getESub()+"\n"+UserSet.getNickname()+"\n"+UserSet.getHeight()+"\n"+UserSet.getWeight()+"\n"+UserSet.getAge()+"\n"+UserSet.getGender()+"\n"+UserSet.getType());
 
 
@@ -202,12 +202,12 @@ public class InputBasicData extends AppCompatActivity {
     private void registerUser() {
         Log.d("EError", "Error Register");
         // Firebase authentication 사용자 생성
-        mAuth.createUserWithEmailAndPassword(UserSet.getEmail(), UserSet.getPW())
+        mAuth.createUserWithEmailAndPassword(SetUser.getEmail(), SetUser.getPW())
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Log.d("EError", "Success Register");
                         // 회원가입 성공
-                        UserSet.loginComplete(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
+                        SetUser.loginComplete(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
                         Toast.makeText(InputBasicData.this, "Registration successful", Toast.LENGTH_SHORT).show();
                         // 다음 활동으로 이동 (원래는 InputTime)
                         Intent intent = new Intent(InputBasicData.this, MainActivity.class);

@@ -14,11 +14,11 @@ import com.example.dia_v102.databaseF.InfoBox;
 import java.util.Arrays;
 import java.util.List;
 
-public class BSAdapter extends RecyclerView.Adapter<BSAdapter.ViewHolder> {
+public class Adapter_bloodSugar extends RecyclerView.Adapter<Adapter_bloodSugar.ViewHolder> {
 
     private final List<InfoBox> bloodSugarList;
 
-    public BSAdapter(List<InfoBox> bloodSugarList) {
+    public Adapter_bloodSugar(List<InfoBox> bloodSugarList) {
         this.bloodSugarList = bloodSugarList;
     }
 

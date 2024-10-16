@@ -26,7 +26,7 @@ public class FragmentDiabetes extends Fragment {
         avgHbA1cView = view.findViewById(R.id.glycatedhemoglobin);
         nickView = view.findViewById(R.id.nickName);
         avgBlood = view.findViewById(R.id.averblood);
-        nickView.setText(UserSet.getNickname());
+        nickView.setText(SetUser.getNickname());
         TabLayout tabLayout = view.findViewById(R.id.tabdiabetes);
 
         // 탭 추가
@@ -75,18 +75,18 @@ public class FragmentDiabetes extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {}
         });
         // 데이터 변경 리스너 등록 (여기서 HealthSet 변경 사항을 감지-> notify 함수를 호출-> UI 값 갱신)
-        HealthSet.addBloodSugarChangeListener(this::updateAvgBlood);
-        HealthSet.addHbA1cChangeListener(this::updateAVGHbA1c);
+        SetHealth.addBloodSugarChangeListener(this::updateAvgBlood);
+        SetHealth.addHbA1cChangeListener(this::updateAVGHbA1c);
         return view;
     }
 
     // 평균 혈당량 업데이트 메서드
     private void updateAvgBlood() {
-        double avgBloodSugar = HealthSet.getBloodSugarAVG();
+        double avgBloodSugar = SetHealth.getBloodSugarAVG();
         avgBlood.setText(String.format(Locale.getDefault(),"평균 혈당량 %.2f mg/dL", avgBloodSugar));
     }
     private void updateAVGHbA1c(){
-        double avgHbA1c = HealthSet.getHbA1cAVG();
+        double avgHbA1c = SetHealth.getHbA1cAVG();
         avgHbA1cView.setText(String.format(Locale.getDefault(), "평균 당화혈색소 %.2f", avgHbA1c));
     }
 
@@ -94,8 +94,8 @@ public class FragmentDiabetes extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         // 리스너 제거
-        HealthSet.removeBloodSugarChangeListener(this::updateAvgBlood);
-        HealthSet.removeHbA1CChangeListener(this::updateAVGHbA1c);
+        SetHealth.removeBloodSugarChangeListener(this::updateAvgBlood);
+        SetHealth.removeHbA1CChangeListener(this::updateAVGHbA1c);
     }
 
 }

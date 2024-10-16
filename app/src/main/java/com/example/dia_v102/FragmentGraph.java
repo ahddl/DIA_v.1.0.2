@@ -44,7 +44,7 @@ public class FragmentGraph extends Fragment {
                         transaction.replace(R.id.tab_layout_container, new GraphDiabetes());
                         break;
                     case 2:
-                        transaction.replace(R.id.tab_layout_container, new temp_Activity());
+                        transaction.replace(R.id.tab_layout_container, new TabDayBloodSugar());
                 }
                 transaction.commit();
             }

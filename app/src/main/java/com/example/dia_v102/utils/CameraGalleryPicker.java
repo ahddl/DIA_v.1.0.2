@@ -11,7 +11,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 
-import com.example.dia_v102.userFood;
+import com.example.dia_v102.DietUserInput;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,7 +46,7 @@ public class CameraGalleryPicker {
                         openGallery(); // 갤러리 열기
                     } else {
                         //사용자 함수 추가.
-                        Intent intent = new Intent(context, userFood.class);
+                        Intent intent = new Intent(context, DietUserInput.class);
                         context.startActivity(intent);
                     }
                 });

@@ -4,7 +4,7 @@ import android.app.Application;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HealthSet extends Application {
+public class SetHealth extends Application {
     static double bloodSugarAVG;
     static double bloodSugarRecent;
     static double HbA1cAVG;
@@ -20,15 +20,16 @@ public class HealthSet extends Application {
 
     // 평균 혈당량 설정 및 리스너 호출
     public static void setBloodSugarAVG(double bloodSugarAVG) {
-        HealthSet.bloodSugarAVG = bloodSugarAVG;
+        SetHealth.bloodSugarAVG = bloodSugarAVG;
         notifyListeners(); // 리스너-변경 사항 알림
     }
 
     public static void setHbA1cAVG(double HbA1cAVG){
-        HealthSet.HbA1cAVG = HbA1cAVG;
+        SetHealth.HbA1cAVG = HbA1cAVG;
         notifyListeners();
     }
-    public static void setBloodSugarRecent(double bloodSugarRecent){HealthSet.bloodSugarRecent=bloodSugarRecent;}
+    public static void setBloodSugarRecent(double bloodSugarRecent){
+        SetHealth.bloodSugarRecent=bloodSugarRecent;}
 
 
     // 리스너 등록

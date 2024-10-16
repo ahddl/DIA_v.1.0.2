@@ -13,10 +13,10 @@ import com.example.dia_v102.databaseF.InfoBox;
 
 import java.util.List;
 
-public class GlycatedAdapter extends RecyclerView.Adapter<GlycatedAdapter.ViewHolder> {
+public class Adapter_glycated extends RecyclerView.Adapter<Adapter_glycated.ViewHolder> {
     private final List<InfoBox> GlycatedList;
 
-    public GlycatedAdapter(List<InfoBox> bloodSugarList) {
+    public Adapter_glycated(List<InfoBox> bloodSugarList) {
         this.GlycatedList = bloodSugarList;
     }
 
