@@ -96,7 +96,7 @@
             android:name=".GraphDiet"
             android:exported="false" />
         <activity
-            android:name=".TabDayBloodSugar"
+            android:name=".GraphDayBloodSugar"
             android:exported="false" />
         <activity
             android:name=".Alarm"
