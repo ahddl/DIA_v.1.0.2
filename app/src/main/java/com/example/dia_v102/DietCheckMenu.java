@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,7 +42,8 @@ public class DietCheckMenu extends AppCompatActivity {
 
     private static final String TAG = "CheckMenu";
     ImageView imageView1;
-    Button outputOk, outputNo, upBtn, downBtn;
+    Button outputOk, outputNo;
+    ImageButton upBtn, downBtn;
     TextView outputMenu, dateTime, quantity;
 
     Interpreter tflite;
