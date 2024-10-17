@@ -46,6 +46,7 @@ public class FragmentChatbot extends Fragment {
         sendButton.setOnClickListener(v -> {
             clicks++;
             if(clicks <= MAX_CLICK){
+                Toast.makeText(requireContext(), "3초정도 소요됩니다.", Toast.LENGTH_SHORT).show();
                 sendPromptToChatGPT();
             }
             else{

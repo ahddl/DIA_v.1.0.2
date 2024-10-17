@@ -27,7 +27,7 @@
             android:id="@+id/textChat2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="gpt 3.5 ver 을 사용하였습니다."
+            android:text="GPT-3.5-turbo 버전을 사용하였습니다."
             android:layout_marginTop="5dp"
             android:textSize="12sp" />
 
@@ -52,6 +52,6 @@
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:background="@drawable/button_background"
-            android:text="식단 추천" />
+            android:text="START" />
     </LinearLayout>
 </ScrollView>
