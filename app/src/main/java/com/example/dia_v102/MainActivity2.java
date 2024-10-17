@@ -41,6 +41,7 @@ public class MainActivity2 extends AppCompatActivity {
     FragmentDiabetes diabetes;
     FragmentChatbot chatting;
     FragmentGraph graph;
+    FragmentWarning danger;
 
     LinearLayout dietBtn, diabetesBtn, chatBtn, graphBtn;
     private  List<LinearLayout> tabButtons;
@@ -87,7 +88,10 @@ public class MainActivity2 extends AppCompatActivity {
                 onTabButtonSelected(chatBtn);
             } else if (id == R.id.bargraph) {
                 onTabButtonSelected(graphBtn);
-            } else if(id == R.id.setting_edit_info){
+            } else if (id == R.id.blood_sugar_warning){
+                //onTabButtonSelected();
+                replaceFragment(new FragmentWarning());
+            }else if(id == R.id.setting_edit_info){
                 Intent intent = new Intent(this, Edit_info.class);
                 startActivity(intent);
                 finish();
@@ -198,6 +202,7 @@ public class MainActivity2 extends AppCompatActivity {
         diabetes = new FragmentDiabetes();
         chatting = new FragmentChatbot();
         graph = new FragmentGraph();
+        danger = new FragmentWarning();
 
         if (tabButton.getId() == R.id.tabDiet) {
             return diet;
@@ -207,7 +212,7 @@ public class MainActivity2 extends AppCompatActivity {
             return chatting;
         } else if (tabButton.getId() == R.id.tabGraph) {
             return graph;
-        }
+        } //tab 추가하려면 여기
         return null; // 기본값
     }
 
