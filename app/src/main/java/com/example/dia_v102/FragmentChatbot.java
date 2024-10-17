@@ -36,28 +36,44 @@ public class FragmentChatbot extends Fragment {
     protected String API_KEY = "API KEY PUTIN";
     private final int MAX_CLICK = 3;
     private int clicks = 0;
+    Button sendButton;
+
+    private final Handler handler = new Handler();
+    private final Runnable reduceClicks = new Runnable() {
+        @Override
+        public void run() {
+            if (clicks > 0) {
+                clicks--;
+            }
+            handler.postDelayed(this, 10000); // 10초마다 실행
+        }
+    };
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState){
-        View view = inflater.inflate(R.layout.fragment_chatbot, container,false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_chatbot, container, false);
+
+        // 클릭 제한을 감소 핸들러 시작
+        handler.postDelayed(reduceClicks, 5000);
+
         ResponseView = view.findViewById(R.id.GPTRes);
-        Button sendButton = view.findViewById(R.id.sendButton);
+        sendButton = view.findViewById(R.id.sendButton);
 
         sendButton.setOnClickListener(v -> {
             clicks++;
-            if(clicks <= MAX_CLICK){
-                Toast.makeText(requireContext(), "3초정도 소요됩니다.", Toast.LENGTH_SHORT).show();
+            sendButton.setEnabled(false); // 버튼을 비활성화
+
+            if (clicks <= MAX_CLICK) {
+                Toast.makeText(requireContext(), "응답을 받아오고 있습니다.", Toast.LENGTH_SHORT).show();
                 sendPromptToChatGPT();
-            }
-            else{
+
+            } else {
                 Toast.makeText(requireContext(), "클릭을 너무 많이 하지 마세요.", Toast.LENGTH_SHORT).show();
             }
-
         });
+
         return view;
-
     }
-
     private void sendPromptToChatGPT() {
         String prompt = "식사 메뉴를 3가지 추천하라(번호와 이름만 출력)\n"
                 +"그 아래에 영양소 섭취 상태에 근거한 추천 이유를 간략히 서술하라\n"
@@ -133,5 +149,6 @@ public class FragmentChatbot extends Fragment {
     // UI 스레드-TextView 업데이트
     private void updateUI(String message) {
         mainHandler.post(() -> ResponseView.setText(message));
+        sendButton.setEnabled(true);
     }
 }
