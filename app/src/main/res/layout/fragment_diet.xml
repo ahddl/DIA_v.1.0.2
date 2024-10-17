@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
-                android:background="@color/dark_blue"
+                android:background="@color/blue_grey"
                 android:text="카메라로!\n음식을 인식해보세요"
                 android:textColor="@color/white"
                 android:textSize="24dp"
