@@ -20,8 +20,6 @@ public class FragmentGraph extends Fragment {
 
         TabLayout tabLayout = rootView.findViewById(R.id.store_fragment_tablayout);
 
-        tabLayout.addTab(tabLayout.newTab().setText("일당 혈당 변화"));
-        //tabLayout.addTab(tabLayout.newTab().setText("혈당 변화량"));
 
         // 첫 번째 탭(TabBloodsugar) 기본 선택.x
         if (saveInstanceState == null) {
