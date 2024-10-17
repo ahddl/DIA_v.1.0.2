@@ -27,18 +27,23 @@
             android:title="그래프"
             android:icon="@drawable/baseline_build_24"/>
 
+        <item
+            android:id="@+id/blood_sugar_warning"
+            android:title="혈당경고식단"
+            android:icon="@drawable/baseline_new_releases_24"/>
+
     </group>
 
     <item
         android:title="설정">
 
         <menu>
-            <item
+            <!--<item
                 android:id="@+id/setting_qna"
                 android:title="QnA" />
             <item
                 android:id="@+id/setting_notice"
-                android:title="공지사항" />
+                android:title="공지사항" />-->
             <item
                 android:id="@+id/setting_alarm_settings"
                 android:title="알람설정" />

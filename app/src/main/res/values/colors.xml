@@ -3,12 +3,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="light_blue_grey">#EAEAEA</color>
-    <color name="pale_grey">#FFBDBEBD</color>
+    <color name="light_blue_grey">#F0F0F0</color>
+    <color name="pale_grey">#D1D9DF</color>
 
-    <color name="dark_blue">#32357a</color>
-    <color name="light_blue">#f2f1f6</color>
-    <color name="light_blue_more">#D7D6DC</color>
+    <color name="dark_blue">#2A384C</color>
+    <color name="blue_grey">#A0B2C2</color>
+    <color name="light_blue">#F0F0F0</color>
+    <color name="light_blue_more">#D1D9DF</color>
+
 
     <color name="pastel_rainbow1">#ffadad</color>
     <color name="pastel_rainbow2">#ffd6a5</color>
