@@ -49,39 +49,39 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(libs.gson)
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
-    implementation("com.google.code.gson:gson:2.8.6")
     implementation("com.github.AnyChart:AnyChart-Android:1.1.5")
-    implementation("org.tensorflow:tensorflow-lite:2.8.0")
-    implementation("org.tensorflow:tensorflow-lite-support:0.3.1")
-    implementation("org.tensorflow:tensorflow-lite-metadata:0.3.0")
-    implementation ("com.google.android.material:material:1.9.0")
-    implementation ("androidx.appcompat:appcompat:1.6.1")
+    implementation(libs.tensorflow.lite)
+    implementation(libs.tensorflow.lite.support)
+    implementation(libs.tensorflow.lite.metadata)
+    implementation (libs.material)
+    implementation (libs.appcompat)
 
-    //아래는 roomdb를 위한 의존성입니다.
-    implementation("androidx.room:room-runtime:2.4.1")
-    annotationProcessor("androidx.room:room-compiler:2.4.1")
+    //roomDB 관련
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
 
-    //하단은 Firebase연결을 위한 코드입니다.
+    //Firebase 연결을 위한 코드
     // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation(platform(libs.firebase.bom))
     implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-auth:23.0.0")
+    implementation(libs.firebase.auth)
 
 
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
 
-    //chatbot쪽 라이브러리
+    //chatbot 관련 라이브러리
     // OkHttp 라이브러리
-    implementation("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation(libs.okhttp)
 
     // JSON 처리 라이브러리 (필요 시)
-    implementation("org.json:json:20210307") // JSON 객체를 쉽게 처리하기 위한 라이브러리
+    implementation(libs.json) // JSON 객체를 쉽게 처리하기 위한 라이브러리
 
     // AndroidX Fragment
-    implementation("androidx.fragment:fragment:1.8.3") // Fragment 라이브러리 (최신 버전으로 업데이트하세요)
+    implementation(libs.fragment) // Fragment 라이브러리 (최신 버전으로 업데이트하세요)
 
 
     // Add the dependencies for any other desired Firebase products
