@@ -16,7 +16,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         // 알람 중지 화면을 띄우기 위한 인텐트 실행
         Intent stopAlarmIntent = new Intent(context, AlarmStop.class);
-        stopAlarmIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  // 새로운 Task로 실행
+        stopAlarmIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  // 새로운 Task 실행
         context.startActivity(stopAlarmIntent);  // 중지 화면(Activity) 실행
     }
 }

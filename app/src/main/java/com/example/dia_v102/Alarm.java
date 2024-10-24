@@ -30,10 +30,10 @@ public class Alarm extends AppCompatActivity {
         // SharedPreferences 초기화
         sharedPreferences = getSharedPreferences("AlarmPrefs", MODE_PRIVATE);
 
-        // 권한 요청을 액티비티에 들어오자마자 수행
+        // 권한 요청
         requestAlarmPermission();
 
-        // 혈당 알람 버튼 클릭 시 다이얼로그 호출
+        // 혈당 알람 버튼 클릭 시 dialog 호출
         findViewById(R.id.btnBloodSugarAlarm).setOnClickListener(v -> showAlarmConfirmationDialog());
 
     }
@@ -50,7 +50,7 @@ public class Alarm extends AppCompatActivity {
         }
     }
 
-    // 알람 설정 동의를 위한 다이얼로그 호출
+    // 알람 설정 동의를 위한 dialog 호출
     private void showAlarmConfirmationDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("혈당 알람 설정")
@@ -66,14 +66,14 @@ public class Alarm extends AppCompatActivity {
                 .show();
     }
 
-    // SharedPreferences에 혈당 알람 동의 여부 저장
+    // SharedPreferences -혈당 알람 동의 여부 저장
     private void saveAlarmAgreement(boolean isAgreed) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("isBloodSugarAlarmAgreed", isAgreed);
         editor.apply();
     }
 
-    // 알람을 설정하는 함수 (DietCheckMenu에서 호출됨)
+    // 알람을 설정 (DietCheckMenu에서 호출됨)
     public static void setBloodSugarAlarm(Context context, int secondsLater) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("AlarmPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -85,18 +85,18 @@ public class Alarm extends AppCompatActivity {
         }
 
         try {
-            // 알람 발생 시 실행할 인텐트 설정 (AlarmReceiver로 전송)
+            // 알람 발생 시 실행할 인텐트 설정 (AlarmReceiver 전송)
             Intent intent = new Intent(context, AlarmReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
-            // 현재 시간으로부터 secondsLater 후에 알람 설정
+            // 현재 시간에서 secondsLater 후에 알람 설정
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.SECOND, secondsLater);
 
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 
-            // 알람이 등록되면 플래그를 true로 설정
+            // 알람이 등록되면 플래그 true
             editor.putBoolean(ALARM_FLAG, true);
             editor.apply();
 
@@ -107,7 +107,7 @@ public class Alarm extends AppCompatActivity {
         }
     }
 
-    // 알람 사운드를 재생하는 함수 (AlarmReceiver에서 호출될 예정)
+    // 알람 재생 (AlarmReceiver에서 호출될 예정)
     public static void playAlarmSound(Context context) {
         mediaPlayer = MediaPlayer.create(context, R.raw.alarm_sound);  // raw 폴더의 alarm_sound.mp3 재생
         mediaPlayer.start();
@@ -118,7 +118,7 @@ public class Alarm extends AppCompatActivity {
         SharedPreferences sharedPreferences = context.getSharedPreferences("AlarmPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        // 플래그를 false로 설정하여 새로운 알람을 설정할 수 있게 함
+        // 플래그 false 설정-> 새로운 알람을 설정할 수 있게 함
         editor.putBoolean(ALARM_FLAG, false);
         editor.apply();
 

@@ -40,17 +40,17 @@ public class DietUserInput extends AppCompatActivity {
             String sodium = foodSodium.getText().toString();
             String sugar = foodSugar.getText().toString();
 
-            // 모든 입력값이 비어있는지 확인
+            // 모든 입력값 확인
             if (name.isEmpty() || calories.isEmpty() || carbohydrate.isEmpty() || protein.isEmpty() ||
                     fat.isEmpty() || cholesterol.isEmpty() || sodium.isEmpty() || sugar.isEmpty()) {
-                // 하나라도 비어있다면 경고 메시지
+                // 비어있다면 경고 메시지
                 Toast.makeText(DietUserInput.this, "모든 필드를 입력해주세요.", Toast.LENGTH_SHORT).show();
             } else {
-                // 입력값이 모두 존재하면 /로 연결된 문자열을 만듦
+                // 입력값 모두 존재 => /로 연결된 문자열로 만든다
                 String foodInfoString = name + "/" + calories + "/" + carbohydrate + "/" + protein + "/" +
                         fat + "/" + cholesterol + "/" + sodium + "/" + sugar;
                 Log.d("whyNull", foodInfoString);
-                // 인텐트를 사용하여 다음 액티비티로 데이터 전달
+                // 인텐트로 데이터 전달
                 Intent intent = new Intent(DietUserInput.this, DietOutputNutrient.class);
                 intent.putExtra("userInput", foodInfoString);
                 startActivity(intent);

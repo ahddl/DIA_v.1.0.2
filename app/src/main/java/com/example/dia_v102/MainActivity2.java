@@ -116,7 +116,7 @@ public class MainActivity2 extends AppCompatActivity {
         // 제목 설정
         collapsingToolbarLayout.setTitle("카메라로! /n 음식을 인식해보세요");
 
-        // AppBarLayout의 상태 변화에 따라 제목 변경
+        // AppBarLayout 상태 변화에 따라 제목 변경
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
@@ -183,8 +183,8 @@ public class MainActivity2 extends AppCompatActivity {
         ImageView icon;
         TextView text;
         for (LinearLayout tabButton : tabButtons) {
-            icon = tabButton.findViewById(R.id.imgview);
-            text = tabButton.findViewById(R.id.textview);
+            icon = tabButton.findViewById(R.id.imgView);
+            text = tabButton.findViewById(R.id.textView);
             if (tabButton == selectedButton) {
                 // 선택된 버튼 상태 설정
                 icon.setColorFilter(color, PorterDuff.Mode.SRC_IN); // 아이콘 색상 변경
@@ -217,8 +217,8 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) { // 메뉴를 인플레이트하는 메서드 추가
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu); // toolbar_menu.xml 메뉴 리소스 인플레이트
+    public boolean onCreateOptionsMenu(Menu menu) { // 메뉴를 inflate 하는 메서드 추가
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu); // toolbar_menu.xml 메뉴 리소스 inflate
 
         //toolbar_menu 알람, 더보기(아직 무슨 기능 넣을지 미정) 설정 여기서 해야함
         return true;

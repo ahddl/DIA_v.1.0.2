@@ -96,7 +96,7 @@ public class Func_FoodCal {
                 });
     }
 
-    // 데이터를 받기 위한 인터페이스
+    // 데이터 receive 인터페이스
     public interface OnDataReceivedListener {
         void onDataReceived(List<FoodCal> foodCalList);
         void onDataFailed(Exception exception);

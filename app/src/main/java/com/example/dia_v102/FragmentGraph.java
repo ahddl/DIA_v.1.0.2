@@ -18,7 +18,7 @@ public class FragmentGraph extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState){
         View rootView = inflater.inflate(R.layout.fragment_graph, container,false);
 
-        TabLayout tabLayout = rootView.findViewById(R.id.store_fragment_tablayout);
+        TabLayout tabLayout = rootView.findViewById(R.id.store_fragment_tabLayout);
 
 
         // 첫 번째 탭(TabBloodsugar) 기본 선택.x

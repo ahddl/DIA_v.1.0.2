@@ -20,9 +20,9 @@ public class imgUtil {
     public static void saveImage(Context context, Bitmap bitmap, String imageName) {
         FileOutputStream fos = null;
         try {
-            // 내부 저장소에 파일 경로 설정
+            // 내부 저장소 파일 경로 설정
             fos = context.openFileOutput(imageName, Context.MODE_PRIVATE);
-            // 비트맵을 JPEG 형식으로 저장
+            // 비트맵-> JPEG 저장
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
         } catch (Exception e) {
             Log.d("imgSave", Objects.requireNonNull(e.getMessage()));
@@ -39,9 +39,9 @@ public class imgUtil {
     public static Bitmap loadImage(Context context, String imageName) {
         FileInputStream fis = null;
         try {
-            // 내부 저장소에서 파일 경로 설정
+            // 내부 저장소 파일 경로 설정
             fis = context.openFileInput(imageName);
-            // 파일에서 비트맵으로 변환
+            // 파일-> 비트맵 변환
             return BitmapFactory.decodeStream(fis);
         } catch (Exception e) {
             Log.d("imgLoad", Objects.requireNonNull(e.getMessage()));
@@ -62,7 +62,7 @@ public class imgUtil {
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
         } else {
-            // 이미지가 없을 경우에 대한 처리
+            // 이미지 없을 경우의 placeholder
             imageView.setImageResource(R.drawable.placeholder); // 대체 이미지 설정
         }
     }

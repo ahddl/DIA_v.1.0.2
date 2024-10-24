@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_round_remove_24"
         android:layout_gravity="center|top"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:contentDescription="테두리" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,15 +27,16 @@
             android:textColor="@color/dark_blue"
             android:layout_marginStart="12dp"
             android:layout_marginTop="5dp"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
         <ImageView
             android:id="@+id/close_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_close_24"
-            android:layout_marginLeft="270dp"
-            android:layout_marginTop="8dp" />
+            android:layout_marginStart="270dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="CLOSE" />
 
     </LinearLayout>
 
@@ -115,7 +117,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="공복혈당(=자기 전, 기타)"
+                android:text="공복 혈당(=자기 전, 기타)"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:padding="8dp" />
@@ -139,7 +141,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="식전혈당"
+                android:text="식전 혈당"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:padding="8dp" />
@@ -163,7 +165,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="식후혈당(식후 2시간)"
+                android:text="식후 혈당(식후 2시간)"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:padding="8dp" />

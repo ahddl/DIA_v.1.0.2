@@ -29,13 +29,13 @@ public class Adapter_glycated extends RecyclerView.Adapter<Adapter_glycated.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        InfoBox glycated_hemo = GlycatedList.get(position);
+        InfoBox glycated_hemoglobin = GlycatedList.get(position);
 
-        holder.recodeTime.setText(glycated_hemo.getTime());
-        holder.valueTextView.setText(String.valueOf(glycated_hemo.getValue()));
+        holder.recodeTime.setText(glycated_hemoglobin.getTime());
+        holder.valueTextView.setText(String.valueOf(glycated_hemoglobin.getValue()));
 
         // 당화혈색소 값에 따라 dot_view_gly 색상 변경
-        double glycatedValue = glycated_hemo.getValue();
+        double glycatedValue = glycated_hemoglobin.getValue();
         int dotColor;
 
         if (glycatedValue < 5.7) {

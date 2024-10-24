@@ -19,7 +19,7 @@
         android:layout_marginTop="17dp"
         android:layout_marginBottom="27dp"
         android:text="Back"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/Linear1"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/button_background_selector"
             android:text="Type 1"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             style="@style/Widget.AppCompat.Button"
@@ -90,7 +90,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/button_background_selector"
             android:text="Type 2"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             style="@style/Widget.AppCompat.Button"
@@ -101,7 +101,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/button_background_selector"
             android:text="임신성 당뇨병"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             style="@style/Widget.AppCompat.Button"
@@ -112,7 +112,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/button_background_selector"
             android:text="그 외"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             style="@style/Widget.AppCompat.Button"

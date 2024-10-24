@@ -23,7 +23,7 @@ import java.util.Objects;
 public class InputBasicData extends AppCompatActivity {
 
     FirebaseAuth mAuth;
-    /* 기본 정보 키, 몸무게, 만나이, 성별 입력하는 클래스*/
+    /* 기본 정보 키, 몸무게, 만나이, 성별 입력 클래스*/
 
     private char selectedGender = '\0';
     private char selectDiabetes ='\0';
@@ -37,7 +37,7 @@ public class InputBasicData extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
-        /*뒤로 가기 버튼 -- 회원가입 화면으로 이동*/
+        /*뒤로 가기 버튼 -- 회원가입 화면 이동*/
         Button back_basic = findViewById(R.id.back_basic);
         back_basic.setOnClickListener(v -> {
             Intent signupintent = new Intent(InputBasicData.this, InputSignup.class);
@@ -105,7 +105,7 @@ public class InputBasicData extends AppCompatActivity {
         typePreg.setOnClickListener(selectClickListener);
         typeOther.setOnClickListener(selectClickListener);
 
-        /*완료버튼 -- 누르면 활동량입력-하루시간단위 화면으로 넘어감 (Signup->InputBasicData->InputTime->InputWeek->Diatype)*/
+        /*완료 버튼 -- 누르면 활동량 입력-하루 시간 단위 화면 넘어감 (Signup->InputBasicData->InputTime->InputWeek->Diatype)*/
 
         EditText heightEditText = findViewById(R.id.height);
         EditText weightEditText = findViewById(R.id.weight);
@@ -139,7 +139,7 @@ public class InputBasicData extends AppCompatActivity {
             }
 
             if (selectDiabetes=='\0'){
-                Toast.makeText(InputBasicData.this, "당뇨병 타입을 선택해주세요.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(InputBasicData.this, "당뇨병 타입을 선택하세요.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -170,7 +170,7 @@ public class InputBasicData extends AppCompatActivity {
                 Toast.makeText(InputBasicData.this, "나이는 0~150사이로 입력해야합니다.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            //전부 UserSet에 넣기
+            //전부 UserSet 넣기
             SetUser.setType(selectDiabetes);
             SetUser.setHeight(height);
             SetUser.setWeight(weight);
@@ -209,7 +209,7 @@ public class InputBasicData extends AppCompatActivity {
                         // 회원가입 성공
                         SetUser.loginComplete(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
                         Toast.makeText(InputBasicData.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                        // 다음 활동으로 이동 (원래는 InputTime)
+                        // 다음 활동 이동 (원래는 InputTime)
                         Intent intent = new Intent(InputBasicData.this, MainActivity.class);
                         startActivity(intent);
                     } else {

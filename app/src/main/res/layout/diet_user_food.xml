@@ -26,7 +26,7 @@
                 android:id="@+id/food_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="음식 이름을 기입하세요"
+                android:hint="음식 이름을 입력하세요"
                 android:layout_marginStart="10sp"
                 android:inputType="text" />
         </LinearLayout>

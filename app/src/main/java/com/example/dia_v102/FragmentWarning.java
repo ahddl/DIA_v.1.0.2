@@ -52,7 +52,7 @@ public class FragmentWarning extends Fragment {
             @Override
             public void onDataFailed(Exception exception) {
                 // 에러 처리
-                Toast.makeText(getContext(), "데이터를 불러오는 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "데이터를 불러오는 중 오류 발생", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -76,13 +76,13 @@ public class FragmentWarning extends Fragment {
         maxTextView.setText(String.format(Locale.getDefault(), "%.2f", max));
         maxTextView.setPadding(8, 8, 8, 8);
 
-        // 각 텍스트뷰를 행에 추가
+        // 각 textView 행에 추가
         row.addView(foodTextView);
         row.addView(averageTextView);
         row.addView(minTextView);
         row.addView(maxTextView);
 
-        // 테이블 레이아웃에 행을 추가
+        // 테이블 레이아웃- 행을 추가
         tableLayout.addView(row);
     }
 

@@ -45,9 +45,9 @@ public class TabGlycated extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // fragment_tab_glycated 레이아웃을 사용하여 view를 생성
+        // fragment_tab_glycated 레이아웃- view 생성
         View view = inflater.inflate(R.layout.tab_glycated, container, false);
-        Func_InfoBox FinfoBox = new Func_InfoBox();
+        Func_InfoBox FInfoBox = new Func_InfoBox();
 
         // UI 요소 참조
         EditText GlycatedInput = view.findViewById(R.id.glycated);
@@ -67,7 +67,7 @@ public class TabGlycated extends Fragment {
         saveButton.setOnClickListener(v -> {
             //String tag2 = dropdownMenu.getSelectedItem().toString();
             double glycated = Double.parseDouble(GlycatedInput.getText().toString());
-            FinfoBox.saveInfoBox("당화혈색소", null, glycated);
+            FInfoBox.saveInfoBox("당화혈색소", null, glycated);
             Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
             loadGlycatedData(DateUtil.dateToString(new Date()));
         });
@@ -90,7 +90,7 @@ public class TabGlycated extends Fragment {
         dialog.show();
     }
 
-    // 현재 시간을 nowTime TextView에 업데이트 하는 메서드
+    // 현재 시간을 nowTime TextView 업데이트 하는 메서드
     private void updateNowTime() {
         String currentTime = DateUtil.dateToString(new Date()) + " " + DateUtil.HourNMin();
         nowTime.setText(currentTime);

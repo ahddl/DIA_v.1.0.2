@@ -50,7 +50,7 @@
         android:layout_height="520dp"
         android:layout_marginTop="16dp"
         android:layout_weight="1"
-        android:background="@drawable/custom_backgraoud"
+        android:background="@drawable/custom_background"
         android:backgroundTint="@color/light_blue_grey"
         android:padding="16dp">
 

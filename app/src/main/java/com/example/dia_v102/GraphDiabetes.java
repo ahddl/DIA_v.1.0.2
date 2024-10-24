@@ -56,7 +56,7 @@ public class GraphDiabetes extends Fragment {
 
         int index = 0;
         for (Map.Entry<String, Double> entry : dateSumMap.entrySet()) {
-            entries.add(new BarEntry(index, entry.getValue().floatValue())); // 막대 그래프 Entry에 값 추가
+            entries.add(new BarEntry(index, entry.getValue().floatValue())); // 막대 그래프 Entry 값 추가
             dateLabels.add(entry.getKey().substring(5)); // 날짜 레이블 추가
             index++;
         }
@@ -78,10 +78,10 @@ public class GraphDiabetes extends Fragment {
         barChart.setFitBars(true); // 그래프 막대가 차트에 맞도록 설정
         barChart.invalidate(); // 차트 새로고침
 
-        // 처음에 최대 7개의 항목만 표시되게 설정
+        // 처음에 최대 7개의 항목만 표시 설정
         barChart.setVisibleXRangeMaximum(7);
 
-        // 가장 최근 데이터로 화면을 이동 (마지막 7개를 보여줌)
+        // 화면을 최근 데이터 이동 (마지막 7개를 보여줌)
         if (dateSumMap.size() > 7) {
             barChart.moveViewToX(dateSumMap.size() - 7);
         }

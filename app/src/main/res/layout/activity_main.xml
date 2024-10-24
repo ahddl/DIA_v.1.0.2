@@ -74,7 +74,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnlogin"
+                android:id="@+id/loginBtn"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
@@ -84,7 +84,7 @@
                 android:background="@drawable/button_background"
                 android:text="로그인"
                 android:textColor="@color/white"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -93,26 +93,26 @@
                 app:layout_constraintVertical_bias="0.007" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/joinbotton"
+                android:id="@+id/joinBtn"
                 android:layout_width="0dp"
                 android:layout_height="32dp"
-                android:layout_below="@id/btnlogin"
+                android:layout_below="@id/loginBtn"
                 android:layout_marginStart="56dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="56dp"
                 android:background="@drawable/button_background"
                 android:text="회원가입"
                 android:textColor="@color/white"
-                android:textSize="12dp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnlogin"
+                app:layout_constraintTop_toBottomOf="@+id/loginBtn"
                 app:layout_constraintVertical_bias="0.005" />
 
             <!-- <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/googlelogin"
+                android:id="@+id/googleLogin"
                 android:layout_width="0dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="56dp"
@@ -125,7 +125,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/joinbotton"
+                app:layout_constraintTop_toBottomOf="@+id/joinBtn"
                 app:layout_constraintVertical_bias="0.044" />-->
 
             <androidx.appcompat.widget.AppCompatButton
@@ -136,15 +136,15 @@
                 android:layout_marginTop="19dp"
                 android:layout_marginEnd="56dp"
                 android:background="@drawable/button_background"
-                android:text="아이디찾기"
+                android:text="아이디 찾기"
                 android:textColor="@color/white"
-                android:textSize="12dp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.992"
                 app:layout_constraintStart_toEndOf="@+id/findPW"
                 app:layout_constraintStart_toStartOf="@+id/findPW"
-                app:layout_constraintTop_toBottomOf="@+id/joinbotton"
+                app:layout_constraintTop_toBottomOf="@+id/joinBtn"
                 app:layout_constraintVertical_bias="0.02" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -154,12 +154,12 @@
                 android:layout_marginStart="56dp"
                 android:layout_marginTop="19dp"
                 android:background="@drawable/button_background"
-                android:text="비밀번호재설정"
+                android:text="비밀번호 재설정"
                 android:textColor="@color/white"
-                android:textSize="12dp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/joinbotton"
+                app:layout_constraintTop_toBottomOf="@+id/joinBtn"
                 app:layout_constraintVertical_bias="0.02" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

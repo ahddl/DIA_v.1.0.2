@@ -68,7 +68,7 @@ public class TabBloodsugar extends Fragment {
         nowTime.setText(currentTime);*/
 
         // 날짜 및 시간을 표시할 TextView 참조
-        nowTime = view.findViewById(R.id.nowtime);
+        nowTime = view.findViewById(R.id.nowTime);
         updateNowTime();
 
         // info 버튼 클릭 리스너 추가

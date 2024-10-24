@@ -59,7 +59,7 @@ public class DietCheckMenu extends AppCompatActivity {
         imageView1 = findViewById(R.id.imageView1);
         outputOk = findViewById(R.id.outputOk);
         outputNo = findViewById(R.id.outputNo);
-        outputMenu = findViewById(R.id.outputmenu);
+        outputMenu = findViewById(R.id.outputMenu);
         dateTime = findViewById(R.id.dateTime);
 
         upBtn = findViewById(R.id.up);

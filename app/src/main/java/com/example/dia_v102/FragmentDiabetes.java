@@ -22,12 +22,11 @@ public class FragmentDiabetes extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_diabetes, container,false);
-        avgBlood = view.findViewById(R.id.averblood);
+        avgBlood = view.findViewById(R.id.avgBlood);
         avgHbA1cView = view.findViewById(R.id.glycatedhemoglobin);
         nickView = view.findViewById(R.id.nickName);
-        avgBlood = view.findViewById(R.id.averblood);
         nickView.setText(SetUser.getNickname());
-        TabLayout tabLayout = view.findViewById(R.id.tabdiabetes);
+        TabLayout tabLayout = view.findViewById(R.id.tabView);
 
         // 탭 추가
         tabLayout.addTab(tabLayout.newTab().setText("혈당"));

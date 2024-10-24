@@ -24,7 +24,7 @@ public class InputTerms extends AppCompatActivity {
         btnNext = findViewById(R.id.nextBtn);
         CheckBox cbAgree = findViewById(R.id.cb_agree);
         term.setText(termString);
-        // '이전' 버튼 클릭 시 처음으로 이동
+        // '이전' 버튼 클릭 시 MainActivity 이동
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(InputTerms.this,MainActivity.class);
             startActivity(intent);

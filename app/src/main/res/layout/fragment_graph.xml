@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/store_fragment_tablayout"
+            android:id="@+id/store_fragment_tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -23,12 +23,12 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="식단변화량" />
+                android:text="식단 변화량" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="혈당변화량"/>
+                android:text="혈당 변화량"/>
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/store_fragment_tablayout">
+            app:layout_constraintTop_toBottomOf="@+id/store_fragment_tabLayout">
 
         </FrameLayout>
     </LinearLayout>

@@ -18,7 +18,7 @@
         android:layout_marginTop="17dp"
         android:layout_marginBottom="27dp"
         android:text="Back"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/Linear1"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,9 @@
                 android:ems="10"
                 android:inputType="text"
                 tools:layout_editor_absoluteX="55dp"
-                tools:layout_editor_absoluteY="144dp" />
+                tools:layout_editor_absoluteY="144dp"
+                android:autofillHints="emailAddress"
+                tools:ignore="LabelFor" />
 
             <!--<androidx.appcompat.widget.AppCompatButton
                 style="@style/Widget.AppCompat.Button"
@@ -106,7 +108,7 @@
             android:ems="10"
             android:hint="별명을 입력하세요"
             android:inputType="text"
-            android:textSize="10sp"
+            android:textSize="11sp"
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="210dp" />
 
@@ -125,7 +127,7 @@
             android:ems="10"
             android:hint="소문자, 특수문자 1개 총 7문자 이상 포함해야합니다."
             android:inputType="textPassword"
-            android:textSize="10sp"
+            android:textSize="11sp"
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="267dp" />
 
@@ -144,7 +146,7 @@
             android:ems="10"
             android:hint="소문자, 특수문자 1개 총 7문자 이상 포함해야합니다."
             android:inputType="textPassword"
-            android:textSize="10sp"
+            android:textSize="11sp"
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="333dp" />
 
@@ -170,7 +172,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="이메일 수신에 동의합니다."
-            android:textSize="10sp"
+            android:textSize="11sp"
             />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -179,7 +181,7 @@
             android:layout_width="80dp"
             android:layout_height="35dp"
             android:text="완료"
-            android:textSize="10sp"
+            android:textSize="11sp"
             android:layout_marginTop="16dp"
             android:textColor="@color/white"
             android:background="@drawable/button_background"/>

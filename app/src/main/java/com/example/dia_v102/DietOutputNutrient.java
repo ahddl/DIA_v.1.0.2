@@ -48,7 +48,7 @@ public class DietOutputNutrient extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.diet_output_nutient);
 
-        outputMenu1 = findViewById(R.id.outputmenu1);
+        outputMenu1 = findViewById(R.id.outputMenu1);
         nutList = findViewById(R.id.nutList);
 
         dropdownMenu = findViewById(R.id.dropdown_menu);

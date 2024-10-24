@@ -28,7 +28,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="당뇨관리 아직 늦지 않았습니다."
+        android:text="당뇨 관리 아직 늦지 않았습니다."
         android:textColor="@color/white"
         android:textSize="12sp"
         android:layout_marginBottom="30dp"/>

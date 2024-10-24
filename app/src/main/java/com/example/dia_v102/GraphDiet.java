@@ -80,8 +80,8 @@ public class GraphDiet extends Fragment {
             dates.add(item.getDate().substring(5)); // 날짜 형식
             // 막대의 인덱스 설정
             carbEntries.add(new BarEntry(index, (float) item.getCarbohydrate()));
-            proteinEntries.add(new BarEntry(index + 1f, (float) item.getProtein()));
-            fatEntries.add(new BarEntry(index + 2f, (float) item.getFat()));
+            proteinEntries.add(new BarEntry(index + 0.1f, (float) item.getProtein()));
+            fatEntries.add(new BarEntry(index + 0.2f, (float) item.getFat()));
             index++; // 인덱스 증가
         }
 
@@ -102,7 +102,7 @@ public class GraphDiet extends Fragment {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
         BarData barData = new BarData(carbohydratesDataSet, proteinDataSet, fatDataSet);
-        barData.setBarWidth(1f); // 막대의 너비 설정
+        barData.setBarWidth(0.3f); // 막대의 너비 설정
         barChart.setData(barData);
 
         barChart.getAxisLeft().setDrawGridLines(false);

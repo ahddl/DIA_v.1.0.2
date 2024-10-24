@@ -30,7 +30,7 @@
         <item
             android:id="@+id/blood_sugar_warning"
             android:title="혈당경고식단"
-            android:icon="@drawable/baseline_new_releases_24"/>
+            android:icon="@drawable/baseline_menu_24"/>
 
     </group>
 

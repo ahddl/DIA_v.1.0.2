@@ -1,6 +1,8 @@
 package com.example.dia_v102.database;
 
 import android.content.Context;
+import android.util.Log;
+
 import androidx.room.Room;
 
 //import com.example.dia_v102.dao.DietImageDao;
@@ -13,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DatabaseProvider {
     private static volatile AppDatabase INSTANCE;
@@ -30,7 +33,7 @@ public class DatabaseProvider {
         }
         return INSTANCE;
     }
-    // CSV 파일을 파싱하여 데이터를 DB에 삽입하는 메서드
+    // CSV 파일 파싱-데이터 DB에 삽입
     public static void parseCsvAndInsertToDB(Context context, int csvResourceId) {
         AppDatabase db = getDatabase(context);
         Food_menuDao foodMenuDao = db.food_menuDao();
@@ -62,12 +65,12 @@ public class DatabaseProvider {
             }
             reader.close();
 
-            // 데이터베이스에 삽입
+            // 데이터베이스 삽입
             if (!foodMenuList.isEmpty()) {
                 foodMenuDao.insertAll(foodMenuList);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("Parsing", Objects.requireNonNull(e.getMessage()));
         }
     }
 }

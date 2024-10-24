@@ -26,14 +26,14 @@
             android:textColor="@color/dark_blue"
             android:layout_marginStart="12dp"
             android:layout_marginTop="5dp"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
         <ImageView
             android:id="@+id/close_button_gly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_close_24"
-            android:layout_marginLeft="210dp"
+            android:layout_marginStart="210dp"
             android:layout_marginTop="8dp" />
 
     </LinearLayout>

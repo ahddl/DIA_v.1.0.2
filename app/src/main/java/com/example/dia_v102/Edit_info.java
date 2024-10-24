@@ -94,7 +94,7 @@ public class Edit_info extends AppCompatActivity {
 
         Button saveButton = findViewById(R.id.saveInfo);
         saveButton.setOnClickListener(v->{
-            // 입력값 가져오기
+            // 입력값
             String heightText = heightEditText.getText().toString();
             String weightText = weightEditText.getText().toString();
             String ageText = ageEditText.getText().toString();

@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="회원가입시 입력하였던 이메일로 비밀번호 재설정 메일이 전송됩니다." />
+            android:text="회원가입 시 입력한 이메일로 비밀번호 재설정 메일이 전송됩니다." />
 
         <EditText
             android:id="@+id/editTextEmail"
@@ -47,7 +47,8 @@
             android:layout_height="50sp"
             android:layout_marginBottom="16dp"
             android:hint="Enter your email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:autofillHints="emailAddress" />
 
         <Button
             android:id="@+id/resetPasswordButton"

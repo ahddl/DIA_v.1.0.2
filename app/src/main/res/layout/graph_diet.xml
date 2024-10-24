@@ -28,7 +28,7 @@
         <Spinner
             android:id="@+id/dropdown_menu"
             android:layout_width="130dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="0.3"
             android:entries="@array/dropdown_items"
             android:spinnerMode="dropdown"

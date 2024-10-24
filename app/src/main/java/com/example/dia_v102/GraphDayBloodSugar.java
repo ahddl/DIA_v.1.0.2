@@ -85,11 +85,11 @@ public class GraphDayBloodSugar extends Fragment {
 
     private void addTable(List<InfoBox> infoBoxList) {
         TableLayout dataTable = requireView().findViewById(R.id.dataTable);
-        // 이전의 모든 행을 지웁니다.
+        // 이전의 모든 행 삭제
         dataTable.removeViewsInLayout(1, dataTable.getChildCount() - 1); // 첫 번째 행(헤더)을 제외한 모든 행 제거
 
         for(InfoBox item : infoBoxList){
-            // 테이블에 데이터 추가
+            // 테이블 데이터 추가
             TableRow tableRow = new TableRow(requireContext());
             TextView timeTextView = new TextView(requireContext());
             timeTextView.setText(item.getTime()); // HH:MM 형식의 시간
@@ -107,7 +107,7 @@ public class GraphDayBloodSugar extends Fragment {
             tableRow.addView(tagTextView);
             tableRow.addView(valueTextView);
 
-            dataTable.addView(tableRow); // 테이블에 행 추가
+            dataTable.addView(tableRow); // 테이블 행 추가
         }
 
     }
@@ -119,18 +119,18 @@ public class GraphDayBloodSugar extends Fragment {
         textView.setText(spannableString);
     }
 
-    // 클래스의 리스트를 받아와서 꺾은선 그래프를 만드는 메서드
+    // 클래스 리스트-> 꺾은선 그래프
     private void setupLineChart(List<InfoBox> classList) {
         ArrayList<Entry> entries = new ArrayList<>();
 
-        // time과 value 값을 꺼내서 Entry 리스트에 추가
+        // time, value 값을 꺼내서 Entry 리스트 추가
         for (InfoBox item : classList) {
             float timeFloat = convertTimeToFloat(item.getTime());
             float value = (float)item.getValue(); // Y축 값
             entries.add(new Entry(timeFloat, value));
         }
 
-        // 데이터셋 생성
+        // dataset 생성
         LineDataSet dataSet = new LineDataSet(entries, "시간 당 혈당 변화");
         dataSet.setColor(Color.BLUE); // 선 색상 설정
         dataSet.setValueTextColor(Color.BLACK); // 값 텍스트 색상 설정
@@ -142,14 +142,14 @@ public class GraphDayBloodSugar extends Fragment {
         LineData lineData = new LineData(dataSet);
         lineData.setValueTextSize(12f);
 
-        // LineChart에 데이터 설정
+        // LineChart 데이터 설정
         lineChart.setData(lineData);
 
         // X축 설정 (시간 값)
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setAxisMinimum(5f); // 예: X축의 최소값을 0으로 설정 (필요시 변경)
-        xAxis.setAxisMaximum(24f); // 예: X축의 최대값을 24로 설정 (필요시 변경)
+        xAxis.setAxisMinimum(5f); // 예: X축의 최소값 0으로 설정 (필요시 변경)
+        xAxis.setAxisMaximum(24f); // 예: X축의 최대값 24로 설정 (필요시 변경)
         xAxis.setGranularity(1f); // X축 간격 설정
         xAxis.setAvoidFirstLastClipping(true);
 
@@ -164,7 +164,7 @@ public class GraphDayBloodSugar extends Fragment {
         });
         xAxis.setEnabled(true);
 
-        YAxis yAxis = lineChart.getAxisLeft();  // 왼쪽 Y축 가져오기
+        YAxis yAxis = lineChart.getAxisLeft();  // 왼쪽 Y축
         yAxis.setAxisMinimum(50f);  // Y축 최소값 설정
         yAxis.setAxisMaximum(200f); // Y축 최대값 설정
 

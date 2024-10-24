@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -12,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/background"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:paddingEnd="20dp"
@@ -32,7 +31,7 @@
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- meme 레이아웃이 recode_time_diet 아래에 위치하도록 수정 -->
+        <!--  recode_time_diet 아래에 meme 위치 하게 수정 -->
         <LinearLayout
             android:id="@+id/meme"
             android:layout_width="match_parent"
@@ -45,7 +44,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="menu이름1"
+            android:text="menu 이름"
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="gone"/>
@@ -53,7 +52,7 @@
             android:id="@+id/mealTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아침점심저녁 중 하나 뜨는 곳"
+            android:text="아침/점심/저녁 중 하나 뜨는 곳"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -65,7 +64,7 @@
             android:text="(칼로리 표시)"/>
     </LinearLayout>
 
-    <!-- 파이차트 추가 -->
+    <!-- 파이 차트 추가 -->
     <LinearLayout
         android:id="@+id/chartHidden"
         android:layout_width="match_parent"
@@ -108,8 +107,8 @@
                 android:id="@+id/nutrition_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="영양소 \n칼로리: \n 탄수화물: \n 단백질: \n 지방: \n 콜레스테롤: \n 설탕 당: " />
+                android:layout_marginStart="5dp"
+                android:text="영양소 \n 칼로리: \n 탄수화물: \n 단백질: \n 지방: \n 콜레스테롤: \n 설탕 당: " />
         </LinearLayout>
 
         <LinearLayout

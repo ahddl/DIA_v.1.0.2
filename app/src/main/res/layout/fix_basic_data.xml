@@ -19,11 +19,12 @@
         android:layout_marginTop="17dp"
         android:layout_marginBottom="30dp"
         android:text="Back"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/Linear1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SmallSp" />
 
     <LinearLayout
         android:id="@+id/Linear1"
@@ -83,7 +84,7 @@
                 android:ems="10"
                 android:hint="단위 cm 입니다."
                 android:inputType="number"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -113,7 +114,7 @@
                 android:hint="단위 kg 입니다."
                 android:inputType="number"
                 android:textColor="@color/black"
-                android:textSize="10sp" />
+                android:textSize="11sp" />
 
         </LinearLayout>
 
@@ -141,7 +142,7 @@
                 android:ems="10"
                 android:hint="만 나이 입니다."
                 android:inputType="number"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -259,8 +260,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="이메일 수신에 동의합니다."
-            android:textSize="10sp"
-            />
+            android:textSize="11sp"/>
 
 
         <androidx.appcompat.widget.AppCompatButton

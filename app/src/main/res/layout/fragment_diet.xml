@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/dietnFrame"
+    android:id="@+id/dietFrame"
     tools:context=".FragmentDiet">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +31,7 @@
                 android:background="@color/blue_grey"
                 android:text="카메라로!\n음식을 인식해보세요"
                 android:textColor="@color/white"
-                android:textSize="24dp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="DATE"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:layout_marginStart="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/diet_date"
@@ -83,11 +83,12 @@
                 android:layout_marginStart="5dp"
                 android:src="@drawable/baseline_calendar_month_24"
                 android:clickable="true"
+                android:focusable="true"
                 android:layout_gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/diet_date"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </LinearLayout>
 
@@ -104,7 +105,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
         </ScrollView>
 

@@ -74,7 +74,7 @@ public class DietItemAdapter extends RecyclerView.Adapter<DietItemAdapter.DietIt
         holder.pieChart.setData(data);
         holder.pieChart.invalidate(); // refresh
 
-        // 클릭 시 nutritionInfo VISIBLE로 변경
+        // 클릭 시 nutritionInfo 변경: VISIBLE
         holder.infoButton.setOnClickListener(v -> {
             if (holder.hiddenView.getVisibility() == View.GONE) {
                 holder.hiddenView.setVisibility(View.VISIBLE);

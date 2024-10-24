@@ -3,7 +3,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue">
@@ -15,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/background"
-        android:paddingLeft="12dp"
+        android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -36,10 +35,10 @@
             app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/nowtime"
+            android:id="@+id/nowTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기록날짜시간"
+            android:text="YYYY-MM-DD HH:MM"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +50,7 @@
                 android:layout_height="16dp"
                 android:background="@drawable/baseline_info_outline_24"
                 android:backgroundTint="@color/pale_grey"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginStart="10sp"/>
 
         </LinearLayout>
 
@@ -84,7 +83,8 @@
                 android:layout_weight="1"
                 android:hint="혈당을 입력하세요"
                 android:inputType="numberDecimal"
-                android:textSize="16dp" />
+                android:textSize="16sp"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/unit_text"
@@ -102,7 +102,7 @@
             android:layout_width="65dp"
             android:layout_height="40dp"
             android:text="저장"
-            android:textSize="12dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_layout" />
@@ -115,7 +115,6 @@
         android:layout_height="wrap_content"
         android:padding="12dp"
         app:layout_constraintTop_toBottomOf="@+id/input_bloodsugar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.62" />  <!--휴대폰기준으로 맞춤-->
+        app:layout_constraintBottom_toBottomOf="parent" />  <!--휴대폰기준으로 맞춤-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
