@@ -105,6 +105,9 @@
         <activity android:name=".AlarmStop"
             android:theme="@style/Theme.AppCompat.Dialog"
             android:exported="false"/>
+        <activity android:name=".DangerFood"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:exported="false"/>
 
 
 
