@@ -15,7 +15,7 @@
         <item
             android:id="@+id/bardiabetes"
             android:title="혈당"
-            android:icon="@drawable/baseline_bloodtype_24"/>
+            android:icon="@drawable/baseline_blood_type_24"/>
 
         <item
             android:id="@+id/barchatbot"

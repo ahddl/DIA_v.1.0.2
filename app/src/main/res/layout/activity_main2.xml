@@ -131,7 +131,7 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
-                    app:srcCompat="@drawable/baseline_bloodtype_24" />
+                    app:srcCompat="@drawable/baseline_blood_type_24" />
 
                 <TextView
                     android:id="@+id/textView"
