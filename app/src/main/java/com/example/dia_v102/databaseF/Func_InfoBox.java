@@ -121,7 +121,41 @@ public class Func_InfoBox {
                 });
     }
 
+    public void dropInfoBox(String date, String time, double value, final OnDataDroppedListener listener) {
+        myRef.child(userID_).orderByChild("date").equalTo(date)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        boolean dataFound = false;
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            InfoBox infoBox = snapshot.getValue(InfoBox.class);
+                            if (infoBox != null && infoBox.getTime().equals(time) && infoBox.getValue() == value) {
+                                dataFound = true;
+                                // 데이터 삭제
+                                snapshot.getRef().removeValue()
+                                        .addOnSuccessListener(aVoid -> Log.d("Firebase", "Data deleted successfully."))
+                                        .addOnFailureListener(e -> Log.d("Firebase", "Failed to delete data.", e));
+                            }
+                        }
 
+                        // 데이터가 성공적으로 삭제되었는지 알림
+                        if (listener != null) {
+                            if (dataFound) {
+                                listener.onDataDropped();
+                            } else {
+                                listener.onDataNotFound(); // 일치하는 데이터가 없는 경우
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        if (listener != null) {
+                            listener.onDataDropFailed(error.toException());
+                        }
+                    }
+                });
+    }
 
     // 데이터 받기 위한 인터페이스
     public interface OnDataReceivedListener {
@@ -133,5 +167,10 @@ public class Func_InfoBox {
         void onData_DateReceived(Map<String, Double> dateSumMap);
         void onDataFailed(Exception exception);
     }
-
+    // 데이터 삭제 확인을 위한 인터페이스
+    public interface OnDataDroppedListener {
+        void onDataDropped(); // 삭제 성공
+        void onDataNotFound(); // 일치하는 데이터가 없는 경우
+        void onDataDropFailed(Exception exception); // 삭제 실패
+    }
 }
