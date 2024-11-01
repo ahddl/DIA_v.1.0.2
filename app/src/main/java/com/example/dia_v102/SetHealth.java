@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SetHealth extends Application {
+
+    static double delta_bloodsugar_std=20;
     static double bloodSugarAVG;
     static double bloodSugarRecent;
     static double HbA1cAVG;
@@ -46,6 +48,13 @@ public class SetHealth extends Application {
     }
     public static void removeHbA1CChangeListener(HbA1CChangeListener listener){
         listeners2.remove(listener);
+    }
+
+    public static void setDelta_bloodsugar_std(double val){
+        delta_bloodsugar_std = val;
+    }
+    public static double getDelta_bloodsugar_std(){
+        return  delta_bloodsugar_std;
     }
 
     // 알림-모든 리스너

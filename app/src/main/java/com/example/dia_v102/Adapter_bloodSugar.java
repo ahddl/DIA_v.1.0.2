@@ -42,25 +42,35 @@ public class Adapter_bloodSugar extends RecyclerView.Adapter<Adapter_bloodSugar.
         int dotColor;
 
         String mealType = bloodSugar.getTag2(); // mealType 확인
-
-        // 색상 결정 로직
-        if (Arrays.asList("기상 후(공복)", "자기 전", "기타").contains(mealType)) {
-            if (bloodSugarValue >= 80 && bloodSugarValue <= 130) {
-                dotColor = Color.GREEN; // 정상 범위
-            } else {
-                dotColor = Color.RED; // 경고 범위
-            }
-        } else if (Arrays.asList("아침 식전", "점심 식전", "저녁 식전").contains(mealType)) {
-            if (bloodSugarValue >= 100 && bloodSugarValue <= 120) {
-                dotColor = Color.GREEN; // 정상 범위
-            } else {
-                dotColor = Color.RED; // 경고 범위
-            }
-        } else { // After meals
-            if (bloodSugarValue >= 120 && bloodSugarValue <= 140) {
-                dotColor = Color.GREEN; // 정상 범위
-            } else {
-                dotColor = Color.RED; // 경고 범위
+        // mealType을 마지막 글자와 나머지 부분으로 분리
+        String color = mealType.substring(mealType.length() - 1);
+        if(Arrays.asList("R","G").contains(color)) {
+            mealType = mealType.substring(0, mealType.length() - 1);
+            holder.mealTypeTextView.setText(mealType);
+            if(color.equals("R")){dotColor = Color.RED;}
+            else if(color.equals("G")){dotColor = Color.GREEN;}
+            else{dotColor= Color.BLACK;}
+        }
+        else{
+            // 색상 결정 로직
+            if (Arrays.asList("기상 후(공복)", "자기 전", "기타").contains(mealType)) {
+                if (bloodSugarValue >= 80 && bloodSugarValue <= 130) {
+                    dotColor = Color.GREEN; // 정상 범위
+                } else {
+                    dotColor = Color.RED; // 경고 범위
+                }
+            } else if (Arrays.asList("아침 식전", "점심 식전", "저녁 식전").contains(mealType)) {
+                if (bloodSugarValue >= 100 && bloodSugarValue <= 120) {
+                    dotColor = Color.GREEN; // 정상 범위
+                } else {
+                    dotColor = Color.RED; // 경고 범위
+                }
+            } else { // After meals
+                if (bloodSugarValue >= 120 && bloodSugarValue <= 140) {
+                    dotColor = Color.GREEN; // 정상 범위
+                } else {
+                    dotColor = Color.RED; // 경고 범위
+                }
             }
         }
 
@@ -71,9 +81,7 @@ public class Adapter_bloodSugar extends RecyclerView.Adapter<Adapter_bloodSugar.
     }
 
     @Override
-    public int getItemCount() {
-        return bloodSugarList.size();
-    }
+    public int getItemCount() {return bloodSugarList.size();}
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView mealTypeTextView;

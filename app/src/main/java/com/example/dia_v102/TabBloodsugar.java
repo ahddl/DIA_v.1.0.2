@@ -1,5 +1,6 @@
 package com.example.dia_v102;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -24,9 +25,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dia_v102.databaseF.Func_InfoBox;
 import com.example.dia_v102.databaseF.InfoBox;
 import com.example.dia_v102.utils.DateUtil;
-import com.example.dia_v102.utils.FoodDanger;
+import com.example.dia_v102.utils.Warning_in_Food;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -79,10 +81,19 @@ public class TabBloodsugar extends Fragment {
         saveButton.setOnClickListener(v -> {
             String tag2 = dropdownMenu.getSelectedItem().toString();
             double sugar = Double.parseDouble(bloodSugarInput.getText().toString());
-            FInfoBox.saveInfoBox("혈당", tag2, sugar);
-            FoodDanger.isDanger(tag2, sugar);
+
+            String D_color = colorMapping(tag2, sugar);
+            if(Arrays.asList("아침 식후", "점심 식후", "저녁 식후").contains(tag2)
+                    && (sugar-SetHealth.bloodSugarRecent>SetHealth.getDelta_bloodsugar_std())){
+                user_Danger(tag2);
+            }
+
+            //저장&정보 수정
+            Warning_in_Food.dangerCall(tag2, sugar);
+            FInfoBox.saveInfoBox("혈당", tag2+D_color, sugar);
             Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
             SetHealth.setBloodSugarRecent(sugar);
+
             loadDiabetesData(DateUtil.dateToString(new Date()));
         });
 
@@ -149,5 +160,39 @@ public class TabBloodsugar extends Fragment {
                 Log.d("BoxOut", Objects.requireNonNull(exception.getMessage()));
             }
         }));
+    }
+
+    private String colorMapping(String mealType, double bloodSugarValue){
+        String dotColor;
+        // 색상 결정 로직
+        if (Arrays.asList("기상 후(공복)", "자기 전", "기타").contains(mealType)) {
+            if (bloodSugarValue >= 80 && bloodSugarValue <= 130) {
+                dotColor = "G"; // 정상 범위
+            } else {
+                dotColor = "R"; // 경고 범위
+            }
+        } else if (Arrays.asList("아침 식전", "점심 식전", "저녁 식전").contains(mealType)) {
+            if (bloodSugarValue >= 100 && bloodSugarValue <= 120) {
+                dotColor = "G"; // 정상 범위
+            } else {
+                dotColor = "R"; // 경고 범위
+            }
+        } else { // After meals
+            if (bloodSugarValue >= 120 && bloodSugarValue <= 140) {
+                dotColor = "G"; // 정상 범위
+            } else {
+                dotColor = "R"; // 경고 범위
+            }
+        }
+        return dotColor;
+    }
+
+    private void user_Danger(String tag){
+        //Toast.makeText(requireContext(), "위험한 식단 표시", Toast.LENGTH_SHORT).show();
+        String searchTag = tag.substring(0, 2);
+
+        Intent intent = new Intent(requireContext(), DangerFood.class);
+        intent.putExtra("TAG", searchTag);
+        startActivity(intent);
     }
 }

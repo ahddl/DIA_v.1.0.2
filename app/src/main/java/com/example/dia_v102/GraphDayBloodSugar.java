@@ -29,6 +29,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -96,7 +97,12 @@ public class GraphDayBloodSugar extends Fragment {
             timeTextView.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1));
 
             TextView tagTextView = new TextView(requireContext());
-            tagTextView.setText(item.getTag2());
+            String mealType = item.getTag2();
+            String color = mealType.substring(mealType.length() - 1);
+            if(Arrays.asList("R","G").contains(color)) {
+                mealType = mealType.substring(0, mealType.length() - 1);
+            }
+            tagTextView.setText(mealType);
             tagTextView.setLayoutParams(new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1));
 
             TextView valueTextView = new TextView(requireContext());
